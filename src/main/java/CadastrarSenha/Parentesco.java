@@ -10,6 +10,7 @@ public class Parentesco {
         System.out.println(" 2 - Mãe");
         System.out.println(" 3 - Filho");
         System.out.println(" 4 - Outros");
+        System.out.println("TESTANDO");
 
         Scanner leia = new Scanner(System.in);
         int valorParente = leia.nextInt();
