@@ -1,14 +1,18 @@
 package org.example;
 
+import CadastrarSenha.Parentesco;
 import CadastrarSenha.Senha;
+import CadastrarSenha.Variaveis;
 
 public class Main {
     public static void main(String[] args) {
         Senha senha = new Senha();
-        System.out.println("CADASTRE UMA SENHA");
+        Variaveis variaveis = new Variaveis();
+        Parentesco parentesco = new Parentesco();
 
-        System.out.println(senha.cadastroSenha());
-        System.out.println("SENHA CADASTRADA");
+        System.out.println(parentesco.parente());
+
+
     }
 
 }

@@ -4,28 +4,45 @@ import java.util.Scanner;
 
 public class Parentesco {
 
-    private int qualSeuParentesco(){
-        System.out.println("Qual seu parentesco ? ");
-        System.out.println(" 1 - Pai");
-        System.out.println(" 2 - Mãe");
-        System.out.println(" 3 - Filho");
-        System.out.println(" 4 - Outros");
-        System.out.println("TESTANDO");
-
+    public String parente() {
         Scanner leia = new Scanner(System.in);
-        int valorParente = leia.nextInt();
+        System.out.println("DIGITE SUA OPCAO:");
+        System.out.println("-----------------");
 
-        if (valorParente == 1){
+        System.out.println("1 - Pai");
+        System.out.println("2 - Mae");
+        System.out.println("3 - Filho");
+        System.out.println("4 - Outro");
 
+        String valor = leia.nextLine();
+        Variaveis variaveis = new Variaveis();
+
+        switch (valor){
+            case "1":
+          System.out.println("DIGITE SEU NOME");
+                String nomePai = leia.nextLine();
+                String guardaNomePai = variaveis.setPai(nomePai);
+            case "2":
+          System.out.println("DIGITE SEU NOME");
+                String nomeMae = leia.nextLine();
+            case "3":
+          System.out.println("DIGITE SEU NOME");
+                String nomeFilho = leia.nextLine();
+            case "4":
+          System.out.println("DIGITE SEU NOME");
+                String nomeOutros = leia.nextLine();
         }
 
 
-        return valorParente;
+        return "nome cadastrado";
     }
 
     public static void main(String[] args) {
         Parentesco teste = new Parentesco();
 
-        System.out.println(teste.qualSeuParentesco());
+        System.out.println(teste.parente());
+
+
     }
 }
+
