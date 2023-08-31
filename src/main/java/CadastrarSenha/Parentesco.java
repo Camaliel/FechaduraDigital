@@ -1,5 +1,8 @@
 package CadastrarSenha;
 
+
+import CadastrarSenha.Variaveis.Variaveis;
+
 import java.util.Scanner;
 
 public class Parentesco {
@@ -17,20 +20,26 @@ public class Parentesco {
         String valor = leia.nextLine();
         Variaveis variaveis = new Variaveis();
 
+
         switch (valor){
             case "1":
           System.out.println("DIGITE SEU NOME");
                 String nomePai = leia.nextLine();
-                String guardaNomePai = variaveis.setPai(nomePai);
+                break;
             case "2":
           System.out.println("DIGITE SEU NOME");
                 String nomeMae = leia.nextLine();
+                String valorMae = variaveis.setMae(nomeMae);
+                break;
             case "3":
           System.out.println("DIGITE SEU NOME");
                 String nomeFilho = leia.nextLine();
+
+                break;
             case "4":
           System.out.println("DIGITE SEU NOME");
                 String nomeOutros = leia.nextLine();
+                break;
         }
 
 
@@ -39,8 +48,9 @@ public class Parentesco {
 
     public static void main(String[] args) {
         Parentesco teste = new Parentesco();
-
+        Variaveis variaveis = new Variaveis();
         System.out.println(teste.parente());
+        System.out.println(variaveis.getMae());
 
 
     }

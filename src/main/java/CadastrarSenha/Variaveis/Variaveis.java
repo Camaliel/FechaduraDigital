@@ -1,4 +1,4 @@
-package CadastrarSenha;
+package CadastrarSenha.Variaveis;
 
 public class Variaveis {
     public Variaveis(String pai) {
@@ -24,8 +24,9 @@ public class Variaveis {
         return mae;
     }
 
-    public void setMae(String mae) {
+    public String setMae(String mae) {
         this.mae = mae;
+        return mae;
     }
 
     public String getFilho() {

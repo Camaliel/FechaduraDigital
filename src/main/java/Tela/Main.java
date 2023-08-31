@@ -1,8 +1,8 @@
-package org.example;
+package Tela;
 
 import CadastrarSenha.Parentesco;
 import CadastrarSenha.Senha;
-import CadastrarSenha.Variaveis;
+import CadastrarSenha.Variaveis.Variaveis;
 
 public class Main {
     public static void main(String[] args) {
