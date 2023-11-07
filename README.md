@@ -13,6 +13,21 @@ Para esses casos nâo sera utilizada reconhecimeno facial apenas senha
 ![FechaduraEletronica.jpg](..%2F..%2FFechaduraEletronica.jpg)
 * Cadastro de senha *
 
-![WhatsApp Image 2023-08-29 at 13.40.11.jpeg](..%2F..%2FDownloads%2FWhatsApp%20Image%202023-08-29%20at%2013.40.11.jpeg)
+![img.png](Diagramas/img.png)
+
+#### Ao escolher a opção de cadastrar a senha entra na opção de parentesco entrando no menu com 4 opções
+```
+|----------------------------|
+|1 - Pai (PATRIARCA)         |
+|----------------------------|
+|2 - Mae (MATRIARCA)         |
+|----------------------------|
+|3 - Filhos                  |
+|----------------------------|
+|4 - Outros                  |
+|----------------------------|
+```
+
+Contendo dois tipos de **PATRIARCAS** **Pai** ou **Mãe**, será necessario para poder ter acesso as movimentações mais tarde
 
 [READ-ME em contrucao] ...

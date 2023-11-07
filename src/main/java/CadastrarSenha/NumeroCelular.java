@@ -4,17 +4,29 @@ import java.util.Scanner;
 
 public class NumeroCelular {
 
-   public String numeroCelular(){
-       System.out.println("Cadatre um numero de celular valido: ");
-       Scanner input = new Scanner(System.in);
-       String nCelular = input.nextLine();
+    public void adicionaNumero() {
+
+        Scanner leia = new Scanner(System.in);
+        System.out.println("Insira um numero");
+        String numero = leia.nextLine();
 
 
-       return "Numero cadastrado";
-   }
+
+        while (numero.length() != 9) {
+
+            if (numero.length() != 9 ) {
+                System.out.println("Insira um numero valido");
+                numero = leia.nextLine();
+            }
+        }
+        if (numero.length() == 9) {
+            System.out.println("Numero inserido com sucesso ..");
+
+        }
+    }
 
     public static void main(String[] args) {
         NumeroCelular teste = new NumeroCelular();
-        System.out.println(teste.numeroCelular());
+        teste.adicionaNumero();
     }
 }
