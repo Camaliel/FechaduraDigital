@@ -15,7 +15,7 @@ Para esses casos nâo sera utilizada reconhecimeno facial apenas senha
 
 ![img.png](Diagramas/img.png)
 
-#### Ao escolher a opção de cadastrar a senha entra na opção de parentesco entrando no menu com 4 opções
+#### Ao escolher a opção de cadastrar a senha entra na opção de familiar entrando no menu com 4 opções
 ```
 |----------------------------|
 |1 - Pai (PATRIARCA)         |

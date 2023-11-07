@@ -1,12 +1,13 @@
 package CadastrarSenha;
 
 
-import CadastrarSenha.Variaveis.Variaveis;
+import CadastrarSenha.Variaveis.VarFamiliar;
 
 import java.util.Scanner;
 
-public class Parentesco {
+public class Familiar {
 
+    VarFamiliar varFamiliar = new VarFamiliar();
     public String parente() {
         Scanner leia = new Scanner(System.in);
         System.out.println("DIGITE SUA OPCAO:");
@@ -18,27 +19,30 @@ public class Parentesco {
         System.out.println("4 - Outro");
 
         String valor = leia.nextLine();
-        Variaveis variaveis = new Variaveis();
+
 
 
         switch (valor){
             case "1":
           System.out.println("DIGITE SEU NOME");
                 String nomePai = leia.nextLine();
+                String valorPai = varFamiliar.setPai(nomePai);
                 break;
             case "2":
           System.out.println("DIGITE SEU NOME");
                 String nomeMae = leia.nextLine();
-                String valorMae = variaveis.setMae(nomeMae);
+                String valorMae = varFamiliar.setMae(nomeMae);
                 break;
             case "3":
           System.out.println("DIGITE SEU NOME");
                 String nomeFilho = leia.nextLine();
+                String valorFilho = varFamiliar.setFilho(nomeFilho);
 
                 break;
             case "4":
           System.out.println("DIGITE SEU NOME");
                 String nomeOutros = leia.nextLine();
+                String valorOutros = varFamiliar.setOutros(nomeOutros);
                 break;
         }
 
@@ -47,11 +51,12 @@ public class Parentesco {
     }
 
     public static void main(String[] args) {
-        Parentesco teste = new Parentesco();
-        Variaveis variaveis = new Variaveis();
+        Familiar teste = new Familiar();
         System.out.println(teste.parente());
-        System.out.println(variaveis.getMae());
-
+        System.out.println("[" + teste.varFamiliar.getMae() +"]" + " MAE");
+        System.out.println("[" +teste.varFamiliar.getPai() +"]" + " PAI");
+        System.out.println("[" +teste.varFamiliar.getFilho() + "]" + " FILHOS");
+        System.out.println("[" +teste.varFamiliar.getOutros() + "]" + " OUTROS");
 
     }
 }

@@ -1,16 +1,16 @@
 package Tela;
 
-import CadastrarSenha.Parentesco;
+import CadastrarSenha.Familiar;
 import CadastrarSenha.Senha;
-import CadastrarSenha.Variaveis.Variaveis;
+import CadastrarSenha.Variaveis.VarFamiliar;
 
 public class    Main {
     public static void main(String[] args) {
         Senha senha = new Senha();
-        Variaveis variaveis = new Variaveis();
-        Parentesco parentesco = new Parentesco();
+        VarFamiliar varFamiliar = new VarFamiliar();
+        Familiar familiar = new Familiar();
 
-        System.out.println(parentesco.parente());
+        System.out.println(familiar.parente());
 
 
     }

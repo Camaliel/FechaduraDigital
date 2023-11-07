@@ -1,7 +1,7 @@
 package CadastrarSenha.Variaveis;
 
-public class Variaveis {
-    public Variaveis(String pai) {
+public class VarFamiliar {
+    public VarFamiliar(String pai) {
         this.pai = pai;
     }
 
@@ -33,18 +33,20 @@ public class Variaveis {
         return filho;
     }
 
-    public void setFilho(String filho) {
+    public String setFilho(String filho) {
         this.filho = filho;
+        return filho;
     }
 
     public String getOutros() {
         return outros;
     }
 
-    public void setOutros(String outros) {
+    public String setOutros(String outros) {
         this.outros = outros;
+        return outros;
     }
 
-    public Variaveis() {
+    public VarFamiliar() {
     }
 }
