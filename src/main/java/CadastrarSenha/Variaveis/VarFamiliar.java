@@ -1,14 +1,26 @@
 package CadastrarSenha.Variaveis;
 
 public class VarFamiliar {
-    public VarFamiliar(String pai) {
-        this.pai = pai;
-    }
-
     private String pai;
     private String mae;
     private String filho;
     private String outros;
+    private String confirm;
+
+    public VarFamiliar(String pai) {
+        this.pai = pai;
+    }
+
+    public String getConfirm() {
+        return confirm;
+    }
+
+    public String setConfirm(String confirm) {
+        this.confirm = confirm;
+        return confirm;
+    }
+
+
 
     public String getPai() {
         return pai;

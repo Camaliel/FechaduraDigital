@@ -1,4 +1,4 @@
-package CadastrarSenha;
+package CadastrarSenha.Service;
 
 import CadastrarSenha.Variaveis.InfoUsuario;
 

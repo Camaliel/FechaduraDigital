@@ -1,17 +1,16 @@
 package Tela;
 
-import CadastrarSenha.Familiar;
-import CadastrarSenha.Senha;
+import CadastrarSenha.Service.Familiar;
+import CadastrarSenha.Service.NumeroCelular;
 import CadastrarSenha.Variaveis.VarFamiliar;
 
 public class    Main {
     public static void main(String[] args) {
-        Senha senha = new Senha();
+        Familiar teste = new Familiar();
+        NumeroCelular numeroCelular = new NumeroCelular();
         VarFamiliar varFamiliar = new VarFamiliar();
-        Familiar familiar = new Familiar();
-
-        System.out.println(familiar.parente());
-
+        System.out.println(teste.parente(teste.varFamiliar.getMae()));
+        System.out.println(numeroCelular.adicionaNumero());
 
     }
 

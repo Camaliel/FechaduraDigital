@@ -1,10 +1,10 @@
-package CadastrarSenha;
+package CadastrarSenha.Service;
 
 import java.util.Scanner;
 
 public class NumeroCelular {
 
-    public void adicionaNumero() {
+    public String adicionaNumero() {
 
         Scanner leia = new Scanner(System.in);
         System.out.println("Insira um numero");
@@ -23,6 +23,7 @@ public class NumeroCelular {
             System.out.println("Numero inserido com sucesso ..");
 
         }
+        return "numero " + numero + " Adicionado ao banco de dados";
     }
 
     public static void main(String[] args) {
