@@ -1,12 +1,12 @@
 package CadastrarSenha.Service;
 
-import CadastrarSenha.Variaveis.InfoUsuario;
+import CadastrarSenha.Util.Variavel.InfoUsuario;
 
 import java.util.Scanner;
 
-public class Cpf {
-    InfoUsuario infoUsuario = new InfoUsuario();
 
+public class CpfService {
+    InfoUsuario infoUsuario = new InfoUsuario();
     /*
      * METODO PARA INSERIR O CPF PASSANDO COMO PARAMETRO O NUMERO DO CPF COM 11 DIGITOS INCLUINDO O DIGITO
      * SEM ESPAÇO ..
@@ -29,14 +29,14 @@ public class Cpf {
             System.out.println("CPF Inserido com Sucesso");
             infoUsuario.setCpf(cpf);
         }
-        return "agora vai"; // TODO ESPERANDO AULA ENTENDER ...
+        return digiteCpf; // TODO ESPERANDO AULA ENTENDER ...
     }
 
     public static void main(String[] args) {
-        Cpf cpf = new Cpf();
+        CpfService cpfService = new CpfService();
         InfoUsuario infoUsuario1 = new InfoUsuario();
-        cpf.numeroCpf(cpf.infoUsuario.getCpf());
-        System.out.println(cpf.infoUsuario.getCpf());
+        cpfService.numeroCpf(cpfService.infoUsuario.getCpf());
+//        System.out.println(cpf.infoUsuario.getCpf());
 
     }
 }

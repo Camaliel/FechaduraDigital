@@ -1,4 +1,4 @@
-package CadastrarSenha.Variaveis;
+package CadastrarSenha.Util.Variavel;
 
 public class VarFamiliar {
     private String pai;
@@ -6,6 +6,16 @@ public class VarFamiliar {
     private String filho;
     private String outros;
     private String confirm;
+
+    public String getTeste() {
+        return teste;
+    }
+
+    public void setTeste(String teste) {
+        this.teste = teste;
+    }
+
+    private String teste;
 
     public VarFamiliar(String pai) {
         this.pai = pai;

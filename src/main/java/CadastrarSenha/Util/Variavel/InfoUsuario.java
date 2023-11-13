@@ -1,6 +1,19 @@
-package CadastrarSenha.Variaveis;
+package CadastrarSenha.Util.Variavel;
 
 public class InfoUsuario {
+    String cpf;
+    int Dnascimento;
+
+    String numeroCelular;
+
+    public String getNumeroCelular() {
+        return numeroCelular;
+    }
+
+    public void setNumeroCelular(String numeroCelular) {
+        this.numeroCelular = numeroCelular;
+    }
+
     public String getCpf() {
         return cpf;
     }
@@ -8,10 +21,6 @@ public class InfoUsuario {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
-    String cpf;
-    int Dnascimento;
-    int numeroCelular;
 
     public int getDnascimento() {
         return Dnascimento;
@@ -21,11 +30,5 @@ public class InfoUsuario {
         Dnascimento = dnascimento;
     }
 
-    public int getNumeroCelular() {
-        return numeroCelular;
-    }
 
-    public void setNumeroCelular(int numeroCelular) {
-        this.numeroCelular = numeroCelular;
-    }
 }

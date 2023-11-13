@@ -2,7 +2,7 @@ package CadastrarSenha.Service;
 
 import java.util.Scanner;
 
-public class Senha {
+public class SenhaService {
 
     public void cadastroSenha() {
 
@@ -21,7 +21,7 @@ public class Senha {
             leia.close();
         }
         public static void main (String[]args){
-            Senha senha = new Senha();
-            senha.cadastroSenha();
+            SenhaService senhaService = new SenhaService();
+            senhaService.cadastroSenha();
         }
     }

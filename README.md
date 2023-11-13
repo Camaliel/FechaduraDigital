@@ -2,20 +2,20 @@
 [Read-me em construcao] ....
 
 
-Fechadura digital Baseada no bule de chá, com duas configuracoes diferentes, quando colocando a senha correta abrira 
-todas as portas, se colocado uma senha que SOS já configurada no ato da configuracao inicial
+Fechadura digital Baseada no bule de chá, com duas configuracoes diferentes, quando colocando a senhaService correta abrira 
+todas as portas, se colocado uma senhaService que SOS já configurada no ato da configuracao inicial
 será destrancadas apenas algumas portas, podendo ganhar tempo para ate a policia ser avisada, enviando imediatamente um SOS 
 para a policia e mais uma para o numero já configurado como Patriarca/Matriarca.
-Para esses casos nâo sera utilizada reconhecimeno facial apenas senha
+Para esses casos nâo sera utilizada reconhecimeno facial apenas senhaService
 
 * CRIACAO DE FECHADURA DIGITAL
 
 ![FechaduraEletronica.jpg](..%2F..%2FFechaduraEletronica.jpg)
-* Cadastro de senha *
+* Cadastro de senhaService *
 
 ![img.png](Diagramas/img.png)
 
-#### Ao escolher a opção de cadastrar a senha entra na opção de familiar entrando no menu com 4 opções
+#### Ao escolher a opção de cadastrar a senhaService entra na opção de familiarService entrando no menu com 4 opções
 ```
 |----------------------------|
 |1 - Pai (PATRIARCA)         |
