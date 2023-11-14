@@ -1,13 +1,17 @@
 package CadastrarSenha.Util;
 
-import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Service.FamiliarService;
+import CadastrarSenha.Service.Interface.PatriarcaImpl;
+import CadastrarSenha.Util.Variavel.VarFamiliar;
 
 import java.util.Scanner;
 
-public class Menu {
-   FamiliarService familiarService = new FamiliarService();
-   Scanner leia = new Scanner(System.in);
+public class Menu implements PatriarcaImpl {
+    FamiliarService familiarService = new FamiliarService();
+    VarFamiliar varFamiliar = new VarFamiliar();
+
+    Scanner leia = new Scanner(System.in);
+
     public String menuParente(String nome) {
 
         System.out.println("DIGITE SUA OPCAO:");
@@ -26,14 +30,16 @@ public class Menu {
                 System.out.println("DIGITE SEU NOME");
                 String nomePai = leia.nextLine();
                 String valorPai = familiarService.varFamiliar.setPai(nomePai);
-                familiarService.patriarca(valorPai);
+                patriarca(familiarService.patriarca(valorPai));
+
+
                 break;
 
             case "2":
                 System.out.println("DIGITE SEU NOME");
                 String nomeMae = leia.nextLine();
                 String valorMae = familiarService.varFamiliar.setMae(nomeMae);
-                familiarService.matriarca(valorMae);
+                matriarca(familiarService.matriarca(valorMae));
 
                 break;
             case "3":
@@ -52,4 +58,15 @@ public class Menu {
         return "-----------------";
     }
 
+    @Override
+    public String patriarca(String pai) {
+        FamiliarService familiarService = new FamiliarService();
+        return familiarService.varFamiliar.getPai();
+    }
+
+    @Override
+    public String matriarca(String mae) {
+        FamiliarService familiarService = new FamiliarService();
+        return familiarService.varFamiliar.getMae();
+    }
 }
