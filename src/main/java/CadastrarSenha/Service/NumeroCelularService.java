@@ -33,7 +33,6 @@ public class NumeroCelularService {
     public static void main(String[] args) {
         String numeroTeste = "";
         NumeroCelularService teste = new NumeroCelularService();
-        InfoUsuario usuario = new InfoUsuario();
         numeroTeste = teste.adicionaNumero();
         System.out.println(numeroTeste);
     }

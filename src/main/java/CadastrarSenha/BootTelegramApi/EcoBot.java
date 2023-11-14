@@ -1,12 +1,12 @@
-package BootTelegram;
+package CadastrarSenha.BootTelegramApi;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import static BootTelegram.DadosBot.BOT_TOKEN;
-import static BootTelegram.DadosBot.BOT_USER_NAME;
+import static CadastrarSenha.BootTelegramApi.DadosBot.BOT_TOKEN;
+import static CadastrarSenha.BootTelegramApi.DadosBot.BOT_USER_NAME;
 
 public class EcoBot extends TelegramLongPollingBot {
     @Override

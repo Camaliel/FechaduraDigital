@@ -13,6 +13,7 @@ public class CriarBancoJdbc {
         Connection conexao = DriverManager.getConnection(url, usuario, senha);
 
         Statement stmt = conexao.createStatement();
+
         stmt.execute("CREATE DATABASE pessoas");
 
         System.out.println("Banco criado com sucesso!!!");

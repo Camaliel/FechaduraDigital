@@ -1,4 +1,4 @@
-package BootTelegram;
+package CadastrarSenha.BootTelegramApi;
 
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -9,6 +9,6 @@ public class RegistrarBot {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         EcoBot bot = new EcoBot();
         telegramBotsApi.registerBot(new EcoBot());
-
+        System.out.println("LIGADO");
     }
 }
