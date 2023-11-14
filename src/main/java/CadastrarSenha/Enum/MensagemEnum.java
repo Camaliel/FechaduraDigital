@@ -7,7 +7,10 @@ public enum MensagemEnum {
     E_ENVIANDO("Enviando email"),
     N_VALIDO("Insira um numero valido !"),
     N_INVALIDO("Numero valido !"),
+    INSIRA_NUMERO("Insira um numero"),
+    NUMERO_SUCESSO("Numero inserido com sucesso !"),
     N_ADICIONADO("Adicionado ao banco de dados");
+
 
 
     MensagemEnum(String descricao) {

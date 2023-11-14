@@ -26,14 +26,14 @@ public class Menu {
                 System.out.println("DIGITE SEU NOME");
                 String nomePai = leia.nextLine();
                 String valorPai = familiarService.varFamiliar.setPai(nomePai);
-                familiarService.patriarca();
+                familiarService.patriarca(valorPai);
                 break;
 
             case "2":
                 System.out.println("DIGITE SEU NOME");
                 String nomeMae = leia.nextLine();
                 String valorMae = familiarService.varFamiliar.setMae(nomeMae);
-                familiarService.matriarca();
+                familiarService.matriarca(valorMae);
 
                 break;
             case "3":
@@ -49,7 +49,7 @@ public class Menu {
                 break;
 
         }
-        return MensagemEnum.E_ENVIADO.getDescricao();
+        return "-----------------";
     }
 
 }

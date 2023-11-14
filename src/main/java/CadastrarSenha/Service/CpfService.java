@@ -1,5 +1,6 @@
 package CadastrarSenha.Service;
 
+import CadastrarSenha.Service.Interface.CpfImpl;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
 
 import java.util.Scanner;

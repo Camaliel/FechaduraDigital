@@ -1,4 +1,4 @@
-package CadastrarSenha.Service;
+package CadastrarSenha.Service.Interface;
 
 public interface CpfImpl {
 
