@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 
 public class Respostas {
+    TokenUsuario token = new TokenUsuario();
     public SendMessage enviaMensagem(Update update) {
         var textoMensagem = update.getMessage();
         var user = update.getMessage().getChatId();
@@ -15,6 +16,8 @@ public class Respostas {
             resposta = RespostaApiEnum.SEM_FUNCIONALIDADE.getDescricao();
         } else if (textoMensagem.getText().startsWith("como vai")) {
             resposta = RespostaApiEnum.APRENDENDO.getDescricao();
+        } else if (textoMensagem.getText().startsWith("Numero")) {
+            resposta = String.valueOf(token.numeroAleatorio(update));
         } else if (textoMensagem.getText().startsWith("teste")) {
             resposta = RespostaApiEnum.TESTE_BOT.getDescricao();
         } else if (textoMensagem.getText().startsWith("estudando muito ?")) {
