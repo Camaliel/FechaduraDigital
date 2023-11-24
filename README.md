@@ -10,8 +10,9 @@ para a policia e mais uma para o numero já configurado como Patriarca/Matriarca
 Para esses casos nâo sera utilizada reconhecimeno facial apenas senha pelo teclado neste trecho.
 
 * CRIACAO DE FECHADURA DIGITAL
+* 
 
-![FechaduraEletronica.jpg](..%2F..%2FDiagramaFechadura%2FFechaduraEletronica.jpg)
+
 * Cadastro de senhaService *
 
 ![img.png](Diagramas/img.png)
@@ -32,7 +33,8 @@ Para esses casos nâo sera utilizada reconhecimeno facial apenas senha pelo tecl
 Contendo dois tipos de **PATRIARCAS** **Pai** ou **Mãe**, será necessario para poder ter acesso as movimentações mais 
 tarde, podendo ter apenas um patriarca por familia 
 
-![CriandoParentesco.drawio.png](..%2F..%2FDiagramaFechadura%2FParente%20Cadastro%2FCriandoParentesco.drawio.png)
+![CriandoParentesco.jpeg](Diagramas%2FCriandoParentesco.jpeg)
+
 
 Para filhos e outros não terá necessidade de ter acesso as movimentações, porém devera fazer cadastro normalmente assim como os demais
 
@@ -55,9 +57,7 @@ Não há uma quantidade especifica de filhos ou outros que devera se cadastrar, 
 Patriarcas/Matriarca sera enviado um codigo pelo telegram, para atos de confirmação de segurança, devera ser informado no painel do sistemas.
 
 
-![Api Telegram.drawio.png](..%2F..%2FDiagramaFechadura%2FApi%20Telegram%2FApi%20Telegram.drawio.png)
-
-
+![Api Telegram.drawio.jpeg](Diagramas%2FApi%20Telegram.drawio.jpeg)
 
 
 
