@@ -11,6 +11,7 @@ public class CpfService implements CpfImpl {
 
     @Override
     public String numeroCpf(String digiteCpf) {
+        String numeroCpfDigitado = infoUsuario.getCpf();
         Scanner lerCpf = new Scanner(System.in);
 
         System.out.println("DIGITE SEU CPF");
@@ -27,7 +28,7 @@ public class CpfService implements CpfImpl {
             System.out.println("CPF Inserido com Sucesso");
             infoUsuario.setCpf(cpf);
         }
-        return infoUsuario.getCpf(); // TODO ESPERANDO AULA ENTENDER ...
+        return numeroCpfDigitado ;
     }
     public static void main(String[] args) {
 
