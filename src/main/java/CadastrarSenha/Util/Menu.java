@@ -13,7 +13,6 @@ public class Menu implements PatriarcaImpl {
     Scanner leia = new Scanner(System.in);
 
     public String menuParente(String nome) {
-
         System.out.println("DIGITE SUA OPCAO:");
         System.out.println("-----------------");
 
@@ -23,16 +22,13 @@ public class Menu implements PatriarcaImpl {
         System.out.println("4 - Outro");
 
         String valor = leia.nextLine();
-
-
+        String valorMenu = varFamiliar.setValorMenu(valor);
         switch (valor) {
             case "1":
                 System.out.println("DIGITE SEU NOME");
                 String nomePai = leia.nextLine();
                 String valorPai = familiarService.varFamiliar.setPai(nomePai);
                 patriarca(familiarService.patriarca(valorPai));
-
-
                 break;
 
             case "2":
@@ -40,14 +36,14 @@ public class Menu implements PatriarcaImpl {
                 String nomeMae = leia.nextLine();
                 String valorMae = familiarService.varFamiliar.setMae(nomeMae);
                 matriarca(familiarService.matriarca(valorMae));
-
                 break;
+
             case "3":
                 System.out.println("DIGITE SEU NOME");
                 String nomeFilho = leia.nextLine();
                 String valorFilho = familiarService.varFamiliar.setFilho(nomeFilho);
-
                 break;
+
             case "4":
                 System.out.println("DIGITE SEU NOME");
                 String nomeOutros = leia.nextLine();
@@ -55,7 +51,7 @@ public class Menu implements PatriarcaImpl {
                 break;
 
         }
-        return "-----------------";
+        return valorMenu;
     }
 
     @Override

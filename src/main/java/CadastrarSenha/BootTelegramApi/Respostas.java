@@ -19,8 +19,8 @@ public class Respostas {
             resposta = RespostaApiEnum.APRENDENDO.getDescricao();
         } else if (textoMensagem.getText().startsWith("Numero")) {
             resposta = String.valueOf(token.numeroAleatorio(update));
-        } else if (textoMensagem.getText().startsWith("lembra")) {
-            resposta = token.lembraNumeroSalvo();
+//        } else if (textoMensagem.getText().startsWith("lembra")) {
+//            resposta = token.lembraNumeroSalvo();
         } else if (textoMensagem.getText().startsWith("teste")) {
             resposta = RespostaApiEnum.TESTE_BOT.getDescricao();
         } else if (textoMensagem.getText().startsWith("estudando muito ?")) {

@@ -16,6 +16,8 @@ public class NumeroCelularService implements NumeroCelularImpl {
         System.out.println(MensagemEnum.INSIRA_NUMERO.getDescricao());
         String numero = leia.nextLine();
 
+        String numeroCelularValido = infoUsuario.getNumeroCelular();
+
         while (numero.length() != 9) {
 
             if (numero.length() != 9) {
@@ -30,18 +32,18 @@ public class NumeroCelularService implements NumeroCelularImpl {
 
         }
 
-        return infoUsuario.getNumeroCelular(); //TODO matar duvida sobre memoria deve se ter uma variavel pra ser armazenada
+        return numeroCelularValido;
 
     }
     public static void main(String[] args) {
 
         //TESTANDO TELA APENAS.
-
-        String numeroTeste = "";
-        InfoUsuario infoUsuario = new InfoUsuario();
-        NumeroCelularService teste = new NumeroCelularService();
-        numeroTeste = teste.adicionaNumero(infoUsuario.getNumeroCelular());
-        System.out.println(numeroTeste);
+//
+//        String numeroTeste = "";
+//        InfoUsuario infoUsuario = new InfoUsuario();
+//        NumeroCelularService teste = new NumeroCelularService();
+//        numeroTeste = teste.adicionaNumero(infoUsuario.getNumeroCelular());
+//        System.out.println(numeroTeste);
     }
 
     }

@@ -6,6 +6,16 @@ public class VarFamiliar {
     private String filho;
     private String outros;
     private String confirm;
+    private String valorMenu;
+
+    public String getValorMenu() {
+        return valorMenu;
+    }
+
+    public String setValorMenu(String valorMenu) {
+        this.valorMenu = valorMenu;
+        return valorMenu;
+    }
 
     public String getTeste() {
         return teste;
