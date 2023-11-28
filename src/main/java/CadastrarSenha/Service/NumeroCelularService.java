@@ -35,15 +35,6 @@ public class NumeroCelularService implements NumeroCelularImpl {
         return numeroCelularValido;
 
     }
-    public static void main(String[] args) {
 
-        //TESTANDO TELA APENAS.
-//
-//        String numeroTeste = "";
-//        InfoUsuario infoUsuario = new InfoUsuario();
-//        NumeroCelularService teste = new NumeroCelularService();
-//        numeroTeste = teste.adicionaNumero(infoUsuario.getNumeroCelular());
-//        System.out.println(numeroTeste);
-    }
 
-    }
+}
