@@ -6,12 +6,24 @@ public class InfoUsuario {
 
     String numeroCelular;
 
+    String senha;
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public String setSenha(String senha) {
+        this.senha = senha;
+        return senha;
+    }
+
     public String getNumeroCelular() {
         return numeroCelular;
     }
 
-    public void setNumeroCelular(String numeroCelular) {
+    public String setNumeroCelular(String numeroCelular) {
         this.numeroCelular = numeroCelular;
+        return numeroCelular;
     }
 
     public String getCpf() {
