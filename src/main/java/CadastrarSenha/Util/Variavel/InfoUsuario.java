@@ -30,8 +30,9 @@ public class InfoUsuario {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public String setCpf(String cpf) {
         this.cpf = cpf;
+        return cpf;
     }
 
     public int getDnascimento() {

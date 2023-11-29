@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class CpfService implements CpfImpl {
     InfoUsuario infoUsuario = new InfoUsuario();
+    String numeroCpfValido = "";
 
     @Override
     public String numeroCpf(String digiteCpf) {
-        String numeroCpfDigitado = infoUsuario.getCpf();
         Scanner lerCpf = new Scanner(System.in);
 
         System.out.println("DIGITE SEU CPF");
@@ -21,6 +21,7 @@ public class CpfService implements CpfImpl {
             if (cpf.length() != 11) {
                 System.out.println("Digito faltando");
                 cpf = lerCpf.nextLine();
+                numeroCpfValido = numeroCpf(infoUsuario.setCpf(cpf));
 
             }
         }
@@ -28,19 +29,6 @@ public class CpfService implements CpfImpl {
             System.out.println("CPF Inserido com Sucesso");
             infoUsuario.setCpf(cpf);
         }
-        return numeroCpfDigitado ;
+        return numeroCpfValido ;
     }
-    public static void main(String[] args) {
-
-        // TESTANDO COMPORTAMENTO APENAS ....
-
-        CpfService cpfService = new CpfService();
-        InfoUsuario infoUsuario = new InfoUsuario();
-        cpfService.numeroCpf(infoUsuario.getCpf());
-        String numeroCpfValido = cpfService.infoUsuario.getCpf();
-        System.out.println(numeroCpfValido);
-
-    }
-
-
 }
