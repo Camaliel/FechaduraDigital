@@ -1,5 +1,6 @@
 package CadastrarSenha.Service;
 
+import CadastrarSenha.ExitCode.CodigoErroExitCode;
 import CadastrarSenha.Service.Interface.CpfImpl;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
 
@@ -19,9 +20,8 @@ public class CpfService implements CpfImpl {
 
         while (cpf.length() != 11) {
             if (cpf.length() != 11) {
-                System.out.println("Digito faltando");
+                System.out.println(CodigoErroExitCode.COD_3.getDescricao());
                 cpf = lerCpf.nextLine();
-                numeroCpfValido = numeroCpf(infoUsuario.setCpf(cpf));
 
             }
         }
@@ -29,6 +29,13 @@ public class CpfService implements CpfImpl {
             System.out.println("CPF Inserido com Sucesso");
             infoUsuario.setCpf(cpf);
         }
-        return numeroCpfValido ;
+        return numeroCpfValido;
+    }
+
+    public static void main(String[] args) {
+        CpfService teste = new CpfService();
+        InfoUsuario infoUsuario = new InfoUsuario();
+
+        teste.numeroCpf(infoUsuario.getCpf());
     }
 }

@@ -18,6 +18,8 @@ public class SenhaService implements SenhaUsuarioImpl {
         Scanner leia = new Scanner(System.in);
         String valor = leia.nextLine();
         while (valor.length() < 6) {
+            // TODO olhar depois para ver se da pra corrigir
+
             if (valor.length() < 6 || valor.isBlank()) {
                 System.out.println(MensagemSenhaEnum.ERRO_SENHA.getDescricao());
                 valor = leia.nextLine();

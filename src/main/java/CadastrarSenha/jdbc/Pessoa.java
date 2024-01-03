@@ -12,9 +12,12 @@ public class Pessoa {
         String nome = leia.nextLine();
 
         Connection conexao = CriarTabelaPessoa.getConnection();
-        String Sql =  " CREATE TABLE pessoas (" +
-                "codigo INT AUTO_INCREMENT PRIMARY KEY, " +
+        String Sql =  " CREATE TABLE pessoa (" +
+                "id INT AUTO_INCREMENT PRIMARY KEY, " +
                 "nome VARCHAR(80) NOT NULL" +
+                "cpf INT NOT NULL"+
+                "senha INT NOT NULL"+
+                "tel INT NOT NULL"+
                 ")";
 
         Statement stmt = conexao.createStatement();
