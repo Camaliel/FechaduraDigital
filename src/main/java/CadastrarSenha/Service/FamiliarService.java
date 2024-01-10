@@ -4,7 +4,6 @@ package CadastrarSenha.Service;
 import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Service.Interface.NumeroFilhosImpl;
 import CadastrarSenha.Service.Interface.PatriarcaImpl;
-import CadastrarSenha.Util.Menu;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
 
 import java.util.Scanner;
@@ -12,6 +11,14 @@ import java.util.Scanner;
 public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
     Scanner leia = new Scanner(System.in);
     public VarFamiliar varFamiliar = new VarFamiliar();
+    CpfService cpfService = new CpfService();
+    SenhaService senhaService = new SenhaService();
+    String cadastroSenhaFilhos = "";
+    String cpfDigitado = "";
+
+    String cpfGuardado = "";
+
+    String nomeFilhos = "";
 
     /*
      *
@@ -58,15 +65,31 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
      * */
     public int quantidadeDeFilhos() {
         Scanner leia = new Scanner(System.in);
-        int quantidadeRecebida = 0;
-
         System.out.println("Digite a quantidade de filhos para o cadastro");
         int numeroFilhos = leia.nextInt();
+
+        int quantidadeRecebida = 0;
+
         quantidadeRecebida = numeroFilhos;
 
         for (int i = 1; i <= quantidadeRecebida; i++) {
-            System.out.println("Digite o proximo filho");
-            numeroFilhos = leia.nextInt();
+            String nomeFilhos = leia.nextLine();
+            System.out.println("Digite o nome filho n° " + i);
+            nomeFilhos = leia.nextLine();
+            System.out.println("Agora, digite o CPF do filho n° " + i);
+            cpfGuardado =  cpfService.infoUsuario.setCpf(cpfDigitado);
+            cpfService.numeroCpf(cpfDigitado);
+            System.out.println("CONFIMA O CPF CADASTRADO?"+ "[" + cpfGuardado +"]" + "S/N");
+
+
+            String confirmaCpf = leia.next();
+            if (confirmaCpf.contains("s") || confirmaCpf.contains("S")) {
+                cpfService.infoUsuario.setCpf(cpfDigitado);
+            } else {
+                System.out.println("Digite novamente o numero do CPF do filhos n° " + i);
+                cpfService.numeroCpf(cpfDigitado);
+                System.out.println(cpfGuardado);
+            }
         }
 
         return quantidadeRecebida;
@@ -75,7 +98,7 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
     // TESTANDO METODOS =>
     public static void main(String[] args) {
         FamiliarService teste = new FamiliarService();
-        System.out.println(teste.quantidadeDeFilhos());
+        teste.quantidadeDeFilhos();
 
     }
 

@@ -9,13 +9,13 @@ import java.util.Scanner;
 
 public class CpfService implements CpfImpl {
     InfoUsuario infoUsuario = new InfoUsuario();
-    String numeroCpfValido = "";
+
 
     @Override
     public String numeroCpf(String digiteCpf) {
+        String numeroCpfValido = "";
         Scanner lerCpf = new Scanner(System.in);
-
-        System.out.println("DIGITE SEU CPF");
+        
         String cpf = lerCpf.nextLine();
 
         while (cpf.length() != 11) {

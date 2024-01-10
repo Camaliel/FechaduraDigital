@@ -39,7 +39,7 @@ public class Menu implements PatriarcaImpl {
                 break;
 
             case "3":
-                System.out.println("DIGITE SEU NOME");
+                familiarService.quantidadeDeFilhos();
                 String nomeFilho = leia.nextLine();
                 String valorFilho = familiarService.varFamiliar.setFilho(nomeFilho);
                 break;

@@ -2,6 +2,7 @@ package CadastrarSenha.Processor;
 
 import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Service.CpfService;
+import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.Interface.CpfImpl;
 import CadastrarSenha.Service.Interface.NumeroCelularImpl;
 import CadastrarSenha.Service.Interface.SenhaUsuarioImpl;
@@ -22,14 +23,17 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl,CpfImp
     String numeroCpfGravado = usuario.getCpf();
     String senhaGravada = usuario.getSenha();
     String numeroCelularValido = usuario.getNumeroCelular();
+    FamiliarService familiarService = new FamiliarService();
 
 
     public void menuPrincipal() {
             InfoUsuario infoUsuario = new InfoUsuario();
             NumeroCelularService service = new NumeroCelularService();
 
+
+
         if (!menu.menuParente(varFamiliar.getValorMenu()).isBlank()) {
-            System.out.println("estou aqui");
+            System.out.println("testando mennusssss");
 
         }
         if (!serviceNumeroCpf.numeroCpf(numeroCpfGravado).isBlank()) {
@@ -70,4 +74,6 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl,CpfImp
     public String adicionaNumero(String numeroCelular) {
         return numeroCelularValido;
     }
+
+
 }
