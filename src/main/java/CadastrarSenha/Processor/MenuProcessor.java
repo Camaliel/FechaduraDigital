@@ -23,7 +23,9 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl,CpfImp
     String senhaGravada = usuario.getSenha();
     String numeroCelularValido = usuario.getNumeroCelular();
     FamiliarService familiarService = new FamiliarService();
-
+    /*
+    * Processa toda a informação recebida e envia para o BANCO.
+    * */
 
     public void menuPrincipal() {
             InfoUsuario infoUsuario = new InfoUsuario();
@@ -32,23 +34,22 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl,CpfImp
 
 
         if (!menu.menuParente(varFamiliar.getValorMenu()).isBlank()) {
-            System.out.println("testando mennusssss");
-
+            System.out.println("ENVIANDO INFORMAÇÃO");
+            System.out.println();
+            System.out.println("PREENCHA O CAMPO COM O CPF");
         }
         if (!serviceNumeroCpf.verificaQuantidadeDigitadoCPF(numeroCpfGravado).isBlank()) {
-            System.out.println("antes");
-//            adicionaNumero(numeroCelularValido);
-
-
+            System.out.println("PREENCHA O CAMPO CORRETAMENTE");
         }
 
         if (!serviceCelular.adicionaNumero(numeroCelularValido).isBlank()) {
-            cadastroSenha(senhaGravada);
-            System.out.println("aqui deu");
+            System.out.println("NUMERO DE CELULAR GRAVADO COM SUCESSO");
+            System.out.println();
 
         }
         if (!senhaService.cadastroSenha(senhaGravada).isBlank()){
-            System.out.println("TUDO OKK");
+            System.out.println("SENHA ENVIADA PARA O BANCO");
+            System.out.println();
         }
     }
 
