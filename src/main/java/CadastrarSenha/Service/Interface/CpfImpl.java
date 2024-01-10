@@ -7,5 +7,5 @@ public interface CpfImpl {
      *
      * */
 
-    String numeroCpf(String digiteCpf);
+    String verificaQuantidadeDigitadoCPF(String digiteCpf);
 }

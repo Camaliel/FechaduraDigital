@@ -77,7 +77,7 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
             nomeFilhos = leia.nextLine();
             System.out.println("Agora, digite o CPF do filho n° " + i);
             cpfGuardado = cpfService.infoUsuario.setCpf(cpfDigitado);
-            cpfService.numeroCpf(cpfDigitado);
+            cpfService.verificaQuantidadeDigitadoCPF(cpfDigitado);
             confirmaCPFDigitado();
         }
 
@@ -90,7 +90,7 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
         String confirmaCpf = leia.next();
         while (confirmaCpf.contains("n") || confirmaCpf.contains("N")) {
             System.out.println("Digite novamente o numero do CPF n°");
-            cpfService.numeroCpf(cpfDigitado);
+            cpfService.verificaQuantidadeDigitadoCPF(cpfDigitado);
             System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + cpfService.infoUsuario.getCpf() + " ]\n" + "S/N");
             confirmaCpf = leia.next();
             if (confirmaCpf.contains("s") || confirmaCpf.contains("S")) {

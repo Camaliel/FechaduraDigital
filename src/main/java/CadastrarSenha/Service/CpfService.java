@@ -14,7 +14,7 @@ public class CpfService implements CpfImpl {
     * Logica para verificar a quantidade de numeros digitados do CPF
     * */
     @Override
-    public String numeroCpf(String digiteCpf) {
+    public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
         String numeroCpfValido = "";
         Scanner lerCpf = new Scanner(System.in);
         
@@ -28,7 +28,6 @@ public class CpfService implements CpfImpl {
             }
         }
         if (cpf.length() == 11) {
-//            System.out.println("CPF Inserido com Sucesso");
             infoUsuario.setCpf(cpf);
         }
         return numeroCpfValido;

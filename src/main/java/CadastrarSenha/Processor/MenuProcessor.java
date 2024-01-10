@@ -1,6 +1,5 @@
 package CadastrarSenha.Processor;
 
-import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Service.CpfService;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.Interface.CpfImpl;
@@ -36,7 +35,7 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl,CpfImp
             System.out.println("testando mennusssss");
 
         }
-        if (!serviceNumeroCpf.numeroCpf(numeroCpfGravado).isBlank()) {
+        if (!serviceNumeroCpf.verificaQuantidadeDigitadoCPF(numeroCpfGravado).isBlank()) {
             System.out.println("antes");
 //            adicionaNumero(numeroCelularValido);
 
@@ -60,7 +59,7 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl,CpfImp
     }
 
     @Override
-    public String numeroCpf(String digiteCpf) {
+    public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
         return numeroCpfGravado;
     }
 
