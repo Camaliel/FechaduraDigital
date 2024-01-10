@@ -77,19 +77,22 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
             System.out.println("Digite o nome filho n° " + i);
             nomeFilhos = leia.nextLine();
             System.out.println("Agora, digite o CPF do filho n° " + i);
-            cpfGuardado =  cpfService.infoUsuario.setCpf(cpfDigitado);
+            cpfGuardado = cpfService.infoUsuario.setCpf(cpfDigitado);
             cpfService.numeroCpf(cpfDigitado);
-            System.out.println("CONFIMA O CPF CADASTRADO?"+ "[" + cpfGuardado +"]" + "S/N");
 
-
+            System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + cpfService.infoUsuario.getCpf() + " ]\n" + "S/N");
             String confirmaCpf = leia.next();
-            if (confirmaCpf.contains("s") || confirmaCpf.contains("S")) {
-                cpfService.infoUsuario.setCpf(cpfDigitado);
-            } else {
+            while (confirmaCpf.contains("n") || confirmaCpf.contains("N")) {
                 System.out.println("Digite novamente o numero do CPF do filhos n° " + i);
                 cpfService.numeroCpf(cpfDigitado);
-                System.out.println(cpfGuardado);
+                System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + cpfService.infoUsuario.getCpf() + " ]\n" + "S/N");
+                confirmaCpf = leia.next();
+                if (confirmaCpf.contains("s") || confirmaCpf.contains("S")) {
+                    cpfService.infoUsuario.setCpf(cpfDigitado);
+                    System.out.println("CPF do filho n° " + i + " cadastrado");
+                }
             }
+            System.out.println(cpfGuardado);
         }
 
         return quantidadeRecebida;

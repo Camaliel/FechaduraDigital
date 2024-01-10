@@ -10,7 +10,9 @@ import java.util.Scanner;
 public class CpfService implements CpfImpl {
     InfoUsuario infoUsuario = new InfoUsuario();
 
-
+    /*
+    * Logica para verificar a quantidade de numeros digitados do CPF
+    * */
     @Override
     public String numeroCpf(String digiteCpf) {
         String numeroCpfValido = "";
@@ -26,16 +28,10 @@ public class CpfService implements CpfImpl {
             }
         }
         if (cpf.length() == 11) {
-            System.out.println("CPF Inserido com Sucesso");
+//            System.out.println("CPF Inserido com Sucesso");
             infoUsuario.setCpf(cpf);
         }
         return numeroCpfValido;
     }
 
-    public static void main(String[] args) {
-        CpfService teste = new CpfService();
-        InfoUsuario infoUsuario = new InfoUsuario();
-
-        teste.numeroCpf(infoUsuario.getCpf());
-    }
 }
