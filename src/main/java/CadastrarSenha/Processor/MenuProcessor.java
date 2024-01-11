@@ -12,7 +12,7 @@ import CadastrarSenha.Util.Variavel.InfoUsuario;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
 
 
-public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl,CpfImpl {
+public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl, CpfImpl {
     Menu menu = new Menu();
     SenhaService senhaService = new SenhaService();
     VarFamiliar varFamiliar = new VarFamiliar();
@@ -24,21 +24,24 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl,CpfImp
     String numeroCelularValido = usuario.getNumeroCelular();
     FamiliarService familiarService = new FamiliarService();
     /*
-    * Processa toda a informação recebida e envia para o BANCO.
-    * */
+     * Processa toda a informação recebida e envia para o BANCO.
+     * */
+
+    //TODO LEMBRETE: DEIXAR PADRAO E MAIS LIMPO COMO O MENNU 3
 
     public void menuPrincipal() {
-            InfoUsuario infoUsuario = new InfoUsuario();
-            NumeroCelularService service = new NumeroCelularService();
-
+        InfoUsuario infoUsuario = new InfoUsuario();
+        NumeroCelularService service = new NumeroCelularService();
 
 
         if (!menu.menuParente(varFamiliar.getValorMenu()).isBlank()) {
             System.out.println("ENVIANDO INFORMAÇÃO");
-            System.out.println();
+
+        } else if (menu.menuParente(varFamiliar.getValorMenu()).equals("1") || menu.menuParente(varFamiliar.getValorMenu()).equals("2")
+                || menu.menuParente(varFamiliar.getValorMenu()).equals("4")) {
+
             System.out.println("PREENCHA O CAMPO COM O CPF");
-        }
-        if (!serviceNumeroCpf.verificaQuantidadeDigitadoCPF(numeroCpfGravado).isBlank()) {
+        } else if (!serviceNumeroCpf.verificaQuantidadeDigitadoCPF(numeroCpfGravado).isBlank()) {
             System.out.println("PREENCHA O CAMPO CORRETAMENTE");
         }
 
@@ -47,12 +50,11 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl,CpfImp
             System.out.println();
 
         }
-        if (!senhaService.cadastroSenha(senhaGravada).isBlank()){
+        if (!senhaService.cadastroSenha(senhaGravada).isBlank()) {
             System.out.println("SENHA ENVIADA PARA O BANCO");
             System.out.println();
         }
     }
-
 
     public static void main(String[] args) {
         MenuProcessor menu = new MenuProcessor();

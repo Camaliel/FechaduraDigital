@@ -8,7 +8,10 @@ import java.util.Scanner;
 
 
 public class CpfService implements CpfImpl {
+    String cpfDigitado = "";
+    String cpfGuardado = "";
     InfoUsuario infoUsuario = new InfoUsuario();
+    Scanner leia = new Scanner(System.in);
 
     /*
     * Logica para verificar a quantidade de numeros digitados do CPF
@@ -31,6 +34,25 @@ public class CpfService implements CpfImpl {
             infoUsuario.setCpf(cpf);
         }
         return numeroCpfValido;
+    }
+
+    public String confirmaCPFDigitado() {
+        String validadorConfirmacao = "";
+        System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + infoUsuario.getCpf() + " ]\n" + "S/N");
+        String confirmaCpf = leia.next();
+        validadorConfirmacao = confirmaCpf;
+        while (confirmaCpf.contains("n") || confirmaCpf.contains("N")) {
+            System.out.println("Digite novamente o numero do CPF n°");
+            verificaQuantidadeDigitadoCPF(cpfDigitado);
+            System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " +infoUsuario.getCpf() + " ]\n" + "S/N");
+            confirmaCpf = leia.next();
+            if (confirmaCpf.contains("s") || confirmaCpf.contains("S")) {
+                infoUsuario.setCpf(cpfDigitado);
+            }
+        }
+        System.out.println("CPF " + infoUsuario.getCpf() + " cadastrado com sucesso!");
+        System.out.print("PRESS ENTER");
+        return validadorConfirmacao;
     }
 
 }

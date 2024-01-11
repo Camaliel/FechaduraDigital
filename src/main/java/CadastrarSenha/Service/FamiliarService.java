@@ -78,30 +78,13 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
             System.out.println("Agora, digite o CPF do filho n° " + i);
             cpfGuardado = cpfService.infoUsuario.setCpf(cpfDigitado);
             cpfService.verificaQuantidadeDigitadoCPF(cpfDigitado);
-            confirmaCPFDigitado();
+            cpfService.confirmaCPFDigitado();
         }
 
         return quantidadeRecebida;
     }
 
-    public String confirmaCPFDigitado() {
-        String validadorConfirmacao = "";
-        System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + cpfService.infoUsuario.getCpf() + " ]\n" + "S/N");
-        String confirmaCpf = leia.next();
-        while (confirmaCpf.contains("n") || confirmaCpf.contains("N")) {
-            System.out.println("Digite novamente o numero do CPF n°");
-            cpfService.verificaQuantidadeDigitadoCPF(cpfDigitado);
-            System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + cpfService.infoUsuario.getCpf() + " ]\n" + "S/N");
-            confirmaCpf = leia.next();
-            if (confirmaCpf.contains("s") || confirmaCpf.contains("S")) {
-                cpfService.infoUsuario.setCpf(cpfDigitado);
 
-            }
-        }
-        System.out.println("CPF " + cpfService.infoUsuario.getCpf() + " cadastrado com sucesso!");
-        System.out.println(cpfGuardado);
-        return validadorConfirmacao;
-    }
 
     // TESTANDO METODOS =>
     public static void main(String[] args) {
