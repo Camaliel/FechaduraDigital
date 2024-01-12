@@ -14,7 +14,7 @@ public class CriarBancoJdbc {
 
         Statement stmt = conexao.createStatement();
 
-        stmt.execute("CREATE DATABASE pessoas");
+        stmt.execute("CREATE DATABASE testandoConexao");
 
         System.out.println("Banco criado com sucesso!!!");
         conexao.close();
