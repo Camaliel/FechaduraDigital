@@ -2,7 +2,8 @@ package CadastrarSenha.BootTelegramApi;
 
 import CadastrarSenha.Enum.RespostaApiEnum;
 import CadastrarSenha.Repository.ConfereChaveToken;
-import CadastrarSenha.jdbc.Entity.ChaveToken;
+import CadastrarSenha.Repository.IncluiToken;
+import CadastrarSenha.Service.ChaveToken;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -14,13 +15,15 @@ public class Respostas {
     ChaveToken chaveToken = new ChaveToken();
     TokenUsuario chave = new TokenUsuario();
     NumeroSalvo lembra = new NumeroSalvo();
+    IncluiToken incluiToken = new IncluiToken ();
+
 
     ConfereChaveToken confereChaveToken = new ConfereChaveToken();
     public SendMessage enviaMensagem(Update update) throws SQLException {
         var textoMensagem = update.getMessage();
         var user = update.getMessage().getChatId();
 
-        var resposta = "";
+         var  resposta = "";
         if (textoMensagem.getText().startsWith("oi")) {
             resposta = RespostaApiEnum.SEM_FUNCIONALIDADE.getDescricao();
         } else if (textoMensagem.getText().startsWith("como vai")) {
@@ -28,8 +31,8 @@ public class Respostas {
         } else if (textoMensagem.getText().startsWith("Numero")) {
             resposta = String.valueOf(token.numeroAleatorio(update));
             // PEGA VALOR SALVO
-        } else if (textoMensagem.getText().startsWith("token")) {
-            resposta = chaveToken.getPegaRoleta();
+        } else if (textoMensagem.getText().startsWith("Token")) {
+            resposta = incluiToken.incluiToken();
 //        } else if (textoMensagem.getText().startsWith("lembra")) {
 //            resposta = token.lembraNumeroSalvo();
         } else if (textoMensagem.getText().startsWith("teste")) {

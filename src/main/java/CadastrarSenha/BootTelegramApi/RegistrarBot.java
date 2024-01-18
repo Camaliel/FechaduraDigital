@@ -10,5 +10,6 @@ public class RegistrarBot {
         EcoBot bot = new EcoBot();
         telegramBotsApi.registerBot(new EcoBot());
         System.out.println("LIGADO");
+
     }
 }

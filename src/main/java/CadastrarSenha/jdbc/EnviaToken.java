@@ -1,16 +1,12 @@
 package CadastrarSenha.jdbc;
 
-import CadastrarSenha.BootTelegramApi.Respostas;
 import CadastrarSenha.BootTelegramApi.TokenUsuario;
-import CadastrarSenha.jdbc.Entity.ChaveToken;
-import org.telegram.telegrambots.meta.api.objects.Update;
+import CadastrarSenha.Service.ChaveToken;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 public class EnviaToken {
 
@@ -20,7 +16,7 @@ public class EnviaToken {
 
     String tokenSalvo = "";
     ChaveToken chaveToken = new ChaveToken();
-    String teste = chaveToken.getTesteRoleta();
+    String teste = chaveToken.getPegaToken();
 
 
     public String enviaToken() throws SQLException {
@@ -38,19 +34,39 @@ public class EnviaToken {
 
         List<String> lista = new ArrayList<>();
         lista.add(teste);
-        for (String listaToken:lista) {
+        for (String listaToken : lista) {
             tokenSalvo = listaToken;
         }
 
         System.out.println("Numero incluido com sucesso ...");
-
         return tokenSalvo;
+    }
+
+    public void consultaQuery() throws SQLException {
+        Connection conexao = CriarTabelaPessoa.getConnection();
+        String sql = "select * from numero_verificacao";
+
+        List<String> lista = new ArrayList<>();
+
+        Statement statement = conexao.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        List<String> token = new ArrayList<>();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String codigo = resultSet.getString("campo");
+            token.addAll(Collections.singleton(codigo));
+        }
+
+        int codigo = 1;
+        System.out.println("Id   campo ");
+        for (String teste : token)
+            System.out.println("" + codigo++ + "  |  " + teste);
+
     }
 
     public static void main(String[] args) throws SQLException {
         EnviaToken token = new EnviaToken();
-        token.enviaToken();
-        token.getTokenSalvo();
-        System.out.println(token.getTokenSalvo());
+        token.consultaQuery();
     }
 }
