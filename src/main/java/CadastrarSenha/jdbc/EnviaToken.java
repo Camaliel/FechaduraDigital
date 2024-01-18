@@ -44,7 +44,7 @@ public class EnviaToken {
 
     public void consultaQuery() throws SQLException {
         Connection conexao = CriarTabelaPessoa.getConnection();
-        String sql = "select * from numero_verificacao";
+        String sql = "select * from numero_verificacao order by id desc limit 1";
 
         List<String> lista = new ArrayList<>();
 

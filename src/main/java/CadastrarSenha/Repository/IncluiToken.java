@@ -9,16 +9,17 @@ import java.sql.SQLException;
 
 public class IncluiToken {
 
-
     public String incluiToken() throws SQLException {
         ChaveToken chaveToken = new ChaveToken();
 
-        String tokenIncluido = "Numero enviado ==> " + chaveToken.getPegaRoleta();
         Connection conexao = CriarConexao.getConnetion();
+        String excluiToken = " DELETE FROM numero_verificacao;";
+        String tokenIncluido = "Numero enviado ==> " + chaveToken.getPegaRoleta();
         String incluiNumeroToken = "INSERT INTO numero_verificacao (campo) VALUES (?)";
         System.out.println("INCLUIDO NO MYSQL ...");
 
         PreparedStatement stmnt = conexao.prepareStatement(incluiNumeroToken);
+        stmnt.setString(1, excluiToken);
         stmnt.setString(1, chaveToken.getPegaRoleta());
 
         stmnt.execute();
