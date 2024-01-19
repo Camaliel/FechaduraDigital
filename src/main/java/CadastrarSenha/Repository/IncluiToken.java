@@ -13,9 +13,9 @@ public class IncluiToken {
         ChaveToken chaveToken = new ChaveToken();
 
         Connection conexao = CriarConexao.getConnetion();
-        String excluiToken = " DELETE FROM numero_verificacao;";
-        String tokenIncluido = "Numero enviado ==> " + chaveToken.getPegaRoleta();
-        String incluiNumeroToken = "INSERT INTO numero_verificacao (campo) VALUES (?)";
+        String excluiToken = " DELETE FROM tokens";
+        String tokenTela = "Numero enviado ==> " + chaveToken.getPegaRoleta();
+        String incluiNumeroToken = "INSERT INTO tokens (token) VALUES (?)";
         System.out.println("INCLUIDO NO MYSQL ...");
 
         PreparedStatement stmnt = conexao.prepareStatement(incluiNumeroToken);
@@ -25,6 +25,6 @@ public class IncluiToken {
         stmnt.execute();
         conexao.close();
 
-        return tokenIncluido;
+        return tokenTela;
     }
 }
