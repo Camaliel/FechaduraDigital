@@ -1,5 +1,7 @@
 package CadastrarSenha.Processor;
 
+import CadastrarSenha.BootTelegramApi.TelaBot;
+import CadastrarSenha.Repository.ConfereChaveToken;
 import CadastrarSenha.Service.CpfService;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.Interface.CpfImpl;
@@ -9,7 +11,13 @@ import CadastrarSenha.Service.NumeroCelularService;
 import CadastrarSenha.Service.SenhaService;
 import CadastrarSenha.Util.Menu;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
+import CadastrarSenha.Util.Variavel.ValoresDigitados;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
+import CadastrarSenha.jdbc.EnviaToken;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.sql.SQLException;
+import java.util.Scanner;
 
 
 public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl, CpfImpl {
@@ -23,42 +31,43 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl, CpfIm
     String senhaGravada = usuario.getSenha();
     String numeroCelularValido = usuario.getNumeroCelular();
     FamiliarService familiarService = new FamiliarService();
+
+    ConfereChaveToken confereChaveToken = new ConfereChaveToken();
+    EnviaToken enviaToken = new EnviaToken();
+
+    ValoresDigitados valoresDigitados = new ValoresDigitados();
+
     /*
      * Processa toda a informação recebida e envia para o BANCO.
      * */
 
     //TODO LEMBRETE: DEIXAR PADRAO E MAIS LIMPO COMO O MENNU 3
 
-    public void menuPrincipal() {
+    public void menuPrincipal() throws TelegramApiException, SQLException {
         InfoUsuario infoUsuario = new InfoUsuario();
         NumeroCelularService service = new NumeroCelularService();
 
-
         if (!menu.menuParente(varFamiliar.getValorMenu()).isBlank()) {
+            TelaBot teste = new TelaBot();
             System.out.println("ENVIANDO INFORMAÇÃO");
+            System.out.println("ATIVANDO TOKEN");
+            teste.ligarApi();
 
-        } else if (menu.menuParente(varFamiliar.getValorMenu()).equals("1") || menu.menuParente(varFamiliar.getValorMenu()).equals("2")
-                || menu.menuParente(varFamiliar.getValorMenu()).equals("4")) {
+            if (enviaToken.getValorToken().equals(valoresDigitados.getValorTokenDigitado())){
+                System.out.println("PASSOU POR AQUI");
+            } else {
+                System.out.println(" AINDA NADA ");
+            }
 
-            System.out.println("PREENCHA O CAMPO COM O CPF");
-        } else if (!serviceNumeroCpf.verificaQuantidadeDigitadoCPF(numeroCpfGravado).isBlank()) {
-            System.out.println("PREENCHA O CAMPO CORRETAMENTE");
-        }
 
-        if (!serviceCelular.adicionaNumero(numeroCelularValido).isBlank()) {
-            System.out.println("NUMERO DE CELULAR GRAVADO COM SUCESSO");
-            System.out.println();
 
-        }
-        if (!senhaService.cadastroSenha(senhaGravada).isBlank()) {
-            System.out.println("SENHA ENVIADA PARA O BANCO");
-            System.out.println();
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TelegramApiException, SQLException {
         MenuProcessor menu = new MenuProcessor();
         menu.menuPrincipal();
+
     }
 
     @Override

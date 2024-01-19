@@ -2,6 +2,7 @@ package CadastrarSenha.jdbc;
 
 import CadastrarSenha.BootTelegramApi.TokenUsuario;
 import CadastrarSenha.Service.ChaveToken;
+import CadastrarSenha.Util.Variavel.ValoresDigitados;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,7 +17,9 @@ public class EnviaToken {
 
     String tokenSalvo = "";
     ChaveToken chaveToken = new ChaveToken();
-    String teste = chaveToken.getPegaToken();
+
+    ValoresDigitados valoresDigitados = new ValoresDigitados();
+    String valorToken = chaveToken.getPegaToken();
 
 
     public String enviaToken() throws SQLException {
@@ -25,26 +28,37 @@ public class EnviaToken {
         ChaveToken chaveToken = new ChaveToken();
 
         Connection conexao = CriarTabelaPessoa.getConnection();
-        String numeroVerificacao = "INSERT INTO numero_verificacao (campo) VALUES(?)";
+        String valorToken = "INSERT INTO tokens (token) VALUES(?)";
 
-        PreparedStatement statement = conexao.prepareStatement(numeroVerificacao);
-        statement.setString(1, (teste));
+        PreparedStatement statement = conexao.prepareStatement(valorToken);
+        statement.setString(1, (this.valorToken));
 
         statement.execute();
 
         List<String> lista = new ArrayList<>();
-        lista.add(teste);
+        lista.add(this.valorToken);
         for (String listaToken : lista) {
             tokenSalvo = listaToken;
+            valoresDigitados.setValorTokenDigitado(tokenSalvo);
         }
 
         System.out.println("Numero incluido com sucesso ...");
         return tokenSalvo;
     }
 
-    public void consultaQuery() throws SQLException {
+    public ChaveToken getChaveToken() {
+        return chaveToken;
+    }
+
+    public String getValorToken() {
+        return valorToken;
+    }
+
+    public String consultaQuery() throws SQLException {
+
+        String numeroToken = "";
         Connection conexao = CriarTabelaPessoa.getConnection();
-        String sql = "select * from numero_verificacao order by id desc limit 1";
+        String sql = "select * from tokens order by id desc limit 1";
 
         List<String> lista = new ArrayList<>();
 
@@ -54,15 +68,20 @@ public class EnviaToken {
         List<String> token = new ArrayList<>();
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
-            String codigo = resultSet.getString("campo");
-            token.addAll(Collections.singleton(codigo));
+            String codigo = resultSet.getString("token");
+             String.valueOf(token.addAll(Collections.singleton(codigo)));
+            numeroToken = codigo;
+            valoresDigitados.setValorTokenAdquidiro(codigo);
         }
 
-        int codigo = 1;
-        System.out.println("Id   campo ");
-        for (String teste : token)
-            System.out.println("" + codigo++ + "  |  " + teste);
+//     TODO     NÃO APAGAR PODE SER UTIL
 
+        int valorId = 1;
+        System.out.println("Id   token ");
+        for (String valorToken : token)
+            System.out.println("" + valorId++ + "  |  " + valorToken);
+        valoresDigitados.setValorTokenAdquidiro(valorToken);
+        return numeroToken;
     }
 
     public static void main(String[] args) throws SQLException {

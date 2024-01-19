@@ -9,12 +9,14 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import java.sql.SQLException;
 
 public class TelaBot {
-    public static void main(String[] args) throws TelegramApiException, SQLException {
+    public void ligarApi() throws TelegramApiException, SQLException {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         EcoBot bot = new EcoBot();
         telegramBotsApi.registerBot(new EcoBot());
         System.out.println("LIGADO");
         IncluiToken incluiToken =  new IncluiToken();
         incluiToken.incluiToken();
+        ConfereChaveToken confereChaveToken = new ConfereChaveToken();
+        confereChaveToken.validaChaveToken();
     }
 }
