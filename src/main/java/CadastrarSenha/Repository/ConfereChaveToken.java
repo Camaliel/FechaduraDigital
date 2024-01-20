@@ -1,40 +1,46 @@
 package CadastrarSenha.Repository;
 
 import CadastrarSenha.Service.ChaveToken;
+import CadastrarSenha.Util.Variavel.ValoresDigitados;
+import CadastrarSenha.jdbc.EnviaToken;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
+
+//TODO ANALISAR PARA APAGAR A CLASSE !!! [LEMBRETE]
 public class ConfereChaveToken {
-    public String getValorGuardado() {
-        return valorGuardado;
-    }
 
-    public void setValorGuardado(String valorGuardado) {
-        this.valorGuardado = valorGuardado;
-    }
+    ValoresDigitados valoresDigitados = new ValoresDigitados();
 
-    String valorGuardado = "";
+    ChaveToken chaveToken = new ChaveToken();
+    EnviaToken token = new EnviaToken();
+    IncluiToken incluiToken = new IncluiToken();
 
-    public String validaChaveToken() {
-        ChaveToken chaveToken = new ChaveToken();
-        Scanner leia = new Scanner(System.in);
-        System.out.println("Digite seu token");
-        System.out.println("token enviado " + chaveToken.getPegaRoleta());
-        valorGuardado = chaveToken.getPegaToken();
-        String valorUsuario = leia.nextLine();
-        setValorGuardado(valorUsuario);
-        if(valorUsuario.equals(chaveToken.getPegaRoleta())){
-            System.out.println("Valor confere");
-            System.out.println("valor guardado ==> " + valorGuardado);
-        }else{
-            System.out.println("Valor não confere");
-            System.out.println("valor guardado ==> " + valorGuardado);
+    Scanner leia = new Scanner(System.in);
+
+    public String validaChaveToken() throws SQLException {
+        String valorGuardado = "";
+
+
+        System.out.println("SEU NUMERO TOKEN ==> "+ token.consultaQuery());
+        String valorDigitado= leia.nextLine();
+
+        if (token.consultaQuery().equals(valorDigitado)){
+            valorGuardado = valorDigitado;
+
+
+            System.out.println(" TOKEN VALIDO GUARDADO");
+            System.out.println("Enviando para o banco");
+        }else {
+            System.out.println("Token invalido");
         }
-        leia.close();
+
+
         return valorGuardado;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         ConfereChaveToken confereChaveToken = new ConfereChaveToken();
         confereChaveToken.validaChaveToken();
     }

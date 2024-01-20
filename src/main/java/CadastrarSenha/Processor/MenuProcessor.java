@@ -2,6 +2,7 @@ package CadastrarSenha.Processor;
 
 import CadastrarSenha.BootTelegramApi.TelaBot;
 import CadastrarSenha.Repository.ConfereChaveToken;
+import CadastrarSenha.Repository.IncluiToken;
 import CadastrarSenha.Service.CpfService;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.Interface.CpfImpl;
@@ -20,7 +21,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 
-public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl, CpfImpl {
+public class MenuProcessor implements SenhaUsuarioImpl,NumeroCelularImpl, CpfImpl {
     Menu menu = new Menu();
     SenhaService senhaService = new SenhaService();
     VarFamiliar varFamiliar = new VarFamiliar();
@@ -46,24 +47,29 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl, CpfIm
     public void menuPrincipal() throws TelegramApiException, SQLException {
         InfoUsuario infoUsuario = new InfoUsuario();
         NumeroCelularService service = new NumeroCelularService();
+        TelaBot ligar = new TelaBot();
+        IncluiToken incluiToken = new IncluiToken();
 
         if (!menu.menuParente(varFamiliar.getValorMenu()).isBlank()) {
-            TelaBot teste = new TelaBot();
-            System.out.println("ENVIANDO INFORMAÇÃO");
-            System.out.println("ATIVANDO TOKEN");
-            teste.ligarApi();
 
-            if (enviaToken.getValorToken().equals(valoresDigitados.getValorTokenDigitado())){
-                System.out.println("PASSOU POR AQUI");
-            } else {
-                System.out.println(" AINDA NADA ");
-            }
-
+            System.out.println("enviando informação ao banco");
 
 
         }
-    }
+        ligar.ligarApi();
+        confereChaveToken.validaChaveToken();
 
+        if (!service.adicionaNumero(numeroCelularValido).isBlank()){
+            System.out.println("enviando informação do celular ao banco");
+
+        }
+
+        senhaService.cadastroSenha(senhaGravada);
+        System.out.println("");
+
+        System.out.println("THE FIM");
+
+    }
     public static void main(String[] args) throws TelegramApiException, SQLException {
         MenuProcessor menu = new MenuProcessor();
         menu.menuPrincipal();
@@ -75,16 +81,14 @@ public class MenuProcessor implements SenhaUsuarioImpl, NumeroCelularImpl, CpfIm
         return numeroCpfGravado;
     }
 
-
-    @Override
-    public String cadastroSenha(String senha) {
-        return senhaGravada;
-    }
-
     @Override
     public String adicionaNumero(String numeroCelular) {
         return numeroCelularValido;
     }
 
 
+    @Override
+    public String cadastroSenha(String senha) {
+        return senhaGravada;
+    }
 }
