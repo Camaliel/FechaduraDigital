@@ -33,7 +33,6 @@ public class NumeroCelularService implements NumeroCelularImpl {
             System.out.println(numero + " " + MensagemEnum.N_ADICIONADO.getDescricao());
 
         }
-
         return numeroCelularValido;
 
     }

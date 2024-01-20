@@ -39,10 +39,8 @@ public class EnviaToken {
         lista.add(this.valorToken);
         for (String listaToken : lista) {
             tokenSalvo = listaToken;
-            valoresDigitados.setValorTokenDigitado(tokenSalvo);
         }
 
-        System.out.println("Numero incluido com sucesso ...");
         return tokenSalvo;
     }
 
@@ -69,18 +67,17 @@ public class EnviaToken {
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
             String codigo = resultSet.getString("token");
-             String.valueOf(token.addAll(Collections.singleton(codigo)));
+            String.valueOf(token.addAll(Collections.singleton(codigo)));
             numeroToken = codigo;
-            valoresDigitados.setValorTokenAdquidiro(codigo);
         }
 
 //     TODO     NÃO APAGAR PODE SER UTIL
 
-        int valorId = 1;
-        System.out.println("Id   token ");
-        for (String valorToken : token)
-            System.out.println("" + valorId++ + "  |  " + valorToken);
-        valoresDigitados.setValorTokenAdquidiro(valorToken);
+//        int valorId = 1;
+//        System.out.println("Id   token ");
+//        for (String valorToken : token)
+//            System.out.println("" + valorId++ + "  |  " + valorToken);
+//        valoresDigitados.setValorTokenAdquidiro(valorToken);
         return numeroToken;
     }
 
