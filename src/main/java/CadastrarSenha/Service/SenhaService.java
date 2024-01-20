@@ -10,27 +10,29 @@ public class SenhaService implements SenhaUsuarioImpl {
     InfoUsuario usuario = new InfoUsuario();
 
     public String cadastroSenha(String senha) {
-        String usuarioSenhaCadastrada = "";
-
-
         System.out.println(MensagemSenhaEnum.CADASTRE_SENHA.getDescricao());
-
         Scanner leia = new Scanner(System.in);
-        String valor = leia.nextLine();
-        while (valor.length() < 6) {
-            // TODO olhar depois para ver se da pra corrigir
+        String usuarioSenhaCadastrada = leia.nextLine();
 
-            if (valor.length() < 6 || valor.isBlank()) {
+
+        while (usuarioSenhaCadastrada.length() < 6) {
+            if (usuarioSenhaCadastrada.length() < 6) {
+
                 System.out.println(MensagemSenhaEnum.ERRO_SENHA.getDescricao());
-                valor = leia.nextLine();
-                usuarioSenhaCadastrada = usuario.setSenha(valor);
+
+                usuarioSenhaCadastrada = leia.nextLine();
             }
+
         }
-        if (valor.length() == 6) {
-            System.out.println(MensagemSenhaEnum.SENHA_CADASTRADA.getDescricao());
-        }
-        leia.close();
+        System.out.println("Senha enviada ao banco");
+
         return usuarioSenhaCadastrada;
+    }
+
+    public static void main(String[] args) {
+        SenhaService senhaService = new SenhaService();
+        InfoUsuario usuario = new InfoUsuario();
+        senhaService.cadastroSenha(usuario.getSenha());
     }
 
 }
