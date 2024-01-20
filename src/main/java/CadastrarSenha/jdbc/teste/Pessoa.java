@@ -1,6 +1,6 @@
 package CadastrarSenha.jdbc.teste;
 
-import CadastrarSenha.jdbc.CriarTabelaPessoa;
+import CadastrarSenha.jdbc.CriarConexao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ public class Pessoa {
         System.out.println("INSIRA UM NOME .. ");
         String nome = leia.nextLine();
 
-        Connection conexao = CriarTabelaPessoa.getConnection();
+        Connection conexao = CriarConexao.getConnetion();
         String Sql =  " CREATE TABLE Token-Teste (" +
                 "id INT AUTO_INCREMENT PRIMARY KEY, " +
                 "nome VARCHAR(80) NOT NULL," +

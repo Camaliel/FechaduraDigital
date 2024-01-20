@@ -12,7 +12,7 @@ public class IncluirPessoa {
         System.out.println("Inclua um nome ..");
         String nome = leia.nextLine();
 
-        Connection conexao = CriarTabelaPessoa.getConnection();
+        Connection conexao = CriarConexao.getConnetion();
         String sql = "INSERT INTO pessoas (nome) VALUES(?)";
         PreparedStatement statement = conexao.prepareStatement(sql);
         statement.setString(1,nome);

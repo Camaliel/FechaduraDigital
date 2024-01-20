@@ -11,9 +11,7 @@ import java.sql.SQLException;
 
 
 public class Respostas {
-    TokenUsuario token = new TokenUsuario();
     ChaveToken chaveToken = new ChaveToken();
-    TokenUsuario chave = new TokenUsuario();
     NumeroSalvo lembra = new NumeroSalvo();
     IncluiToken incluiToken = new IncluiToken ();
 
@@ -28,8 +26,6 @@ public class Respostas {
             resposta = RespostaApiEnum.SEM_FUNCIONALIDADE.getDescricao();
         } else if (textoMensagem.getText().startsWith("como vai")) {
             resposta = RespostaApiEnum.APRENDENDO.getDescricao();
-        } else if (textoMensagem.getText().startsWith("Numero")) {
-            resposta = String.valueOf(token.numeroAleatorio(update));
             // PEGA VALOR SALVO
         } else if (textoMensagem.getText().startsWith("Token")) {
             resposta = incluiToken.incluiToken();

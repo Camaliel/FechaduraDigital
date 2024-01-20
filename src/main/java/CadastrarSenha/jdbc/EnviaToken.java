@@ -1,6 +1,5 @@
 package CadastrarSenha.jdbc;
 
-import CadastrarSenha.BootTelegramApi.TokenUsuario;
 import CadastrarSenha.Service.ChaveToken;
 import CadastrarSenha.Util.Variavel.ValoresDigitados;
 
@@ -24,10 +23,9 @@ public class EnviaToken {
 
     public String enviaToken() throws SQLException {
 
-        TokenUsuario tokenUsuario = new TokenUsuario();
         ChaveToken chaveToken = new ChaveToken();
 
-        Connection conexao = CriarTabelaPessoa.getConnection();
+        Connection conexao = CriarConexao.getConnetion();
         String valorToken = "INSERT INTO tokens (token) VALUES(?)";
 
         PreparedStatement statement = conexao.prepareStatement(valorToken);
@@ -55,7 +53,7 @@ public class EnviaToken {
     public String consultaQuery() throws SQLException {
 
         String numeroToken = "";
-        Connection conexao = CriarTabelaPessoa.getConnection();
+        Connection conexao = CriarConexao.getConnetion();
         String sql = "select * from tokens order by id desc limit 1";
 
         List<String> lista = new ArrayList<>();
