@@ -11,6 +11,7 @@ public class IncluiToken {
 
     public String incluiToken() throws SQLException {
         ChaveToken chaveToken = new ChaveToken();
+        ConfereChaveToken confereChaveToken = new ConfereChaveToken();
 
         Connection conexao = CriarConexao.getConnetion();
         String excluiToken = " DELETE FROM tokens";
