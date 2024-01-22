@@ -3,6 +3,7 @@ package CadastrarSenha.Processor;
 import CadastrarSenha.BootTelegramApi.TelaBot;
 import CadastrarSenha.Repository.ConfereChaveToken;
 import CadastrarSenha.Repository.IncluiToken;
+import CadastrarSenha.Repository.incluirPessoaRepository;
 import CadastrarSenha.Service.CpfService;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.Interface.CpfImpl;
@@ -21,7 +22,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 
-public class MenuProcessor implements SenhaUsuarioImpl,NumeroCelularImpl, CpfImpl {
+public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
     Menu menu = new Menu();
     SenhaService senhaService = new SenhaService();
     VarFamiliar varFamiliar = new VarFamiliar();
@@ -30,10 +31,12 @@ public class MenuProcessor implements SenhaUsuarioImpl,NumeroCelularImpl, CpfImp
     CpfService serviceNumeroCpf = new CpfService();
     String numeroCpfGravado = usuario.getCpf();
     String senhaGravada = usuario.getSenha();
-    String numeroCelularValido = usuario.getNumeroCelular();
+
     FamiliarService familiarService = new FamiliarService();
 
     ConfereChaveToken confereChaveToken = new ConfereChaveToken();
+
+    incluirPessoaRepository pessoaRepository = new incluirPessoaRepository();
     EnviaToken enviaToken = new EnviaToken();
 
     ValoresDigitados valoresDigitados = new ValoresDigitados();
@@ -50,26 +53,19 @@ public class MenuProcessor implements SenhaUsuarioImpl,NumeroCelularImpl, CpfImp
         TelaBot ligar = new TelaBot();
         IncluiToken incluiToken = new IncluiToken();
 
-        if (!menu.menuParente(varFamiliar.getValorMenu()).isBlank()) {
-
-            System.out.println("enviando informação ao banco");
-
-
-        }
+        menu.menuParente(varFamiliar.getValorMenu());
         ligar.ligarApi();
         confereChaveToken.validaChaveToken();
 
-        if (!service.adicionaNumero(numeroCelularValido).isBlank()){
-            System.out.println("enviando informação do celular ao banco");
+        System.out.println("enviando informação do celular ao banco");
 
-        }
 
-        senhaService.cadastroSenha(senhaGravada);
         System.out.println("");
 
         System.out.println("THE FIM");
 
     }
+
     public static void main(String[] args) throws TelegramApiException, SQLException {
         MenuProcessor menu = new MenuProcessor();
         menu.menuPrincipal();
@@ -81,11 +77,10 @@ public class MenuProcessor implements SenhaUsuarioImpl,NumeroCelularImpl, CpfImp
         return numeroCpfGravado;
     }
 
-    @Override
-    public String adicionaNumero(String numeroCelular) {
-        return numeroCelularValido;
-    }
-
+//    @Override
+//    public String adicionaNumero(String numeroCelular) {
+//        return numeroCelularValido;
+//    }
 
     @Override
     public String cadastroSenha(String senha) {

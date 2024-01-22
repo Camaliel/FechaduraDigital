@@ -1,5 +1,7 @@
 package CadastrarSenha.jdbc;
 
+import CadastrarSenha.Util.Variavel.VarFamiliar;
+
 import javax.sound.midi.Soundbank;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +9,13 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class IncluirPessoa {
-    public static void main(String[] args) throws SQLException {
+
+
+
+    public void incluirPessoaFamilia() throws SQLException {
         Scanner leia = new Scanner(System.in);
+
+
         System.out.println("Inclua um nome ..");
         String nome = leia.nextLine();
 

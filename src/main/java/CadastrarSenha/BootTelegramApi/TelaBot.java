@@ -3,6 +3,7 @@ package CadastrarSenha.BootTelegramApi;
 import CadastrarSenha.Repository.ConfereChaveToken;
 import CadastrarSenha.Repository.IncluiToken;
 import CadastrarSenha.Service.Interface.SenhaUsuarioImpl;
+import CadastrarSenha.Service.NumeroCelularService;
 import CadastrarSenha.Service.SenhaService;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -18,6 +19,10 @@ public class TelaBot {
     String senhaGravada = usuario.getSenha();
     ConfereChaveToken confereChaveToken = new ConfereChaveToken();
     IncluiToken incluiToken =  new IncluiToken();
+
+    NumeroCelularService service = new NumeroCelularService();
+
+    String numeroCelularValido = usuario.getNumeroCelular();
     public void ligarApi() throws TelegramApiException, SQLException {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         EcoBot bot = new EcoBot();
@@ -25,7 +30,8 @@ public class TelaBot {
         System.out.println("LIGADO");
 
         incluiToken.incluiToken();
-
+        System.out.println("enviando informação ao banco");
+        service.adicionaNumero(numeroCelularValido);
     }
 
 }
