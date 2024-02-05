@@ -1,19 +1,20 @@
 package CadastrarSenha.Repository;
 
-import CadastrarSenha.Processor.MenuProcessor;
 import CadastrarSenha.Util.Menu;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
-import CadastrarSenha.jdbc.IncluirPessoa;
+import CadastrarSenha.jdbc.IncluiPessoa;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.sql.SQLException;
 
 public class incluirPessoaRepository {
     VarFamiliar varFamiliar = new VarFamiliar();
-    IncluirPessoa incluirPessoa = new IncluirPessoa();
+    IncluiPessoa incluirPessoa = new IncluiPessoa();
     Menu menu = new Menu();
+
+    // TODO AJUSTAR CLASSE, ANALISAR SE PRECISA DELA MESMO OU POSSO PUXAR DIRETO DA QUERY [LEMBRE]
     public void armazenaPessoaBanco() throws SQLException, TelegramApiException {
-                incluirPessoa.incluirPessoaFamilia();
+                incluirPessoa.incluiNomePessoa();
 
         }
     }
