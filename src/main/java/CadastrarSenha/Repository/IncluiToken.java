@@ -17,7 +17,6 @@ public class IncluiToken {
         String excluiToken = " DELETE FROM tokens";
         String tokenTela = "Numero enviado ==> " + chaveToken.getPegaRoleta();
         String incluiNumeroToken = "INSERT INTO tokens (token) VALUES (?)";
-        System.out.println("INCLUIDO NO MYSQL ...");
 
         PreparedStatement stmnt = conexao.prepareStatement(incluiNumeroToken);
         stmnt.setString(1, excluiToken);

@@ -1,4 +1,4 @@
-package CadastrarSenha.jdbc;
+package CadastrarSenha.Repository;
 
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
@@ -14,8 +14,8 @@ public class IncluiPessoa {
         Scanner leia = new Scanner(System.in);
         Conexao dao = new Conexao();
 
-        String nome = leia.nextLine();
-        String cFamilia = leia.nextLine();
+        String nome = leia.next();
+        String cFamilia = leia.next();
         // TODO INCLUIR PATROIARCA JUNTO COM O NOME, TALVEZ, ESTUDAR IDEIA [LEMBRETE]
 
         String sql = "INSERT INTO pessoas (nome,C_Familia) VALUES(?,?)";

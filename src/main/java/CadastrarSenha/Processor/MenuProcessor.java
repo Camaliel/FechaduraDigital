@@ -7,7 +7,6 @@ import CadastrarSenha.Repository.incluirPessoaRepository;
 import CadastrarSenha.Service.CpfService;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.Interface.CpfImpl;
-import CadastrarSenha.Service.Interface.NumeroCelularImpl;
 import CadastrarSenha.Service.Interface.SenhaUsuarioImpl;
 import CadastrarSenha.Service.NumeroCelularService;
 import CadastrarSenha.Service.SenhaService;
@@ -16,10 +15,10 @@ import CadastrarSenha.Util.Variavel.InfoUsuario;
 import CadastrarSenha.Util.Variavel.ValoresDigitados;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
 import CadastrarSenha.jdbc.EnviaToken;
+import CadastrarSenha.Repository.IncluiPessoa;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.sql.SQLException;
-import java.util.Scanner;
 
 
 public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
@@ -55,11 +54,9 @@ public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
 
         menu.menuParente(varFamiliar.getValorMenu());
         ligar.ligarApi();
-        confereChaveToken.validaChaveToken();
+        incluiToken.incluiToken();
 
         System.out.println("enviando informação do celular ao banco");
-
-
         System.out.println("");
 
         System.out.println("THE FIM");
@@ -76,11 +73,6 @@ public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
     public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
         return numeroCpfGravado;
     }
-
-//    @Override
-//    public String adicionaNumero(String numeroCelular) {
-//        return numeroCelularValido;
-//    }
 
     @Override
     public String cadastroSenha(String senha) {

@@ -30,8 +30,9 @@ public class TelaBot {
         System.out.println("LIGADO");
 
         incluiToken.incluiToken();
-        System.out.println("enviando informação ao banco");
-        service.adicionaNumero(numeroCelularValido);
+        confereChaveToken.validaChaveToken();
+//        System.out.println("enviando informação ao banco");
+//        service.adicionaNumero(numeroCelularValido);
     }
 
 }
