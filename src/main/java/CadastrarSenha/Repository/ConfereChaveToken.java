@@ -36,7 +36,6 @@ public class ConfereChaveToken {
                 valorGuardado = valorDigitado;
             }
         }
-
             return valorGuardado;
         }
     }

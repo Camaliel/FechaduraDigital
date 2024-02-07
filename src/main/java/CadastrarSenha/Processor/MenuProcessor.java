@@ -1,9 +1,7 @@
 package CadastrarSenha.Processor;
 
 import CadastrarSenha.BootTelegramApi.TelaBot;
-import CadastrarSenha.Repository.ConfereChaveToken;
-import CadastrarSenha.Repository.IncluiToken;
-import CadastrarSenha.Repository.incluirPessoaRepository;
+import CadastrarSenha.Repository.*;
 import CadastrarSenha.Service.CpfService;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.Interface.CpfImpl;
@@ -15,10 +13,11 @@ import CadastrarSenha.Util.Variavel.InfoUsuario;
 import CadastrarSenha.Util.Variavel.ValoresDigitados;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
 import CadastrarSenha.jdbc.EnviaToken;
-import CadastrarSenha.Repository.IncluiPessoa;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.sql.SQLException;
+
+import static CadastrarSenha.Util.Menu.nomePaiArmazenado;
 
 
 public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
@@ -51,14 +50,16 @@ public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
         NumeroCelularService service = new NumeroCelularService();
         TelaBot ligar = new TelaBot();
         IncluiToken incluiToken = new IncluiToken();
+        ArmazenaInformacaoPessoaRepository teste = new ArmazenaInformacaoPessoaRepository();
 
-        menu.menuParente(varFamiliar.getValorMenu());
+        teste.ArmazenaInfo();
         ligar.ligarApi();
         incluiToken.incluiToken();
 
-        System.out.println("enviando informação do celular ao banco");
+        service.adicionaNumero(usuario.getNumeroCelular());
         System.out.println("");
 
+//        teste.ArmazenaInfo();
         System.out.println("THE FIM");
 
     }

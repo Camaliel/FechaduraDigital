@@ -18,6 +18,8 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
 
     String cpfGuardado = "";
 
+    public static String confirmaPatriarca = "";
+
     String nomeFilhos = "";
 
     /*
@@ -31,13 +33,15 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
     @Override
     public String patriarca(String pai) {
 
+
         System.out.println("Voce e o patriarca?");
         String patriarca = leia.nextLine();
         if (patriarca.contains("sim")) {
             System.out.println(MensagemEnum.E_ENVIANDO.getDescricao());
-
+            confirmaPatriarca = patriarca;
         } else {
             System.out.println("....");
+            confirmaPatriarca = patriarca;
 
         }
         return varFamiliar.getPai();
@@ -45,7 +49,7 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
 
     @Override
     public String matriarca(String mae) {
-        FamiliarService familiarService = new FamiliarService();
+//        FamiliarService familiarService = new FamiliarService();
         System.out.println("Voce e a matriarca?");
         String matriaca = leia.nextLine();
         if (matriaca.contains("sim")) {
@@ -83,7 +87,6 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
 
         return quantidadeRecebida;
     }
-
 
 
     // TESTANDO METODOS =>
