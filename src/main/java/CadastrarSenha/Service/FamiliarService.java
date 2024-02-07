@@ -2,6 +2,7 @@ package CadastrarSenha.Service;
 
 
 import CadastrarSenha.Enum.MensagemEnum;
+import CadastrarSenha.Enum.MensagemPatriarcaEnum;
 import CadastrarSenha.Service.Interface.NumeroFilhosImpl;
 import CadastrarSenha.Service.Interface.PatriarcaImpl;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
@@ -13,14 +14,11 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
     public VarFamiliar varFamiliar = new VarFamiliar();
     CpfService cpfService = new CpfService();
     SenhaService senhaService = new SenhaService();
-    String cadastroSenhaFilhos = "";
     String cpfDigitado = "";
 
     String cpfGuardado = "";
 
     public static String confirmaPatriarca = "";
-
-    String nomeFilhos = "";
 
     /*
      *
@@ -33,14 +31,13 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
     @Override
     public String patriarca(String pai) {
 
-
-        System.out.println("Voce e o patriarca?");
+        System.out.println(MensagemPatriarcaEnum.PATRIARCA.getDescricao());
         String patriarca = leia.nextLine();
         if (patriarca.contains("sim")) {
-            System.out.println(MensagemEnum.E_ENVIANDO.getDescricao());
+            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
             confirmaPatriarca = patriarca;
         } else {
-            System.out.println("....");
+            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
             confirmaPatriarca = patriarca;
 
         }
@@ -49,26 +46,23 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
 
     @Override
     public String matriarca(String mae) {
-//        FamiliarService familiarService = new FamiliarService();
-        System.out.println("Voce e a matriarca?");
+        System.out.println(MensagemPatriarcaEnum.MATRIARCA.getDescricao());
         String matriaca = leia.nextLine();
         if (matriaca.contains("sim")) {
-            System.out.println(MensagemEnum.E_ENVIANDO.getDescricao());
+            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
         } else {
-            System.out.println("email nao enviado");
+            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
         }
-
         return varFamiliar.getMae();
     }
 
-    //TODO TRABALHANDO NESSE METODO
     /*
      * Recebe uma determinada quantidade de filhos para fazer um looping no metodo de filhos
      * para o cadastro !
      * */
     public int quantidadeDeFilhos() {
         Scanner leia = new Scanner(System.in);
-        System.out.println("Digite a quantidade de filhos para o cadastro");
+        System.out.println(MensagemEnum.QUANTIDADE_FILHO.getDescricao());
         int numeroFilhos = leia.nextInt();
 
         int quantidadeRecebida = 0;
@@ -77,9 +71,9 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
 
         for (int i = 1; i <= quantidadeRecebida; i++) {
             String nomeFilhos = leia.nextLine();
-            System.out.println("Digite o nome filho n° " + i);
+            System.out.println(MensagemEnum.NOME_FILHO.getDescricao() + i);
             nomeFilhos = leia.nextLine();
-            System.out.println("Agora, digite o CPF do filho n° " + i);
+            System.out.println(MensagemEnum.CPF_FILHO.getDescricao() + i);
             cpfGuardado = cpfService.infoUsuario.setCpf(cpfDigitado);
             cpfService.verificaQuantidadeDigitadoCPF(cpfDigitado);
             cpfService.confirmaCPFDigitado();
@@ -87,14 +81,4 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
 
         return quantidadeRecebida;
     }
-
-
-    // TESTANDO METODOS =>
-    public static void main(String[] args) {
-        FamiliarService teste = new FamiliarService();
-        teste.quantidadeDeFilhos();
-
-    }
-
 }
-

@@ -1,17 +1,21 @@
 package CadastrarSenha.Enum;
 
 public enum MensagemEnum {
-    PATRIARCA("Voce e o patriarca ?"),
-    MATRIARCA("Voce e a Matriarca ?"),
-    E_ENVIADO("Email enviado"),
+
+
     E_ENVIANDO("Enviando email"),
+    ADICIONADO_AO_BANCO("Adicionado ao banco de dados"),
+    NAO_ADICIONADO_AO_BANCO("Não enviado ao banco"),
+    NOME_FILHO("Digite o nome filho n° "),
+    CPF_FILHO("Agora, digite o CPF do filho n° "),
+    QUANTIDADE_FILHO(" Digite a quantidade de filhos para o cadastro "),
     N_VALIDO("Insira um numero valido !"),
-    N_INVALIDO("Numero valido !"),
+    N_INVALIDO("Numero invalido !"),
     INSIRA_NUMERO("Insira um numero"),
     NUMERO_SUCESSO("Numero inserido com sucesso !"),
-    N_ADICIONADO("Adicionado ao banco de dados");
+    N_ADICIONADO("Numero adicionado ao banco de dados");
 
-
+    private String descricao;
 
     MensagemEnum(String descricao) {
         this.descricao = descricao;
@@ -20,6 +24,4 @@ public enum MensagemEnum {
     public String getDescricao() {
         return descricao;
     }
-
-    private String descricao;
 }
