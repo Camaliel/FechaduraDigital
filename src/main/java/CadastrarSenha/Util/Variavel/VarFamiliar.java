@@ -27,10 +27,6 @@ public class VarFamiliar {
 
     private String teste;
 
-    public VarFamiliar(String pai) {
-        this.pai = pai;
-    }
-
     public String getConfirm() {
         return confirm;
     }
@@ -40,15 +36,12 @@ public class VarFamiliar {
         return confirm;
     }
 
-
-
     public String getPai() {
         return pai;
     }
 
     public String setPai(String pai) {
         this.pai = pai;
-
         return pai;
     }
 
@@ -77,8 +70,5 @@ public class VarFamiliar {
     public String setOutros(String outros) {
         this.outros = outros;
         return outros;
-    }
-
-    public VarFamiliar() {
     }
 }

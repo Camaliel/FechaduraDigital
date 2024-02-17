@@ -7,7 +7,7 @@ import CadastrarSenha.jdbc.DAO.Conexao;
 import java.util.Scanner;
 
 public class IncluiPessoa {
-    VarFamiliar  varFamiliar = new VarFamiliar();
+    VarFamiliar varFamiliar = new VarFamiliar();
     FamiliarService familiarService = new FamiliarService();
 
     public void incluiNomePessoa() {
@@ -27,7 +27,6 @@ public class IncluiPessoa {
             System.out.println("Nome nao inserido");
         }
     }
-
 
     public static void main(String[] args) {
         IncluiPessoa incluiPessoa = new IncluiPessoa();

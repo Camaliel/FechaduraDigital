@@ -6,16 +6,17 @@ public class InfoUsuario {
 
     String numeroCelular;
 
-    String senha;
-
     public String getSenha() {
         return senha;
     }
 
-    public String setSenha(String senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
-        return senha;
     }
+
+    String senha;
+
+
 
     public String getNumeroCelular() {
         return numeroCelular;

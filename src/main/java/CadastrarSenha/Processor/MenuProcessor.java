@@ -17,7 +17,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.sql.SQLException;
 
-import static CadastrarSenha.Util.Menu.nomePaiArmazenado;
+import static CadastrarSenha.Util.Menu.valor;
 
 
 public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
@@ -50,9 +50,9 @@ public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
         NumeroCelularService service = new NumeroCelularService();
         TelaBot ligar = new TelaBot();
         IncluiToken incluiToken = new IncluiToken();
-        ArmazenaInformacaoPessoaRepository teste = new ArmazenaInformacaoPessoaRepository();
+        ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
 
-        teste.ArmazenaInfo();
+        menu.menuParente(valor);
         ligar.ligarApi();
         incluiToken.incluiToken();
 

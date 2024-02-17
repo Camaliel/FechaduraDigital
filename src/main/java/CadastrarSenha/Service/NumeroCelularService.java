@@ -9,33 +9,34 @@ import java.util.Scanner;
 public class NumeroCelularService implements NumeroCelularImpl {
     InfoUsuario infoUsuario = new InfoUsuario();
 
+    String numeroDigitado = "";
+
     @Override
     public String adicionaNumero(String numeroCelular) {
-
         Scanner leia = new Scanner(System.in);
+        String pressEnter = leia.nextLine();
+        if (pressEnter.isBlank()) {
+            System.out.println(MensagemEnum.INSIRA_NUMERO.getDescricao());
+            String numero = leia.nextLine();
+            infoUsuario.setNumeroCelular(numero);
+            numeroDigitado = numero;
 
-        System.out.println(MensagemEnum.INSIRA_NUMERO.getDescricao());
-        String numero = leia.nextLine();
+            while (numero.length() != 9) {
+                if (numero.length() != 9) {
+                    System.out.println(MensagemEnum.N_VALIDO.getDescricao());
+                    numero = leia.nextLine();
+                    infoUsuario.setNumeroCelular(numero);
+                    numeroDigitado = numero;
+                }
+            }
+            if (numero.length() == 9) {
+                System.out.println(MensagemEnum.NUMERO_SUCESSO.getDescricao());
+                infoUsuario.setNumeroCelular(numeroDigitado);
+                System.out.println(infoUsuario.getNumeroCelular() + " " + MensagemEnum.N_ADICIONADO.getDescricao());
 
-        String numeroCelularValido = "";
-
-        while (numero.length() != 9) {
-
-            if (numero.length() != 9) {
-                System.out.println(MensagemEnum.N_VALIDO.getDescricao());
-                numero = leia.nextLine();
-                numeroCelularValido = infoUsuario.setNumeroCelular(numero);
             }
         }
-        if (numero.length() == 9) {
-            System.out.println(MensagemEnum.NUMERO_SUCESSO.getDescricao());
-            infoUsuario.setNumeroCelular(numero);
-            System.out.println(numero + " " + MensagemEnum.N_ADICIONADO.getDescricao());
-
-        }
-        return numeroCelularValido;
+        return numeroDigitado;
 
     }
-
-
 }

@@ -8,32 +8,32 @@ import java.util.Scanner;
 
 
 public class CpfService implements CpfImpl {
-    String cpfDigitado = "";
-    String cpfGuardado = "";
+  String cpfDigitado = "";
     InfoUsuario infoUsuario = new InfoUsuario();
     Scanner leia = new Scanner(System.in);
 
     /*
-    * Logica para verificar a quantidade de numeros digitados do CPF
-    * */
+     * Logica para verificar a quantidade de numeros digitados do CPF
+     * */
     @Override
     public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
-        String numeroCpfValido = "";
         Scanner lerCpf = new Scanner(System.in);
-        
         String cpf = lerCpf.nextLine();
+            cpfDigitado = cpf;
+            infoUsuario.setCpf(cpfDigitado);
 
         while (cpf.length() != 11) {
             if (cpf.length() != 11) {
                 System.out.println(CodigoErroExitCode.COD_3.getDescricao());
                 cpf = lerCpf.nextLine();
-
+                cpfDigitado = cpf;
+                infoUsuario.setCpf(cpfDigitado);
             }
         }
         if (cpf.length() == 11) {
-            infoUsuario.setCpf(cpf);
+            infoUsuario.setCpf(cpfDigitado);
         }
-        return numeroCpfValido;
+        return cpfDigitado;
     }
 
     public String confirmaCPFDigitado() {
@@ -44,7 +44,7 @@ public class CpfService implements CpfImpl {
         while (confirmaCpf.contains("n") || confirmaCpf.contains("N")) {
             System.out.println("Digite novamente o numero do CPF n°");
             verificaQuantidadeDigitadoCPF(cpfDigitado);
-            System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " +infoUsuario.getCpf() + " ]\n" + "S/N");
+            System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + infoUsuario.getCpf() + " ]\n" + "S/N");
             confirmaCpf = leia.next();
             if (confirmaCpf.contains("s") || confirmaCpf.contains("S")) {
                 infoUsuario.setCpf(cpfDigitado);
@@ -53,6 +53,14 @@ public class CpfService implements CpfImpl {
         System.out.println("CPF " + infoUsuario.getCpf() + " cadastrado com sucesso!");
         System.out.print("PRESS ENTER");
         return validadorConfirmacao;
+    }
+
+    public static void main(String[] args) {
+        CpfService service = new CpfService();
+        InfoUsuario infoUsuario = new InfoUsuario();
+        service.verificaQuantidadeDigitadoCPF(infoUsuario.getCpf());
+        service.confirmaCPFDigitado();
+        System.out.println("CPF ARMAZENADO ==> " + service.infoUsuario.getCpf());
     }
 
 }
