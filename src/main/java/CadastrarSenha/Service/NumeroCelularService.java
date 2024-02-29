@@ -35,6 +35,9 @@ public class NumeroCelularService implements NumeroCelularImpl {
                 System.out.println(infoUsuario.getNumeroCelular() + " " + MensagemEnum.N_ADICIONADO.getDescricao());
 
             }
+
+            System.out.print("PRESS ENTER");
+            String pressEnter2 = leia.nextLine();
         }
         return numeroDigitado;
 

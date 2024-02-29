@@ -50,18 +50,12 @@ public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
         NumeroCelularService service = new NumeroCelularService();
         TelaBot ligar = new TelaBot();
         IncluiToken incluiToken = new IncluiToken();
-        ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
 
         menu.menuParente(valor);
         ligar.ligarApi();
-        incluiToken.incluiToken();
-
-        service.adicionaNumero(usuario.getNumeroCelular());
         System.out.println("");
-
-//        teste.ArmazenaInfo();
+        incluiToken.incluiToken();
         System.out.println("THE FIM");
-
     }
 
     public static void main(String[] args) throws TelegramApiException, SQLException {

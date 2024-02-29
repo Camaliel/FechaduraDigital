@@ -1,5 +1,6 @@
 package CadastrarSenha.Service;
 
+import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.ExitCode.CodigoErroExitCode;
 import CadastrarSenha.Service.Interface.CpfImpl;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
@@ -8,19 +9,19 @@ import java.util.Scanner;
 
 
 public class CpfService implements CpfImpl {
-  String cpfDigitado = "";
+    public static String cpfDigitado = "";
     InfoUsuario infoUsuario = new InfoUsuario();
     Scanner leia = new Scanner(System.in);
+    Scanner lerCpf = new Scanner(System.in);
 
     /*
      * Logica para verificar a quantidade de numeros digitados do CPF
      * */
     @Override
     public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
-        Scanner lerCpf = new Scanner(System.in);
         String cpf = lerCpf.nextLine();
-            cpfDigitado = cpf;
-            infoUsuario.setCpf(cpfDigitado);
+        cpfDigitado = cpf;
+        infoUsuario.setCpf(cpfDigitado);
 
         while (cpf.length() != 11) {
             if (cpf.length() != 11) {
@@ -33,13 +34,16 @@ public class CpfService implements CpfImpl {
         if (cpf.length() == 11) {
             infoUsuario.setCpf(cpfDigitado);
         }
+        confirmaCPFDigitado();
+
         return cpfDigitado;
     }
 
     public String confirmaCPFDigitado() {
+
         String validadorConfirmacao = "";
         System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + infoUsuario.getCpf() + " ]\n" + "S/N");
-        String confirmaCpf = leia.next();
+        String confirmaCpf = leia.nextLine();
         validadorConfirmacao = confirmaCpf;
         while (confirmaCpf.contains("n") || confirmaCpf.contains("N")) {
             System.out.println("Digite novamente o numero do CPF n°");
@@ -52,6 +56,8 @@ public class CpfService implements CpfImpl {
         }
         System.out.println("CPF " + infoUsuario.getCpf() + " cadastrado com sucesso!");
         System.out.print("PRESS ENTER");
+        String pressEnter = leia.next();
+
         return validadorConfirmacao;
     }
 
@@ -59,7 +65,7 @@ public class CpfService implements CpfImpl {
         CpfService service = new CpfService();
         InfoUsuario infoUsuario = new InfoUsuario();
         service.verificaQuantidadeDigitadoCPF(infoUsuario.getCpf());
-        service.confirmaCPFDigitado();
+        System.out.println();
         System.out.println("CPF ARMAZENADO ==> " + service.infoUsuario.getCpf());
     }
 

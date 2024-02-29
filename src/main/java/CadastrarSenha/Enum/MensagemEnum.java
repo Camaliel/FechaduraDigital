@@ -8,6 +8,8 @@ public enum MensagemEnum {
     NAO_ADICIONADO_AO_BANCO("Não enviado ao banco"),
     NOME_FILHO("Digite o nome filho n° "),
     CPF_FILHO("Agora, digite o CPF do filho n° "),
+    CPF("digite o n° do seu CPF "),
+    CPF_PAI("Digite o n° do CPF do Pai"),
     QUANTIDADE_FILHO(" Digite a quantidade de filhos para o cadastro "),
     N_VALIDO("Insira um numero valido !"),
     N_INVALIDO("Numero invalido !"),

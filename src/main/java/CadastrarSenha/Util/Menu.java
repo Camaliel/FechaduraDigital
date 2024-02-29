@@ -1,26 +1,28 @@
 package CadastrarSenha.Util;
 
+import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.Interface.PatriarcaImpl;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
 
 import java.util.Scanner;
 
-import static CadastrarSenha.Service.FamiliarService.nomeArmazenadoFilho;
-import static CadastrarSenha.Service.FamiliarService.nomeArmazenadoMae;
+import static CadastrarSenha.Service.FamiliarService.*;
 
 public class Menu implements PatriarcaImpl {
     FamiliarService familiarService = new FamiliarService();
     VarFamiliar varFamiliar = new VarFamiliar();
 
     Scanner leia = new Scanner(System.in);
-   public static String nomeArmazenadoPai = "";
+    public static String nomeArmazenadoPai = "";
+    public static String nomeArmazenadoMae = "";
 
+    public static String nomeArmazenadoOutros = "";
 
-   public static String nomeArmazenadoOutros = "";
-   public static String valor = "";
+    public static String valor = "";
 
     public String menuParente(String nome) {
+        ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
         System.out.println("DIGITE SUA OPCAO:");
         System.out.println("-----------------");
 
@@ -34,7 +36,6 @@ public class Menu implements PatriarcaImpl {
         String valorMenu = varFamiliar.setValorMenu(valor);
         switch (valor) {
             case "1":
-
                 System.out.println("DIGITE SEU NOME");
                 String nomePai = leia.nextLine();
                 String valorPai = varFamiliar.setPai(nomePai);
@@ -44,21 +45,19 @@ public class Menu implements PatriarcaImpl {
             case "2":
                 System.out.println("DIGITE SEU NOME");
                 String nomeMae = leia.nextLine();
-                familiarService.matriarca(varFamiliar.getMae());
                 String valorMae = varFamiliar.setMae(nomeMae);
+                nomeArmazenadoMae = varFamiliar.setMae(valorMae);
+                familiarService.matriarca(confirmaPatriarca);
                 break;
 
             case "3":
                 familiarService.quantidadeDeFilhos();
-                String nomeFilho = leia.nextLine();
-                String valorFilho = varFamiliar.setFilho(nomeFilho);
                 break;
 
             case "4":
                 System.out.println("DIGITE SEU NOME");
                 String nomeOutros = leia.nextLine();
-                String valorOutros = varFamiliar.setOutros(nomeOutros);
-                nomeArmazenadoOutros = varFamiliar.getOutros();
+                nomeArmazenadoOutros = varFamiliar.setPai(nomeOutros);
                 break;
 
         }
