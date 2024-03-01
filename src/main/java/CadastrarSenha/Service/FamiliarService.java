@@ -71,18 +71,18 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
 
         cpf.verificaQuantidadeDigitadoCPF(cpfDigitado);
 
+
         System.out.println(MensagemPatriarcaEnum.MATRIARCA.getDescricao());
         String matriaca = leia.nextLine();
-        if (matriaca.contains("sim")) {
+        if (matriaca.contains("sim") || matriaca.contains("s")) {
             System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
             confirmaPatriarca = matriaca;
-            System.out.print("PRESS ENTER");
         } else {
             System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
             confirmaPatriarca = matriaca;
-            System.out.print("PRESS ENTER");
 
         }
+        System.out.print("PRESS ENTER");
         return varFamiliar.getMae();
     }
 

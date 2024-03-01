@@ -29,8 +29,8 @@ public class TelaBot {
         telegramBotsApi.registerBot(new EcoBot());
         System.out.println("LIGADO");
 
-        incluiToken.incluiToken();
-        confereChaveToken.validaChaveToken();
+        incluiToken.incluiToken(); // TODO VERIFICAR
+//        confereChaveToken.validaChaveToken(); //
 //        System.out.println("enviando informação ao banco");
 //        service.adicionaNumero(numeroCelularValido);
     }

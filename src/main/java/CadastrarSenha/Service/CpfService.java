@@ -55,9 +55,6 @@ public class CpfService implements CpfImpl {
             }
         }
         System.out.println("CPF " + infoUsuario.getCpf() + " cadastrado com sucesso!");
-        System.out.print("PRESS ENTER");
-        String pressEnter = leia.next();
-
         return validadorConfirmacao;
     }
 

@@ -50,9 +50,10 @@ public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
         NumeroCelularService service = new NumeroCelularService();
         TelaBot ligar = new TelaBot();
         IncluiToken incluiToken = new IncluiToken();
+        ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
 
-        menu.menuParente(valor);
         ligar.ligarApi();
+        repository.logicaPersistencia();
         System.out.println("");
         incluiToken.incluiToken();
         System.out.println("THE FIM");
