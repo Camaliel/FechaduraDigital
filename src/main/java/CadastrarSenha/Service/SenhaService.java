@@ -1,12 +1,11 @@
 package CadastrarSenha.Service;
 
 import CadastrarSenha.Enum.MensagemSenhaEnum;
-import CadastrarSenha.Service.Interface.SenhaUsuarioImpl;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
 
 import java.util.Scanner;
 
-public class SenhaService implements SenhaUsuarioImpl {
+public class SenhaService{
 
    public String senhaSegura = "";
 
@@ -29,7 +28,6 @@ public class SenhaService implements SenhaUsuarioImpl {
             }
         }
         System.out.println("Senha armezenada");
-        System.out.print("PRESS ENTER");
 
         return senhaSegura;
     }
