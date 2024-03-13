@@ -12,7 +12,7 @@ import java.util.Scanner;
 import static CadastrarSenha.Service.CpfService.cpfDigitado;
 
 
-public class FamiliarService implements UsuarioImpl {
+public class FamiliarService implements UsuarioPadraoImpl {
     Scanner leia = new Scanner(System.in);
     VarFamiliar varFamiliar = new VarFamiliar();
     CpfService cpfService = new CpfService();
@@ -40,7 +40,6 @@ public class FamiliarService implements UsuarioImpl {
     //TODO  --> Falta logica, caso já exista um patriarca na familia...
 
 
-    @Override
     public String patriarca(String pai) {
         System.out.println(MensagemEnum.CPF.getDescricao());
         verificaQuantidadeDigitadoCPF(cpfDigitado);
@@ -63,7 +62,6 @@ public class FamiliarService implements UsuarioImpl {
         return varFamiliar.getPai();
     }
 
-    @Override
     public String matriarca(String mae) {
         System.out.println(MensagemEnum.CPF.getDescricao());
 
@@ -83,8 +81,6 @@ public class FamiliarService implements UsuarioImpl {
         System.out.print("PRESS ENTER");
         return varFamiliar.getMae();
     }
-
-
 
     /*
      * Recebe uma determinada quantidade de filhos para fazer um looping no metodo de filhos
