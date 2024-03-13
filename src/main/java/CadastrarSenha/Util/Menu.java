@@ -2,14 +2,13 @@ package CadastrarSenha.Util;
 
 import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
 import CadastrarSenha.Service.FamiliarService;
-import CadastrarSenha.Service.Interface.PatriarcaImpl;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
 
 import java.util.Scanner;
 
 import static CadastrarSenha.Service.FamiliarService.*;
 
-public class Menu implements PatriarcaImpl {
+public class Menu {
     FamiliarService familiarService = new FamiliarService();
     VarFamiliar varFamiliar = new VarFamiliar();
 
@@ -62,17 +61,5 @@ public class Menu implements PatriarcaImpl {
 
         }
         return valorMenu;
-    }
-
-    @Override
-    public String patriarca(String pai) {
-        FamiliarService familiarService = new FamiliarService();
-        return varFamiliar.getPai();
-    }
-
-    @Override
-    public String matriarca(String mae) {
-        FamiliarService familiarService = new FamiliarService();
-        return varFamiliar.getMae();
     }
 }

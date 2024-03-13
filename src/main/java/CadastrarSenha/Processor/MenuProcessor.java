@@ -4,8 +4,6 @@ import CadastrarSenha.BootTelegramApi.TelaBot;
 import CadastrarSenha.Repository.*;
 import CadastrarSenha.Service.CpfService;
 import CadastrarSenha.Service.FamiliarService;
-import CadastrarSenha.Service.Interface.CpfImpl;
-import CadastrarSenha.Service.Interface.SenhaUsuarioImpl;
 import CadastrarSenha.Service.NumeroCelularService;
 import CadastrarSenha.Service.SenhaService;
 import CadastrarSenha.Util.Menu;
@@ -17,10 +15,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.sql.SQLException;
 
-import static CadastrarSenha.Util.Menu.valor;
 
-
-public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
+public class MenuProcessor {
     Menu menu = new Menu();
     SenhaService senhaService = new SenhaService();
     VarFamiliar varFamiliar = new VarFamiliar();
@@ -63,15 +59,5 @@ public class MenuProcessor implements SenhaUsuarioImpl, CpfImpl {
         MenuProcessor menu = new MenuProcessor();
         menu.menuPrincipal();
 
-    }
-
-    @Override
-    public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
-        return numeroCpfGravado;
-    }
-
-    @Override
-    public String cadastroSenha(String senha) {
-        return senhaGravada;
     }
 }

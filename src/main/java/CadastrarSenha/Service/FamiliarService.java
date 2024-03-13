@@ -3,24 +3,21 @@ package CadastrarSenha.Service;
 
 import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Enum.MensagemPatriarcaEnum;
-import CadastrarSenha.Service.Interface.NumeroFilhosImpl;
-import CadastrarSenha.Service.Interface.PatriarcaImpl;
+import CadastrarSenha.Service.Interface.*;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
-import javassist.compiler.MemberCodeGen;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+import static CadastrarSenha.Service.CpfService.cpfDigitado;
 
-public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
+
+public class FamiliarService implements UsuarioImpl {
     Scanner leia = new Scanner(System.in);
-     VarFamiliar varFamiliar = new VarFamiliar();
+    VarFamiliar varFamiliar = new VarFamiliar();
     CpfService cpfService = new CpfService();
     SenhaService senhaService = new SenhaService();
     NumeroCelularService celularService = new NumeroCelularService();
-    String cpfDigitado = "";
     String numeroCelularDigitado = "";
 
     CpfService cpf = new CpfService();
@@ -42,18 +39,19 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
      *  */
     //TODO  --> Falta logica, caso já exista um patriarca na familia...
 
+
     @Override
     public String patriarca(String pai) {
         System.out.println(MensagemEnum.CPF.getDescricao());
-        cpf.verificaQuantidadeDigitadoCPF(cpfDigitado);
+        verificaQuantidadeDigitadoCPF(cpfDigitado);
         System.out.println();
 
         System.out.println(MensagemPatriarcaEnum.PATRIARCA.getDescricao());
         String patriarca = leia.nextLine();
 
         if (patriarca.contains("sim")) {
-            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao()+"teste");
-            cpf.verificaQuantidadeDigitadoCPF(cpfDigitado);
+            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao() + "teste");
+            verificaQuantidadeDigitadoCPF(cpfDigitado);
             confirmaPatriarca = patriarca;
             System.out.print("PRESS ENTER");
         } else {
@@ -69,7 +67,7 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
     public String matriarca(String mae) {
         System.out.println(MensagemEnum.CPF.getDescricao());
 
-        cpf.verificaQuantidadeDigitadoCPF(cpfDigitado);
+        verificaQuantidadeDigitadoCPF(cpfDigitado);
 
 
         System.out.println(MensagemPatriarcaEnum.MATRIARCA.getDescricao());
@@ -86,6 +84,8 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
         return varFamiliar.getMae();
     }
 
+
+
     /*
      * Recebe uma determinada quantidade de filhos para fazer um looping no metodo de filhos
      * para o cadastro !
@@ -99,21 +99,42 @@ public class FamiliarService implements PatriarcaImpl, NumeroFilhosImpl {
         int quantidadeRecebida = 0;
 
         quantidadeRecebida = numeroFilhos;
-        List<String> lista = new ArrayList<>();
 
         for (int i = 1; i <= quantidadeRecebida; i++) {
-            String nomeFilhos = leia.nextLine();
-            nomeArmazenadoFilho = nomeFilhos;
-            lista.add(nomeArmazenadoFilho);
-
-            System.out.println(MensagemEnum.NOME_FILHO.getDescricao() + i);
+            System.out.println("nome " + i);
+            String nomeFilhos = leia.next();
             nomeFilhos = leia.nextLine();
-            nomeArmazenadoFilho = nomeFilhos;
-            lista.add(nomeArmazenadoFilho);
-
-            System.out.println(MensagemEnum.CPF_FILHO.getDescricao() + i);
+            System.out.println(MensagemEnum.CPF.getDescricao() + i);
+            verificaQuantidadeDigitadoCPF(cpfDigitado);
+            System.out.print("PRESS ENTER");
+            adicionaNumero(numeroCelularDigitado);
+            cadastroSenha(numeroCelularDigitado);
 
         }
         return quantidadeRecebida;
+    }
+
+
+    public static void main(String[] args) {
+        FamiliarService service = new FamiliarService();
+        service.quantidadeDeFilhos();
+    }
+
+    @Override
+    public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
+        cpfService.verificaQuantidadeDigitadoCPF(cpfDigitado);
+        return cpfDigitado;
+    }
+
+    @Override
+    public String adicionaNumero(String numeroCelular) {
+        celularService.adicionaNumero(numeroCelularDigitado);
+        return numeroCelularDigitado;
+    }
+
+    @Override
+    public String cadastroSenha(String senha) {
+        senhaService.cadastroSenha(senhaService.senhaSegura);
+        return senhaService.senhaSegura;
     }
 }
