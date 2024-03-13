@@ -1,12 +1,14 @@
 package CadastrarSenha.Service;
 
+import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.ExitCode.CodigoErroExitCode;
+import CadastrarSenha.Service.Interface.CpfImpl;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
 
 import java.util.Scanner;
 
 
-public class CpfService {
+public class CpfService implements CpfImpl {
     public static String cpfDigitado = "";
     InfoUsuario infoUsuario = new InfoUsuario();
     Scanner leia = new Scanner(System.in);
@@ -15,7 +17,7 @@ public class CpfService {
     /*
      * Logica para verificar a quantidade de numeros digitados do CPF
      * */
-
+    @Override
     public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
         String cpf = lerCpf.nextLine();
         cpfDigitado = cpf;
@@ -34,11 +36,6 @@ public class CpfService {
         }
         confirmaCPFDigitado();
 
-        return cpfDigitado;
-    }
-
-    @Override
-    public String  confirmaCPFDigitado(String confirma) {
         return cpfDigitado;
     }
 
@@ -68,4 +65,5 @@ public class CpfService {
         System.out.println();
         System.out.println("CPF ARMAZENADO ==> " + service.infoUsuario.getCpf());
     }
+
 }

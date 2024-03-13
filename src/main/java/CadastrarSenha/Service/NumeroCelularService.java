@@ -1,15 +1,17 @@
 package CadastrarSenha.Service;
 
 import CadastrarSenha.Enum.MensagemEnum;
+import CadastrarSenha.Service.Interface.NumeroCelularImpl;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
 
 import java.util.Scanner;
 
-public class NumeroCelularService  {
+public class NumeroCelularService implements NumeroCelularImpl {
     InfoUsuario infoUsuario = new InfoUsuario();
 
     String numeroDigitado = "";
 
+    @Override
     public String adicionaNumero(String numeroCelular) {
         Scanner leia = new Scanner(System.in);
         String pressEnter = leia.nextLine();

@@ -29,8 +29,6 @@ public class ArmazenaInformacaoPessoaRepository {
     String cpfGuardado = usuario.getCpf();
 
     FamiliarService familiarService = new FamiliarService();
-    CpfService service = new CpfService();
-
 
     static String cpfArmazenado = "";
 
@@ -48,7 +46,7 @@ public class ArmazenaInformacaoPessoaRepository {
         } else if (valor.equals("3")) {
             persistiFilho();
 
-        } else if (valor.equals("4")) {
+        }else if(valor.equals("4")){
             persistioutro();
         }
     }
@@ -94,8 +92,9 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sql, nome, cFamilia, parentesco, cpf, tel, senhaSegura);
     }
 
-    public void persistiFilho() {
+    private void persistiFilho() {
         SenhaService senhaService = new SenhaService();
+        CpfService service = new CpfService();
 
         String filho = nomeArmazenadoFilho;
         service.verificaQuantidadeDigitadoCPF(cpfDigitado);
@@ -112,7 +111,6 @@ public class ArmazenaInformacaoPessoaRepository {
         String sql = "INSERT INTO pessoas (nome,C_Familia, parentesco,cpf,tel,senha_segura) VALUES (?,?,?,?,?,?)";
         DAO.incluir(sql, nome, cFamilia, parentesco, cpf, tel, senhaSegura);
     }
-
     private void persistioutro() {
         SenhaService senhaService = new SenhaService();
         CpfService service = new CpfService();
@@ -132,7 +130,6 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sql, nome, cFamilia, parentesco, cpf, tel, senhaSegura);
 
     }
-
     public static void main(String[] args) {
         ArmazenaInformacaoPessoaRepository teste = new ArmazenaInformacaoPessoaRepository();
         teste.logicaPersistencia();

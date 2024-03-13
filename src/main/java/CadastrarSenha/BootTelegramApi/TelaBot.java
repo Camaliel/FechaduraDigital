@@ -2,6 +2,7 @@ package CadastrarSenha.BootTelegramApi;
 
 import CadastrarSenha.Repository.ConfereChaveToken;
 import CadastrarSenha.Repository.IncluiToken;
+import CadastrarSenha.Service.Interface.SenhaUsuarioImpl;
 import CadastrarSenha.Service.NumeroCelularService;
 import CadastrarSenha.Service.SenhaService;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
