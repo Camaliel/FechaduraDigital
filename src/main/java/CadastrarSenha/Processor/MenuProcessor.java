@@ -17,24 +17,11 @@ import java.sql.SQLException;
 
 
 public class MenuProcessor {
-    Menu menu = new Menu();
-    SenhaService senhaService = new SenhaService();
-    VarFamiliar varFamiliar = new VarFamiliar();
-    InfoUsuario usuario = new InfoUsuario();
-    NumeroCelularService serviceCelular = new NumeroCelularService();
-    CpfService serviceNumeroCpf = new CpfService();
-    String numeroCpfGravado = usuario.getCpf();
-    String senhaGravada = usuario.getSenha();
 
-    FamiliarService familiarService = new FamiliarService();
-
-    ConfereChaveToken confereChaveToken = new ConfereChaveToken();
-
-    incluirPessoaRepository pessoaRepository = new incluirPessoaRepository();
-    EnviaToken enviaToken = new EnviaToken();
-
-    ValoresDigitados valoresDigitados = new ValoresDigitados();
-
+    ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
+    TelaBot bot = new TelaBot();
+    ConfereChaveToken chaveToken = new ConfereChaveToken();
+    IncluiToken incluiToken = new IncluiToken();
     /*
      * Processa toda a informação recebida e envia para o BANCO.
      * */
@@ -42,17 +29,13 @@ public class MenuProcessor {
     //TODO LEMBRETE: DEIXAR PADRAO E MAIS LIMPO COMO O MENNU 3
 
     public void menuPrincipal() throws TelegramApiException, SQLException {
-        InfoUsuario infoUsuario = new InfoUsuario();
-        NumeroCelularService service = new NumeroCelularService();
-        TelaBot ligar = new TelaBot();
-        IncluiToken incluiToken = new IncluiToken();
-        ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
+      //todo fazer de novo instanciar as classes
 
-        ligar.ligarApi();
+        bot.ligarApi();
         repository.logicaPersistencia();
-        System.out.println("");
-        incluiToken.incluiToken();
-        System.out.println("THE FIM");
+        chaveToken.validaChaveToken(); //
+
+
     }
 
     public static void main(String[] args) throws TelegramApiException, SQLException {

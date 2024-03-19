@@ -22,20 +22,20 @@ public class ConfereChaveToken {
     public String validaChaveToken() throws SQLException, TelegramApiException {
         String valorGuardado = "";
 
-//        System.out.println("SEU NUMERO TOKEN ==> "+ token.consultaQuery());
-        System.out.print("SEU NUMERO TOKEN ==> ");
+        System.out.println("SEU NUMERO TOKEN ==> "+ incluiToken.incluiToken());
+        System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
         String valorDigitado = leia.nextLine();
         while (!token.consultaQuery().equals(valorDigitado)) {
-            if (!token.consultaQuery().equals(valorDigitado)) {
-                System.out.println(" TOKEN InVALIDO");
-                System.out.print("SEU NUMERO TOKEN ==> ");
-                valorDigitado = leia.nextLine();
+            System.out.println("SEU NUMERO TOKEN ==> "+ incluiToken.incluiToken());
 
-            } else {
-                System.out.println(" TOKEN VALIDO GUARDADO");
-                valorGuardado = valorDigitado;
-            }
+            System.out.println(" TOKEN InVALIDO");
+            System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
+            valorDigitado = leia.nextLine();
         }
+                valorGuardado = valorDigitado;
+        System.out.println(" TOKEN VALIDO GUARDADO");
+
+
             return valorGuardado;
         }
     }

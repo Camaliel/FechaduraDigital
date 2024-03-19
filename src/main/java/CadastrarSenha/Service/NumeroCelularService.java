@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class NumeroCelularService  {
     InfoUsuario infoUsuario = new InfoUsuario();
 
-    String numeroDigitado = "";
+    public static String numeroCelularDigitado = "";
 
     public String adicionaNumero(String numeroCelular) {
         Scanner leia = new Scanner(System.in);
@@ -16,20 +16,18 @@ public class NumeroCelularService  {
         if (pressEnter.isBlank()) {
             System.out.println(MensagemEnum.INSIRA_NUMERO.getDescricao());
             String numero = leia.nextLine();
-            infoUsuario.setNumeroCelular(numero);
-            numeroDigitado = numero;
+            numeroCelularDigitado = numero;
 
             while (numero.length() != 9) {
                 if (numero.length() != 9) {
                     System.out.println(MensagemEnum.N_VALIDO.getDescricao());
                     numero = leia.nextLine();
-                    infoUsuario.setNumeroCelular(numero);
-                    numeroDigitado = numero;
+                    numeroCelularDigitado = numero;
                 }
             }
             if (numero.length() == 9) {
                 System.out.println(MensagemEnum.NUMERO_SUCESSO.getDescricao());
-                infoUsuario.setNumeroCelular(numeroDigitado);
+                infoUsuario.setNumeroCelular(numeroCelularDigitado);
                 System.out.println(infoUsuario.getNumeroCelular() + " " + MensagemEnum.N_ADICIONADO.getDescricao());
 
             }
@@ -37,7 +35,7 @@ public class NumeroCelularService  {
             System.out.print("PRESS ENTER");
             String pressEnter2 = leia.nextLine();
         }
-        return numeroDigitado;
+        return numeroCelularDigitado;
 
     }
 }

@@ -1,16 +1,19 @@
 package CadastrarSenha.Util;
 
 import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
+import CadastrarSenha.Service.CpfService;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
 
 import java.util.Scanner;
 
+import static CadastrarSenha.Service.CpfService.cpfDigitado;
 import static CadastrarSenha.Service.FamiliarService.*;
 
 public class Menu {
     FamiliarService familiarService = new FamiliarService();
     VarFamiliar varFamiliar = new VarFamiliar();
+    CpfService service = new CpfService();
 
     Scanner leia = new Scanner(System.in);
     public static String nomeArmazenadoPai = "";
@@ -36,17 +39,16 @@ public class Menu {
         switch (valor) {
             case "1":
                 System.out.println("DIGITE SEU NOME");
-                String nomePai = leia.nextLine();
-                String valorPai = varFamiliar.setPai(nomePai);
-                nomeArmazenadoPai = varFamiliar.setPai(valorPai);
+                String nomePai = leia.next();
+                nomeArmazenadoPai = varFamiliar.setPai(nomePai);
+                familiarService.patriarca(varFamiliar.getPai());
                 break;
 
             case "2":
                 System.out.println("DIGITE SEU NOME");
-                String nomeMae = leia.nextLine();
-                String valorMae = varFamiliar.setMae(nomeMae);
-                nomeArmazenadoMae = varFamiliar.setMae(valorMae);
-                familiarService.matriarca(confirmaPatriarca);
+                String nomeMae = leia.next();
+                nomeArmazenadoMae = varFamiliar.setPai(nomeMae);
+                familiarService.matriarca(varFamiliar.getMae());
                 break;
 
             case "3":
@@ -55,8 +57,9 @@ public class Menu {
 
             case "4":
                 System.out.println("DIGITE SEU NOME");
-                String nomeOutros = leia.nextLine();
+                String nomeOutros = leia.next();
                 nomeArmazenadoOutros = varFamiliar.setPai(nomeOutros);
+                familiarService.verificaQuantidadeDigitadoCPF(cpfDigitado);
                 break;
 
         }

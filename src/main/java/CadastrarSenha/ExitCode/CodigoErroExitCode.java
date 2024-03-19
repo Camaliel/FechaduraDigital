@@ -16,5 +16,4 @@ public enum CodigoErroExitCode {
         this.descricao = descricao;
     }
 
-
 }

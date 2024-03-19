@@ -21,17 +21,12 @@ public class TelaBot {
 
     NumeroCelularService service = new NumeroCelularService();
 
-    String numeroCelularValido = usuario.getNumeroCelular();
     public void ligarApi() throws TelegramApiException, SQLException {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         EcoBot bot = new EcoBot();
         telegramBotsApi.registerBot(new EcoBot());
         System.out.println("LIGADO");
 
-        incluiToken.incluiToken(); // TODO VERIFICAR
-//        confereChaveToken.validaChaveToken(); //
-//        System.out.println("enviando informação ao banco");
-//        service.adicionaNumero(numeroCelularValido);
     }
 
 }

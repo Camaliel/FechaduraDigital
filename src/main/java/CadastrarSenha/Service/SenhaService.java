@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SenhaService{
 
-   public String senhaSegura = "";
+   public static String senhaSegura = "";
 
     InfoUsuario usuario = new InfoUsuario();
 
@@ -30,15 +30,6 @@ public class SenhaService{
         System.out.println("Senha armezenada");
 
         return senhaSegura;
-    }
-
-    public static void main(String[] args) {
-        SenhaService senhaService = new SenhaService();
-
-        senhaService.cadastroSenha(senhaService.usuario.getSenha());
-        System.out.println();
-        System.out.println("teste de senha => " + senhaService.usuario.getSenha());
-        System.out.println("teste de senha => " + senhaService.senhaSegura);
     }
 
 }

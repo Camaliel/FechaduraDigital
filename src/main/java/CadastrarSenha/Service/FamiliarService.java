@@ -10,6 +10,8 @@ import CadastrarSenha.Util.Variavel.VarFamiliar;
 import java.util.Scanner;
 
 import static CadastrarSenha.Service.CpfService.cpfDigitado;
+import static CadastrarSenha.Service.NumeroCelularService.numeroCelularDigitado;
+import static CadastrarSenha.Service.SenhaService.senhaSegura;
 
 
 public class FamiliarService implements UsuarioPadraoImpl {
@@ -18,18 +20,8 @@ public class FamiliarService implements UsuarioPadraoImpl {
     CpfService cpfService = new CpfService();
     SenhaService senhaService = new SenhaService();
     NumeroCelularService celularService = new NumeroCelularService();
-    String numeroCelularDigitado = "";
-
-    CpfService cpf = new CpfService();
-
-    InfoUsuario usuario = new InfoUsuario();
-    static String cpfGuardado = "";
-    String senhaCadastrada = usuario.getSenha();
-
-
     public static String confirmaPatriarca = "";
     public static String nomeArmazenadoFilho = "";
-    static String cpfArmazenado = "";
 
     /*
      *
@@ -41,43 +33,33 @@ public class FamiliarService implements UsuarioPadraoImpl {
 
 
     public String patriarca(String pai) {
-        System.out.println(MensagemEnum.CPF.getDescricao());
-        verificaQuantidadeDigitadoCPF(cpfDigitado);
-        System.out.println();
-
         System.out.println(MensagemPatriarcaEnum.PATRIARCA.getDescricao());
-        String patriarca = leia.nextLine();
+        String patriarca = leia.next();
 
         if (patriarca.contains("sim")) {
-            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao() + "teste");
-            verificaQuantidadeDigitadoCPF(cpfDigitado);
             confirmaPatriarca = patriarca;
-            System.out.print("PRESS ENTER");
+
         } else {
-            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
             confirmaPatriarca = patriarca;
-            System.out.print("PRESS ENTER");
 
         }
+        verificaQuantidadeDigitadoCPF(cpfDigitado);
         return varFamiliar.getPai();
     }
 
     public String matriarca(String mae) {
-        System.out.println(MensagemEnum.CPF.getDescricao());
-
-        verificaQuantidadeDigitadoCPF(cpfDigitado);
-
 
         System.out.println(MensagemPatriarcaEnum.MATRIARCA.getDescricao());
         String matriaca = leia.nextLine();
         if (matriaca.contains("sim") || matriaca.contains("s")) {
-            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
+//            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
             confirmaPatriarca = matriaca;
         } else {
-            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
+//            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
             confirmaPatriarca = matriaca;
 
         }
+        verificaQuantidadeDigitadoCPF(cpfDigitado);
         System.out.print("PRESS ENTER");
         return varFamiliar.getMae();
     }
@@ -92,20 +74,17 @@ public class FamiliarService implements UsuarioPadraoImpl {
         System.out.println(MensagemEnum.QUANTIDADE_FILHO.getDescricao());
         int numeroFilhos = leia.nextInt();
 
-        int quantidadeRecebida = 0;
+        int quantidadeRecebida = 1;
 
         quantidadeRecebida = numeroFilhos;
 
         for (int i = 1; i <= quantidadeRecebida; i++) {
-            System.out.println("nome " + i);
+            System.out.println(MensagemEnum.NOME_FILHO.getDescricao() + i);
             String nomeFilhos = leia.next();
-            nomeFilhos = leia.nextLine();
+            nomeArmazenadoFilho = nomeFilhos;
             System.out.println(MensagemEnum.CPF.getDescricao() + i);
             verificaQuantidadeDigitadoCPF(cpfDigitado);
             System.out.print("PRESS ENTER");
-            adicionaNumero(numeroCelularDigitado);
-            cadastroSenha(numeroCelularDigitado);
-
         }
         return quantidadeRecebida;
     }
@@ -130,7 +109,7 @@ public class FamiliarService implements UsuarioPadraoImpl {
 
     @Override
     public String cadastroSenha(String senha) {
-        senhaService.cadastroSenha(senhaService.senhaSegura);
-        return senhaService.senhaSegura;
+        senhaService.cadastroSenha(senhaSegura);
+        return senhaSegura;
     }
 }
