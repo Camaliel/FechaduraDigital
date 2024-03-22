@@ -14,6 +14,7 @@ import CadastrarSenha.jdbc.EnviaToken;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 
 public class MenuProcessor {
@@ -29,18 +30,28 @@ public class MenuProcessor {
     //TODO LEMBRETE: DEIXAR PADRAO E MAIS LIMPO COMO O MENNU 3
 
     public void menuPrincipal() throws TelegramApiException, SQLException {
-      //todo fazer de novo instanciar as classes
+        //todo fazer de novo instanciar as classes
 
         bot.ligarApi();
         repository.logicaPersistencia();
-        chaveToken.validaChaveToken(); //
-
-
-    }
-
-    public static void main(String[] args) throws TelegramApiException, SQLException {
-        MenuProcessor menu = new MenuProcessor();
-        menu.menuPrincipal();
+        chaveToken.validaChaveToken();
+//        voltarMenu();
 
     }
-}
+
+    public void voltarMenu() throws SQLException, TelegramApiException {
+        Scanner leia = new Scanner(System.in);
+
+        System.out.println("Deseja voltar ao menu principal ? ");
+        String textoUsuario = leia.nextLine();
+            while (textoUsuario.equalsIgnoreCase("sim") || textoUsuario.equalsIgnoreCase("S")) {
+             menuPrincipal();
+
+            }
+        }
+        public static void main (String[]args) throws TelegramApiException, SQLException {
+            MenuProcessor menu = new MenuProcessor();
+            menu.menuPrincipal();
+
+        }
+    }
