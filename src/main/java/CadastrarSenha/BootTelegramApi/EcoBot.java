@@ -31,6 +31,8 @@ public class EcoBot extends TelegramLongPollingBot {
                 mensagem = responder(update);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
             try {
                 execute(mensagem);
@@ -40,7 +42,7 @@ public class EcoBot extends TelegramLongPollingBot {
         }
     }
 
-    private SendMessage responder(Update update) throws SQLException {
+    private SendMessage responder(Update update) throws SQLException, ClassNotFoundException {
         Respostas respostas = new Respostas();
         respostas.enviaMensagem(update);
 

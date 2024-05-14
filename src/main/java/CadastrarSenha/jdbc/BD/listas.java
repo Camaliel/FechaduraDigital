@@ -1,4 +1,4 @@
-package CadastrarSenha.jdbc.teste;
+package CadastrarSenha.jdbc.BD;
 
 import CadastrarSenha.Service.FamiliarService;
 

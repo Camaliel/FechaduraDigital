@@ -21,7 +21,7 @@ public class EnviaToken {
     String valorToken = chaveToken.getPegaToken();
 
 
-    public String enviaToken() throws SQLException {
+    public String enviaToken() throws SQLException, ClassNotFoundException {
 
         ChaveToken chaveToken = new ChaveToken();
 
@@ -50,7 +50,7 @@ public class EnviaToken {
         return valorToken;
     }
 
-    public String consultaQuery() throws SQLException {
+    public String consultaQuery() throws SQLException, ClassNotFoundException {
 
         String numeroToken = "";
         Connection conexao = CriarConexao.getConnetion();
@@ -79,7 +79,7 @@ public class EnviaToken {
         return numeroToken;
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         EnviaToken token = new EnviaToken();
         token.consultaQuery();
     }

@@ -25,13 +25,15 @@ public class Conexao {
             return -1;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     public void close(){
         try{
             getConexao().close();
 
-        }catch (SQLException e){
+        }catch (SQLException | ClassNotFoundException e){
 
         }finally {
             conexao = null;
@@ -52,7 +54,7 @@ public class Conexao {
         }
     }
 
-    private Connection getConexao() {
+    private Connection getConexao() throws ClassNotFoundException {
         try {
             if (conexao != null && conexao.isClosed()) {
                 return conexao;

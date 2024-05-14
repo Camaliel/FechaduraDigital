@@ -17,7 +17,7 @@ public class Respostas {
 
 
     ConfereChaveToken confereChaveToken = new ConfereChaveToken();
-    public SendMessage enviaMensagem(Update update) throws SQLException {
+    public SendMessage enviaMensagem(Update update) throws SQLException, ClassNotFoundException {
         var textoMensagem = update.getMessage();
         var user = update.getMessage().getChatId();
 

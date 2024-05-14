@@ -1,4 +1,4 @@
-package CadastrarSenha.jdbc.teste;
+package CadastrarSenha.jdbc.BD;
 
 import CadastrarSenha.jdbc.CriarConexao;
 
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Pessoa {
 
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Scanner leia = new Scanner(System.in);
         System.out.println("INSIRA UM NOME .. ");
         String nome = leia.nextLine();

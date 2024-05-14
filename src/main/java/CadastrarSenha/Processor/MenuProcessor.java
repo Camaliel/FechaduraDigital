@@ -29,7 +29,7 @@ public class MenuProcessor {
 
     //TODO LEMBRETE: DEIXAR PADRAO E MAIS LIMPO COMO O MENNU 3
 
-    public void menuPrincipal() throws TelegramApiException, SQLException {
+    public void menuPrincipal() throws TelegramApiException, SQLException, ClassNotFoundException {
         //todo fazer de novo instanciar as classes
 
         bot.ligarApi();
@@ -39,7 +39,7 @@ public class MenuProcessor {
 
     }
 
-    public void voltarMenu() throws SQLException, TelegramApiException {
+    public void voltarMenu() throws SQLException, TelegramApiException, ClassNotFoundException {
         Scanner leia = new Scanner(System.in);
 
         System.out.println("Deseja voltar ao menu principal ? ");
@@ -49,7 +49,7 @@ public class MenuProcessor {
 
             }
         }
-        public static void main (String[]args) throws TelegramApiException, SQLException {
+        public static void main (String[]args) throws TelegramApiException, SQLException, ClassNotFoundException {
             MenuProcessor menu = new MenuProcessor();
             menu.menuPrincipal();
 

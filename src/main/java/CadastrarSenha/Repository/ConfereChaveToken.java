@@ -17,7 +17,7 @@ public class ConfereChaveToken {
     IncluiToken incluiToken = new IncluiToken();
     incluirPessoaRepository pessoaRepository = new incluirPessoaRepository();
 
-    public String validaChaveToken() throws SQLException {
+    public String validaChaveToken() throws SQLException, ClassNotFoundException {
         Scanner leia = new Scanner(System.in);
 
         String valorGuardado = "";

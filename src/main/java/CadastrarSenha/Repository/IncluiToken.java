@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class IncluiToken {
 
-    public String incluiToken() throws SQLException {
+    public String incluiToken() throws SQLException, ClassNotFoundException {
         ChaveToken chaveToken = new ChaveToken();
         ConfereChaveToken confereChaveToken = new ConfereChaveToken();
 
