@@ -47,14 +47,14 @@ public class ArmazenaInformacaoPessoaRepository {
 
         String nome = nomeArmazenadoPai;
 
-        String cFamilia = confirmaPatriarca;
+        String chefe_familia = confirmaPatriarca;
         String parentesco = "Pai";
         String cpf = cpfDigitado;
         String tel = numeroCelularDigitado;
         String senhaSegura = SenhaService.senhaSegura;
 
-        String sql = "INSERT INTO pessoas (nome,C_Familia, parentesco,cpf,tel,senha_segura) VALUES (?,?,?,?,?,?)";
-        DAO.incluir(sql, nome, cFamilia, parentesco, cpf, tel, senhaSegura);
+        String sql = "INSERT INTO cadastro (nome, chefe_familia, parentesco,cpf, tel, senha) VALUES (?,?,?,?,?,?)";
+        DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senhaSegura);
 
     }
 
@@ -62,14 +62,14 @@ public class ArmazenaInformacaoPessoaRepository {
         String mae = nomeArmazenadoMae;
 
         String nome = mae;
-        String cFamilia = confirmaPatriarca;
+        String chefe_familia = confirmaPatriarca;
         String parentesco = "mae";
         String cpf = cpfDigitado;
         String tel = numeroCelularDigitado;
         String senha = senhaSegura;
 
-        String sql = "INSERT INTO pessoas (nome,C_Familia, parentesco,cpf,tel,senha_segura) VALUES (?,?,?,?,?,?)";
-        DAO.incluir(sql, nome, cFamilia, parentesco, cpf, tel, senha);
+        String sql = "INSERT INTO cadastro (nome, chefe_familia, parentesco,cpf, tel, senha) VALUES (?,?,?,?,?,?)";
+        DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senha);
     }
 
     public void persistiFilho() {
@@ -77,27 +77,27 @@ public class ArmazenaInformacaoPessoaRepository {
         String filho = nomeArmazenadoFilho;
 
         String nome = filho;
-        String cFamilia = "não";
+        String chefe_familia = "não";
         String parentesco = "filho(s)";
         String cpf = cpfDigitado;
         String tel = numeroCelularDigitado;
         String senha = senhaSegura;
 
-        String sql = "INSERT INTO pessoas (nome,C_Familia, parentesco,cpf,tel,senha_segura) VALUES (?,?,?,?,?,?)";
-        DAO.incluir(sql, nome, cFamilia, parentesco, cpf, tel, senha);
+        String sql = "INSERT INTO cadastro (nome, chefe_familia, parentesco,cpf, tel, senha) VALUES (?,?,?,?,?,?)";
+        DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senha);
     }
 
     private void persistioutro() {
 
         String nome = nomeArmazenadoOutros;
-        String cFamilia = "nao";
+        String chefe_familia = "nao";
         String parentesco = "outros";
         String cpf = cpfDigitado;
         String tel = numeroCelularDigitado;
         String senhaSegura = SenhaService.senhaSegura;
 
-        String sql = "INSERT INTO pessoas (nome,C_Familia, parentesco,cpf,tel,senha_segura) VALUES (?,?,?,?,?,?)";
-        DAO.incluir(sql, nome, cFamilia, parentesco, cpf, tel, senhaSegura);
+        String sql = "INSERT INTO cadastro (nome, chefe_familia, parentesco,cpf, tel, senha) VALUES (?,?,?,?,?,?)";
+        DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senhaSegura);
 
     }
 

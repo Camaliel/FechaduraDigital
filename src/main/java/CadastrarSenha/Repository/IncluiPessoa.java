@@ -15,11 +15,11 @@ public class IncluiPessoa {
         Conexao dao = new Conexao();
 
         String nome = leia.next();
-        String cFamilia = leia.next();
+//        String cFamilia = leia.next();
         // TODO INCLUIR PATROIARCA JUNTO COM O NOME, TALVEZ, ESTUDAR IDEIA [LEMBRETE]
 
-        String sql = "INSERT INTO pessoas (nome,C_Familia) VALUES(?,?)";
-        dao.incluir(sql, nome, cFamilia);
+        String sql = "INSERT INTO cadastro (nome) VALUES(?)";
+        dao.incluir(sql, nome);
 
         if (!nome.isBlank() && nome != null) {
             System.out.println("Nomes incluidos com sucesso");

@@ -2,10 +2,7 @@ package Login.Repository;
 
 import CadastrarSenha.jdbc.CriarConexao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +10,11 @@ import java.util.Scanner;
 
 public class Consultas {
 
-    public void atribuirValoresBanco() throws SQLException {
+    public void criarTabelaTokens() throws SQLException, ClassNotFoundException {
+
+            Connection conexao = CriarConexao.getConnetion();
+            String sql = "CREATE DATABASE testandoBANCO2";
+            conexao.prepareStatement(sql);
 
     }
 
@@ -57,7 +58,8 @@ public class Consultas {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Consultas consultas = new Consultas();
-        consultas.pesquisarBanco();
+//        consultas.pesquisarBanco();
+        consultas.criarTabelaTokens();
     }
 
 }

@@ -18,10 +18,15 @@ public class EnviaToken {
     ChaveToken chaveToken = new ChaveToken();
 
     ValoresDigitados valoresDigitados = new ValoresDigitados();
+
+    public void setValorToken(String valorToken) {
+        this.valorToken = valorToken;
+    }
+
     String valorToken = chaveToken.getPegaToken();
 
 
-    public String enviaToken() throws SQLException, ClassNotFoundException {
+    public String enviaToken() throws SQLException {
 
         ChaveToken chaveToken = new ChaveToken();
 
