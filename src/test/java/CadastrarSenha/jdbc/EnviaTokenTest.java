@@ -2,9 +2,10 @@ package CadastrarSenha.jdbc;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import org.mockito.Mockito;
+
+import java.sql.*;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -15,26 +16,56 @@ public class EnviaTokenTest {
     private EnviaToken enviaToken;
     private Connection conexaoMock;
     private PreparedStatement statementMock;
+    private ResultSet resultSetMock;
 
     @Before
-    public void setup() throws SQLException {
-        enviaToken = new EnviaToken(); // Inicializando o objeto aqui
-        conexaoMock = mock(Connection.class);
-        statementMock = mock(PreparedStatement.class);
-
-        when(conexaoMock.prepareStatement(any(String.class))).thenReturn(statementMock);
+    public void setup() {
+        enviaToken = new EnviaToken();
     }
 
     @Test
     public void testEnviaToken() throws SQLException, ClassNotFoundException {
-        // Mock dos dados necessários
+        // Inicializa as/os Classes/Mocks
+        enviaToken = new EnviaToken();
+        conexaoMock = mock(Connection.class);
+        statementMock = mock(PreparedStatement.class);
+        resultSetMock = mock(ResultSet.class); // Add ResultSet mock
+
+        // Simula a interação do banco
+        when(conexaoMock.prepareStatement(any(String.class))).thenReturn(statementMock);
+        when(statementMock.executeQuery()).thenReturn(resultSetMock);
+        when(resultSetMock.next()).thenReturn(true); // Assuming successful token save
+
+        // Seta os valores
         String valorToken = "tokenTeste";
         enviaToken.setValorToken(valorToken);
 
-        // Chamando o método a ser testado
+        // Chama o metodo testado
         String resultado = enviaToken.enviaToken();
 
-        // Verificar se o token foi salvo corretamente
+        // Verifica se o token foi salvo
         assertEquals(valorToken, resultado);
+    }
+
+    @Test
+    public void testConsultaQuery_SuccessfulRetrieval() throws SQLException, ClassNotFoundException {
+        // Inicializa as/os Classes/Mocks
+        Connection connection = Mockito.mock(Connection.class);
+        Statement statement = Mockito.mock(Statement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+
+        Mockito.when(statement.executeQuery("select * from tokens order by id desc limit 1")).thenReturn(resultSet);
+
+        // Simula a interação do banco
+        Mockito.when(resultSet.next()).thenReturn(true);
+        Mockito.when(resultSet.getInt("id")).thenReturn(1);
+        Mockito.when(resultSet.getString("token")).thenReturn("valid_token");
+
+        // Chama o metodo testado
+        EnviaToken consultaQuery = new EnviaToken();
+        String token = consultaQuery.consultaQuery();
+
+        // Verifica se retorna o valor salvo
+        assertEquals("tokenTeste", token);
     }
 }
