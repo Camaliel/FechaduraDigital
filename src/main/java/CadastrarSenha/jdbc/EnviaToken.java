@@ -74,18 +74,6 @@ public class EnviaToken {
             numeroToken = codigo;
         }
 
-//     TODO     NÃO APAGAR PODE SER UTIL [LEMBRETE]
-
-//        int valorId = 1;
-//        System.out.println("Id   token ");
-//        for (String valorToken : token)
-//            System.out.println("" + valorId++ + "  |  " + valorToken);
-//        valoresDigitados.setValorTokenAdquidiro(valorToken);
         return numeroToken;
-    }
-
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        EnviaToken token = new EnviaToken();
-        token.consultaQuery();
     }
 }
