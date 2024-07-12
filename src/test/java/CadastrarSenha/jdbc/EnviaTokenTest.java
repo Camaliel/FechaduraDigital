@@ -48,7 +48,7 @@ public class EnviaTokenTest {
     }
 
     @Test
-    public void testConsultaQuery_SuccessfulRetrieval() throws SQLException, ClassNotFoundException {
+    public void testConsultaQuery_ComSucesso() throws SQLException, ClassNotFoundException {
         // Inicializa as/os Classes/Mocks
         Connection connection = Mockito.mock(Connection.class);
         Statement statement = Mockito.mock(Statement.class);

@@ -13,13 +13,11 @@ public class ConfereChaveToken {
 
     public String validaChaveToken() throws SQLException, ClassNotFoundException {
         Scanner leia = new Scanner(System.in);
-
         String valorGuardado = "";
         System.out.println("token => " + incluiToken.incluiToken());
         System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
         String valorDigitado = leia.nextLine();
         while (!token.consultaQuery().equals(valorDigitado)) {
-
             System.out.println(" TOKEN InVALIDO");
             System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
             valorDigitado = leia.nextLine();

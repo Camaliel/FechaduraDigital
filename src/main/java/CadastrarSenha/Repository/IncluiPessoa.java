@@ -17,6 +17,7 @@ public class IncluiPessoa {
         String nome = leia.next();
 //        String cFamilia = leia.next();
         // TODO INCLUIR PATROIARCA JUNTO COM O NOME, TALVEZ, ESTUDAR IDEIA [LEMBRETE]
+        // TODO VER SE CLASSE ESTA SENDO USADA
 
         String sql = "INSERT INTO cadastro (nome) VALUES(?)";
         dao.incluir(sql, nome);
