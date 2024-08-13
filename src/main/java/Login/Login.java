@@ -1,36 +1,42 @@
 package Login;
 
-import CadastrarSenha.jdbc.DAO.Conexao;
 
-import java.util.ArrayList;
+import CadastrarSenha.jdbc.CriarConexao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
-
 
 public class Login {
 
-    public void loginDeAcesso(){
+    public String loginDeAcesso() throws SQLException {
         Scanner leia = new Scanner(System.in);
-        Conexao DAO = new Conexao();
-        ArrayList<Integer>ListaTokenSenha = new ArrayList<>();
 
-        int login = leia.nextInt();
+        // TODO CRIAR UMA REFERENCIA NO NOME DE QUEM SOLICITOU EXEMPLO NOME: DEBORA TOKEN: 000996
 
-       String sql = "select * from tokens where (token) = 'login'";
-       DAO.incluir(sql,login);
-
-
-
-
-        ListaTokenSenha.add(Integer.valueOf(sql));
-
-        DAO.close();
-
-
-
+        System.out.println("Digite seu numero de acesso !");
+        String loginTeclado = leia.nextLine();
+        Connection conexao = CriarConexao.getConnetion();
+        Statement stmt = conexao.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM TOKENS");
+        String token = "";
+        String loginConfere = "";
+        while (rs.next()){
+            token = rs.getString("token");
+            if (token.contains(loginTeclado)){
+                System.out.println("-----------------");
+                System.out.println("Seu login confere");
+                loginConfere = loginTeclado;
+                System.out.println("-----------------");
+            }
+        }
+        return loginConfere;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Login teste = new Login();
-        teste.loginDeAcesso();
+        System.out.println(teste.loginDeAcesso());
     }
 }
