@@ -5,6 +5,7 @@ import CadastrarSenha.Service.CpfService;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import static CadastrarSenha.Service.CpfService.cpfDigitado;
@@ -23,7 +24,7 @@ public class Menu {
 
     public static String valor = "";
 
-    public String menuParente(String nome) {
+    public String menuParente(String nome) throws SQLException, ClassNotFoundException {
         ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
         System.out.println("DIGITE SUA OPCAO:");
         System.out.println("-----------------");

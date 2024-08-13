@@ -59,9 +59,7 @@ public class EnviaToken {
 
         String numeroToken = "";
         Connection conexao = CriarConexao.getConnetion();
-        String sql = "select * from tokens order by id desc limit 1";
-
-        List<String> lista = new ArrayList<>();
+        String sql = "select * from administrador.tokens order by id desc limit 1";
 
         Statement statement = conexao.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);

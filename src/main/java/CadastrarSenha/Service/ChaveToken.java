@@ -7,8 +7,9 @@ public class ChaveToken {
         return token;
     }
 
-    public void setToken(String token) {
+    public String setToken(String token) {
         this.token = token;
+        return token;
     }
 
     static String token;

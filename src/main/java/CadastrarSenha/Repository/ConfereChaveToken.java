@@ -12,18 +12,22 @@ public class ConfereChaveToken {
     IncluiToken incluiToken = new IncluiToken();
 
     public String validaChaveToken() throws SQLException, ClassNotFoundException {
-        Scanner leia = new Scanner(System.in);
         String valorGuardado = "";
+
+        Scanner leia = new Scanner(System.in);
         System.out.println("token => " + incluiToken.incluiToken());
         System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
         String valorDigitado = leia.nextLine();
-        while (!token.consultaQuery().equals(valorDigitado)) {
-            System.out.println(" TOKEN InVALIDO");
-            System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
-            valorDigitado = leia.nextLine();
-        }
-       valorGuardado = valorDigitado;
-        System.out.println(" TOKEN VALIDO GUARDADO");
+            while (!token.consultaQuery().equals(valorDigitado)) {
+                System.out.println(" TOKEN InVALIDO");
+                System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
+                valorDigitado = leia.nextLine();
+                break;
+            }
+
+            valorGuardado = valorDigitado;
+            System.out.println(" TOKEN VALIDO GUARDADO");
+
 
         return valorGuardado;
     }

@@ -13,29 +13,29 @@ import java.sql.SQLException;
 public class Respostas {
     ChaveToken chaveToken = new ChaveToken();
     NumeroSalvo lembra = new NumeroSalvo();
-    IncluiToken incluiToken = new IncluiToken ();
+    IncluiToken incluiToken = new IncluiToken();
 
 
     ConfereChaveToken confereChaveToken = new ConfereChaveToken();
+
     public SendMessage enviaMensagem(Update update) throws SQLException, ClassNotFoundException {
         var textoMensagem = update.getMessage();
         var user = update.getMessage().getChatId();
 
-         var  resposta = "";
+        var resposta = "";
         if (textoMensagem.getText().startsWith("oi")) {
             resposta = RespostaApiEnum.SEM_FUNCIONALIDADE.getDescricao();
-        } else if (textoMensagem.getText().startsWith("como vai")) {
-            resposta = RespostaApiEnum.APRENDENDO.getDescricao();
+        } else if (textoMensagem.getText().startsWith("Sophia")) {
+            resposta = RespostaApiEnum.SOPHIA.getDescricao();
             // PEGA VALOR SALVO
         } else if (textoMensagem.getText().startsWith("Token")) {
             resposta = incluiToken.incluiToken();
         } else if (textoMensagem.getText().startsWith("teste")) {
             resposta = RespostaApiEnum.TESTE_BOT.getDescricao();
-        } else if (textoMensagem.getText().startsWith("estudando muito ?")) {
+        } else if (textoMensagem.getText().startsWith("Estudando muito?")) {
             resposta = RespostaApiEnum.NAO_ENTENDO_SUA_LINGUAGEM_DE_PROGRAMACAO.getDescricao();
 
-
-    } else {
+        } else {
             resposta = RespostaApiEnum.NAO_ENTENDO_SUA_LINGUAGEM_DE_PROGRAMACAO.getDescricao();
         }
 

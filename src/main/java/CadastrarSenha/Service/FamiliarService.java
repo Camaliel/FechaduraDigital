@@ -3,10 +3,12 @@ package CadastrarSenha.Service;
 
 import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Enum.MensagemPatriarcaEnum;
+import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
 import CadastrarSenha.Service.Interface.*;
 import CadastrarSenha.Util.Variavel.InfoUsuario;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import static CadastrarSenha.Service.CpfService.cpfDigitado;
@@ -68,7 +70,8 @@ public class FamiliarService implements UsuarioPadraoImpl {
      * Recebe uma determinada quantidade de filhos para fazer um looping no metodo de filhos
      * para o cadastro !
      * */
-    public int quantidadeDeFilhos() {
+    public int quantidadeDeFilhos() throws SQLException, ClassNotFoundException {
+        ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
         Scanner leia = new Scanner(System.in);
 
         System.out.println(MensagemEnum.QUANTIDADE_FILHO.getDescricao());
@@ -78,19 +81,19 @@ public class FamiliarService implements UsuarioPadraoImpl {
 
         quantidadeRecebida = numeroFilhos;
 
-        for (int i = 1; i <= quantidadeRecebida; i++) {
+        for (int i = 1; i < quantidadeRecebida; i++) {
             System.out.println(MensagemEnum.NOME_FILHO.getDescricao() + i);
             String nomeFilhos = leia.next();
             nomeArmazenadoFilho = nomeFilhos;
-            System.out.println(MensagemEnum.CPF.getDescricao() + i);
+//            System.out.println(MensagemEnum.CPF.getDescricao() + i);
             verificaQuantidadeDigitadoCPF(cpfDigitado);
-            System.out.print("PRESS ENTER");
+            System.out.println("PRESS ENTER");
+            repository.persistiFilho();
         }
         return quantidadeRecebida;
     }
 
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         FamiliarService service = new FamiliarService();
         service.quantidadeDeFilhos();
     }

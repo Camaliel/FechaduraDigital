@@ -34,7 +34,6 @@ public class MenuProcessor {
 
         bot.ligarApi();
         repository.logicaPersistencia();
-        chaveToken.validaChaveToken();
 //        voltarMenu();
 
     }

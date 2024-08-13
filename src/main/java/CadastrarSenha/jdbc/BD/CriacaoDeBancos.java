@@ -67,7 +67,7 @@ public class CriacaoDeBancos {
                     "nome VARCHAR(80)," +
                     "campo INT," +
                     "token VARCHAR(10)," +
-                    "PRIMARY KEY (id)" +
+                    "PRIMARY KEY (nome)" +
                     ")";
 
             Statement stmt = conexao.createStatement();
