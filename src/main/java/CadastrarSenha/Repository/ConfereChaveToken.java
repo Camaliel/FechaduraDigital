@@ -27,8 +27,11 @@ public class ConfereChaveToken {
 
             valorGuardado = valorDigitado;
             System.out.println(" TOKEN VALIDO GUARDADO");
-
-
         return valorGuardado;
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        ConfereChaveToken token = new ConfereChaveToken();
+        System.out.println(token.validaChaveToken());
     }
 }

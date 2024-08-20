@@ -66,9 +66,9 @@ public class EnviaTokenTest {
 
         // Chama o metodo testado
         EnviaToken consultaQuery = new EnviaToken();
-        String token = consultaQuery.consultaQuery();
+        Integer token = Integer.valueOf(consultaQuery.consultaQuery());
 
         // Verifica se retorna o valor salvo
-        assertEquals("tokenTeste", token);
+        assertEquals(374353, token);
     }
 }
