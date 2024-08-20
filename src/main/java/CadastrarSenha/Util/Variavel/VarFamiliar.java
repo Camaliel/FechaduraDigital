@@ -1,10 +1,18 @@
 package CadastrarSenha.Util.Variavel;
 
 public class VarFamiliar {
-    private String pai;
+    private String nomePai;
+    private String nomeDoMeioPai;
+    private String sobrenomePai;
     private String mae;
+    private String NomeDoMeioMae;
+    private String sobrenomeMae;
     private String filho;
+    private String NomeDoMeioFilho;
+    private String sobrenomeFilho;
     private String outros;
+    private String NomeDoMeioOutros;
+    private String sobrenomeOutros;
     private String confirm;
     private String valorMenu;
 
@@ -36,12 +44,82 @@ public class VarFamiliar {
         return confirm;
     }
 
-    public String getPai() {
-        return pai;
+    public String getNomePai() {
+        return nomePai;
+    }
+
+    public String getNomeDoMeioPai() {
+        return nomeDoMeioPai;
+    }
+
+    public String setNomeDoMeioPai(String nomeDoMeioPai) {
+        this.nomeDoMeioPai = nomeDoMeioPai;
+        return nomeDoMeioPai;
+    }
+
+    public String getSobrenomePai() {
+        return sobrenomePai;
+    }
+
+    public String setSobrenomePai(String sobrenomePai) {
+        this.sobrenomePai = sobrenomePai;
+        return sobrenomePai;
+    }
+
+    public String getNomeDoMeioMae() {
+        return NomeDoMeioMae;
+    }
+
+    public void setNomeDoMeioMae(String nomeDoMeioMae) {
+        NomeDoMeioMae = nomeDoMeioMae;
+    }
+
+    public String getSobrenomeMae() {
+        return sobrenomeMae;
+    }
+
+    public void setSobrenomeMae(String sobrenomeMae) {
+        this.sobrenomeMae = sobrenomeMae;
+    }
+
+    public String getNomeDoMeioFilho() {
+        return NomeDoMeioFilho;
+    }
+
+    public void setNomeDoMeioFilho(String nomeDoMeioFilho) {
+        NomeDoMeioFilho = nomeDoMeioFilho;
+    }
+
+    public String getSobrenomeFilho() {
+        return sobrenomeFilho;
+    }
+
+    public void setSobrenomeFilho(String sobrenomeFilho) {
+        this.sobrenomeFilho = sobrenomeFilho;
+    }
+
+    public String getNomeDoMeioOutros() {
+        return NomeDoMeioOutros;
+    }
+
+    public void setNomeDoMeioOutros(String nomeDoMeioOutros) {
+        NomeDoMeioOutros = nomeDoMeioOutros;
+    }
+
+    public String getSobrenomeOutros() {
+        return sobrenomeOutros;
+    }
+
+    public void setSobrenomeOutros(String sobrenomeOutros) {
+        this.sobrenomeOutros = sobrenomeOutros;
+    }
+
+    public void setNomePai(String nomePai) {
+        this.nomePai = nomePai;
     }
 
     public String setPai(String pai) {
-        this.pai = pai;
+        this.nomePai = pai;
         return pai;
     }
 

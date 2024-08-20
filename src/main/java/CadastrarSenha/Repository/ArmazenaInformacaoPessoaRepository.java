@@ -7,6 +7,7 @@ import CadastrarSenha.Util.Menu;
 import CadastrarSenha.jdbc.DAO.Conexao;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import static CadastrarSenha.Service.CpfService.cpfDigitado;
 import static CadastrarSenha.Service.FamiliarService.confirmaPatriarca;
@@ -24,20 +25,35 @@ public class ArmazenaInformacaoPessoaRepository {
 
     public void logicaPersistencia() throws SQLException, ClassNotFoundException {
         menu.menuParente(valor);
-        if (valor.equals("1")) {
-            persistiPai();
-        } else if (valor.equals("2")) {
-            persistiMae();
-        } else if (valor.equals("3")) {
-            familiarService.quantidadeDeFilhos();
-        } else {
-            persistioutro();
-        }
+
+            if (valor.equals("1")) {
+                persistiPai();
+            } else if (valor.equals("2")) {
+                persistiMae();
+            } else if (valor.equals("3")) {
+                familiarService.quantidadeDeFilhos();
+            } else {
+                persistioutro();
+            }
+
+        System.out.println("0 para encerrar o programa");
+            fimDoPrograma(0);
+
     }
 
+    public void fimDoPrograma(int valorDigitado){
+
+        Scanner leia = new Scanner(System.in);
+         valorDigitado = leia.nextInt();
+        while (valorDigitado == 0){
+            break;
+        }
+    }
     private void persistiPai() throws SQLException, ClassNotFoundException {
 
         String nome = nomeArmazenadoPai;
+        String nomeDoMeio = nomeDoMeioArmazenadoPai;
+        String sobrenome = sobrenomeArmazenadoPai;
         String chefe_familia = confirmaPatriarca;
         String parentesco = "Pai";
         String cpf = cpfDigitado;
@@ -45,16 +61,20 @@ public class ArmazenaInformacaoPessoaRepository {
         String senhaSegura = SenhaService.senhaSegura;
         String teste = token.validaChaveToken();
 
-        String sql = "INSERT INTO moradores.cadastro (nome, chefe_familia, parentesco,cpf, tel, senha) VALUES (?,?,?,?,?,?)";
+
+        String sql = "INSERT INTO moradores.cadastro (nome, chefe_familia, parentesco,cpf, tel, senha, nome_do_meio, sobrenome) VALUES (?,?,?,?,?,?,?,?)";
         String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
-        DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senhaSegura);
+        DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senhaSegura, nomeDoMeio, sobrenome);
         DAO.incluir(sqlNome, nome, parentesco, teste, chefe_familia);
+        fimDoPrograma(0);
     }
 
     private void persistiMae() throws SQLException, ClassNotFoundException {
         String mae = nomeArmazenadoMae;
 
         String nome = mae;
+        String nomeDoMeio = nomeDoMeioArmazenadoMae;
+        String sobrenome = sobrenomeArmazenadoMae;
         String chefe_familia = confirmaPatriarca;
         String parentesco = "mae";
         String cpf = cpfDigitado;
@@ -62,10 +82,9 @@ public class ArmazenaInformacaoPessoaRepository {
         String senha = senhaSegura;
         String numeroToken = token.validaChaveToken();
 
-
-        String sql = "INSERT INTO cadastro (nome, chefe_familia, parentesco,cpf, tel, senha) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO moradores.cadastro (nome, chefe_familia, parentesco,cpf, tel, senha, nome_do_meio, sobrenome) VALUES (?,?,?,?,?,?,?,?)";
         String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
-        DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senha);
+        DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senha, nomeDoMeio, sobrenome);
         DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
 
     }

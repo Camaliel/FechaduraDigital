@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import static CadastrarSenha.Service.CpfService.cpfDigitado;
-import static CadastrarSenha.Service.FamiliarService.*;
 
 public class Menu {
     FamiliarService familiarService = new FamiliarService();
@@ -18,7 +17,11 @@ public class Menu {
 
     Scanner leia = new Scanner(System.in);
     public static String nomeArmazenadoPai = "";
+    public static String nomeDoMeioArmazenadoPai = "";
+    public static String sobrenomeArmazenadoPai = "";
     public static String nomeArmazenadoMae = "";
+    public static String nomeDoMeioArmazenadoMae = "";
+    public static String sobrenomeArmazenadoMae = "";
 
     public static String nomeArmazenadoOutros = "";
 
@@ -42,13 +45,29 @@ public class Menu {
                 System.out.println("DIGITE SEU NOME");
                 String nomePai = leia.next();
                 nomeArmazenadoPai = varFamiliar.setPai(nomePai);
-                familiarService.patriarca(varFamiliar.getPai());
+
+                System.out.println("DIGITE SEU NOME DO MEIO");
+                String nomeDoMeioPai = leia.next();
+                nomeDoMeioArmazenadoPai = varFamiliar.setNomeDoMeioPai(nomeDoMeioPai);
+
+                System.out.println("DIGITE SEU SOBRENOME");
+                String sobrenomePai = leia.next();
+                sobrenomeArmazenadoPai = varFamiliar.setSobrenomePai(sobrenomePai);
+                familiarService.patriarca(varFamiliar.getNomePai());
                 break;
 
             case "2":
                 System.out.println("DIGITE SEU NOME");
                 String nomeMae = leia.next();
                 nomeArmazenadoMae = varFamiliar.setPai(nomeMae);
+
+                System.out.println("DIGITE SEU NOME DO MEIO");
+                String nomeDoMeioMae = leia.next();
+                nomeDoMeioArmazenadoMae = varFamiliar.setNomeDoMeioPai(nomeDoMeioMae);
+
+                System.out.println("DIGITE SEU SOBRENOME");
+                String sobrenomeMae = leia.next();
+                sobrenomeArmazenadoMae = varFamiliar.setSobrenomePai(sobrenomeMae);
                 familiarService.matriarca(varFamiliar.getMae());
                 break;
 

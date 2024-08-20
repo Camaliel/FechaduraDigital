@@ -5,7 +5,6 @@ import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Enum.MensagemPatriarcaEnum;
 import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
 import CadastrarSenha.Service.Interface.*;
-import CadastrarSenha.Util.Variavel.InfoUsuario;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
 
 import java.sql.SQLException;
@@ -46,7 +45,7 @@ public class FamiliarService implements UsuarioPadraoImpl {
 
         }
         verificaQuantidadeDigitadoCPF(cpfDigitado);
-        return varFamiliar.getPai();
+        return varFamiliar.getNomePai();
     }
 
     public String matriarca(String mae) {

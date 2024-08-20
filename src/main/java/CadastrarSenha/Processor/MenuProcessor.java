@@ -23,6 +23,9 @@ public class MenuProcessor {
     TelaBot bot = new TelaBot();
     ConfereChaveToken chaveToken = new ConfereChaveToken();
     IncluiToken incluiToken = new IncluiToken();
+
+
+
     /*
      * Processa toda a informação recebida e envia para o BANCO.
      * */
@@ -47,6 +50,9 @@ public class MenuProcessor {
              menuPrincipal();
 
             }
+        }
+        public void pare(){
+
         }
         public static void main (String[]args) throws TelegramApiException, SQLException, ClassNotFoundException {
             MenuProcessor menu = new MenuProcessor();
