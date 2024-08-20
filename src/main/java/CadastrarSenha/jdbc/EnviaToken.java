@@ -10,10 +10,6 @@ import java.util.List;
 
 public class EnviaToken {
 
-    public String getTokenSalvo() {
-        return tokenSalvo;
-    }
-
     String tokenSalvo = "";
     ChaveToken chaveToken = new ChaveToken();
 
@@ -45,14 +41,6 @@ public class EnviaToken {
         }
 
         return tokenSalvo;
-    }
-
-    public ChaveToken getChaveToken() {
-        return chaveToken;
-    }
-
-    public String getValorToken() {
-        return valorToken;
     }
 
     public String consultaQuery() throws SQLException, ClassNotFoundException {
