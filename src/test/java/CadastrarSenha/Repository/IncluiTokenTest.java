@@ -31,11 +31,9 @@ public class IncluiTokenTest {
         // Mocke o método prepareStatement para retornar o PreparedStatement mockado
         Mockito.when(conexaoMock.prepareStatement(any(String.class))).thenReturn(statementMock);
 
+        String teste = incluiToken.incluiToken();
 
-
-       String teste = incluiToken.incluiToken();
-
-        assertEquals(incluiToken,teste);
+        assertEquals(incluiToken, teste);
 
 
 //        assertEquals("Numero enviado ==> " + new ChaveToken().getPegaToken(), tokenGerado);
