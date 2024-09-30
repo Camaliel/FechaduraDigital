@@ -7,6 +7,10 @@ public class ChaveToken {
         return token;
     }
 
+    public void setPegaToken(String pegaToken) {
+        this.pegaToken = pegaToken;
+    }
+
     public String setToken(String token) {
         this.token = token;
         return token;

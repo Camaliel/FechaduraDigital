@@ -53,26 +53,28 @@ public class ArmazenaInformacaoPessoaRepository {
 
         String nome = nomeArmazenadoPai;
         String nomeDoMeio = nomeDoMeioArmazenadoPai;
-        String sobrenome = sobrenomeArmazenadoPai;
+        String ultimoNome = sobrenomeArmazenadoPai;
         String chefe_familia = confirmaPatriarca;
         String parentesco = "Pai";
         String cpf = cpfDigitado;
         String tel = numeroCelularDigitado;
         String senhaSegura = SenhaService.senhaSegura;
-        String teste = token.validaChaveToken();
+        String token = this.token.validaChaveToken();
 
-
-        String sql = "INSERT INTO moradores.cadastro (nome, chefe_familia, parentesco,cpf, tel, senha, nome_do_meio, sobrenome) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO moradores.cadastro (nome, nome_do_meio, ultimo_nome, chefe_familia, parentesco, cpf, tel, senha) VALUES (?,?,?,?,?,?,?,?)";
         String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
-        DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senhaSegura, nomeDoMeio, sobrenome);
-        DAO.incluir(sqlNome, nome, parentesco, teste, chefe_familia);
+        String sqlConulta = "INSERT INTO moradores.tbl_consultas (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
+
+        DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senhaSegura);
+        DAO.incluir(sqlNome, nome, parentesco, token, chefe_familia);
+        DAO.incluir(sqlConulta, nome, nomeDoMeio, ultimoNome,token);
+
         fimDoPrograma(0);
     }
 
     private void persistiMae() throws SQLException, ClassNotFoundException {
-        String mae = nomeArmazenadoMae;
 
-        String nome = mae;
+        String nome = nomeArmazenadoMae;
         String nomeDoMeio = nomeDoMeioArmazenadoMae;
         String sobrenome = sobrenomeArmazenadoMae;
         String chefe_familia = confirmaPatriarca;
@@ -86,7 +88,6 @@ public class ArmazenaInformacaoPessoaRepository {
         String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
         DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senha, nomeDoMeio, sobrenome);
         DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
-
     }
 
     public void persistiFilho() throws SQLException, ClassNotFoundException {
@@ -117,18 +118,15 @@ public class ArmazenaInformacaoPessoaRepository {
         String senhaSegura = SenhaService.senhaSegura;
         String numeroToken = token.validaChaveToken();
 
-
-        String sql = "INSERT INTO cadastro (nome, chefe_familia, parentesco,cpf, tel, senha) VALUES (?,?,?,?,?,?)";
+        String sql =  "INSERT INTO moradores.cadastro (nome, sobrenome, ultimo_nome,chefe_familia, parentesco, cpf, tel, senha) VALUES (?,?,?,?,?,?,?,?)";
         String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
 
         DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senhaSegura);
         DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
-
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         ArmazenaInformacaoPessoaRepository teste = new ArmazenaInformacaoPessoaRepository();
         teste.logicaPersistencia();
-
     }
 }

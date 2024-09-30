@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class Login {
+public class LoginRepository {
 
     public String loginDeAcessoComSucesso() throws SQLException {
         Scanner leia = new Scanner(System.in);
@@ -42,13 +42,11 @@ public class Login {
 
     public String loginDeAcessoComErro(){
 
-
-
         return "";
     }
 
     public static void main(String[] args) throws SQLException {
-        Login teste = new Login();
+        LoginRepository teste = new LoginRepository();
         System.out.println(teste.loginDeAcessoComSucesso());
     }
 }
