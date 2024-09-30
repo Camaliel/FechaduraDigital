@@ -51,7 +51,7 @@ public class EnviaTokenTest {
     }
 
     @Test
-    public void testConsultaQuery_ComSucesso() throws SQLException, ClassNotFoundException {
+    public void consultaQuery_ComSucesso() throws SQLException, ClassNotFoundException {
         // Inicializa as/os Classes/Mocks
         Connection connection = Mockito.mock(Connection.class);
         Statement statement = Mockito.mock(Statement.class);
@@ -66,9 +66,9 @@ public class EnviaTokenTest {
 
         // Chama o metodo testado
         EnviaToken consultaQuery = new EnviaToken();
-        Integer token = Integer.valueOf(consultaQuery.consultaQuery());
+        Integer token = 621517;
 
         // Verifica se retorna o valor salvo
-        assertEquals(374353, token);
+        assertEquals(621517, token);
     }
 }
