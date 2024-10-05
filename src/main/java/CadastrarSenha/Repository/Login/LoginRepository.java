@@ -1,4 +1,4 @@
-package Login;
+package CadastrarSenha.Repository.Login;
 
 
 import CadastrarSenha.jdbc.CriarConexao;

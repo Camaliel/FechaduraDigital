@@ -1,7 +1,7 @@
 # Fechadura Digital
 [Read-me em construcao] ....
 
-## Construão do teclado 
+## Construção do teclado 
 
 Fechadura digital Baseada , com duas configuracoes diferentes, quando colocando a senhaService correta abrira,
 se colocado uma senha SOS já configurada no ato da configuracao inicial
@@ -58,7 +58,6 @@ Patriarcas/Matriarca sera enviado um codigo pelo telegram, para atos de confirma
 
 
 ![Api Telegram.drawio.jpeg](Diagramas%2FApi%20Telegram.drawio.jpeg)
-
 
 
 
