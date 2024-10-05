@@ -12,14 +12,6 @@ import java.util.Scanner;
 
 public class Consultas {
 
-    public void criarTabelaTokens() throws SQLException, ClassNotFoundException {
-
-        Connection conexao = CriarConexao.getConnetion();
-        String sql = "CREATE DATABASE testandoBANCO2";
-        conexao.prepareStatement(sql);
-
-    }
-
     public void pesquisarBanco() throws SQLException, ClassNotFoundException {
 
         Connection conexao = CriarConexao.getConnetion();
@@ -39,7 +31,7 @@ public class Consultas {
             String sobrenome = rs.getString("nome_do_meio");
             String.valueOf(listaToken.add(codigo));
             String.valueOf(listaToken.add(sobrenome));
-//            System.out.println("Token: " + codigo + ", Nome do Meio: " + sobrenome); USAR PARA OUTRA FUNCIONALIDADE
+//        TODO    System.out.println("Token: " + codigo + ", Nome do Meio: " + sobrenome); USAR PARA OUTRA FUNCIONALIDADE
         }
 
         if (listaToken.contains(pesquisaNumero)) {
@@ -59,5 +51,4 @@ public class Consultas {
         Consultas consultas = new Consultas();
         consultas.pesquisarBanco();
     }
-
 }
