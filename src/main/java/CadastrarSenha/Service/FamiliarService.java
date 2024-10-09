@@ -6,6 +6,7 @@ import CadastrarSenha.Enum.MensagemPatriarcaEnum;
 import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
 import CadastrarSenha.Service.Interface.*;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
+import org.glassfish.grizzly.utils.StringFilter;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -16,13 +17,17 @@ import static CadastrarSenha.Service.SenhaService.senhaSegura;
 
 
 public class FamiliarService implements UsuarioPadraoImpl {
-    Scanner leia = new Scanner(System.in);
-    VarFamiliar varFamiliar = new VarFamiliar();
+    static Scanner leia = new Scanner(System.in);
+    static VarFamiliar varFamiliar = new VarFamiliar();
+    static FamiliarService service = new FamiliarService();
     CpfService cpfService = new CpfService();
     SenhaService senhaService = new SenhaService();
     NumeroCelularService celularService = new NumeroCelularService();
     public static String confirmaPatriarca = "";
     public static String nomeArmazenadoFilho = "";
+    public static String nomeDoMeioArmazenadoFilho = "";
+    public static String sobrenomeArmazenadoFilho = "";
+
 
     /*
      *
@@ -72,22 +77,29 @@ public class FamiliarService implements UsuarioPadraoImpl {
     public int quantidadeDeFilhos() throws SQLException, ClassNotFoundException {
         ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
         Scanner leia = new Scanner(System.in);
+        int quantidadeRecebida = 0;
 
         System.out.println(MensagemEnum.QUANTIDADE_FILHO.getDescricao());
         int numeroFilhos = leia.nextInt();
 
-        int quantidadeRecebida = 1;
-
         quantidadeRecebida = numeroFilhos;
 
-        for (int i = 1; i < quantidadeRecebida; i++) {
+        for (int i = 1; i <= quantidadeRecebida; i++) {
             System.out.println(MensagemEnum.NOME_FILHO.getDescricao() + i);
             String nomeFilhos = leia.next();
             nomeArmazenadoFilho = nomeFilhos;
-//            System.out.println(MensagemEnum.CPF.getDescricao() + i);
+
+            System.out.println(MensagemEnum.NOME_DO_MEIO.getDescricao() + i);
+            String nomeDoMeio = leia.next();
+            nomeDoMeioArmazenadoFilho = nomeDoMeio;
+
+            System.out.println(MensagemEnum.ULTIMO_NOME.getDescricao() + i);
+            String ultimoNome = leia.next();
+            nomeDoMeioArmazenadoFilho = ultimoNome;
+
             verificaQuantidadeDigitadoCPF(cpfDigitado);
+            repository.persistiCadastroFilho();
             System.out.println("PRESS ENTER");
-            repository.persistiFilho();
         }
         return quantidadeRecebida;
     }

@@ -16,6 +16,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static CadastrarSenha.Util.Menu.valor;
+
 
 public class MenuProcessor {
 
@@ -33,11 +35,13 @@ public class MenuProcessor {
     //TODO LEMBRETE: DEIXAR PADRAO E MAIS LIMPO COMO O MENNU 3
 
     public void menuPrincipal() throws TelegramApiException, SQLException, ClassNotFoundException {
+        Menu menu = new Menu();
         //todo fazer de novo instanciar as classes
 
         bot.ligarApi();
-        repository.logicaPersistencia();
-//        voltarMenu();
+        menu.menuParente(valor);
+
+        voltarMenu();
 
     }
 

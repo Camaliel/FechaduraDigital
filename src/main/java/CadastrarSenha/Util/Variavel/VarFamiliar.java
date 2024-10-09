@@ -70,16 +70,18 @@ public class VarFamiliar {
         return NomeDoMeioMae;
     }
 
-    public void setNomeDoMeioMae(String nomeDoMeioMae) {
+    public String setNomeDoMeioMae(String nomeDoMeioMae) {
         NomeDoMeioMae = nomeDoMeioMae;
+        return nomeDoMeioMae;
     }
 
     public String getSobrenomeMae() {
         return sobrenomeMae;
     }
 
-    public void setSobrenomeMae(String sobrenomeMae) {
+    public String setSobrenomeMae(String sobrenomeMae) {
         this.sobrenomeMae = sobrenomeMae;
+        return sobrenomeMae;
     }
 
     public String getNomeDoMeioFilho() {
@@ -102,16 +104,18 @@ public class VarFamiliar {
         return NomeDoMeioOutros;
     }
 
-    public void setNomeDoMeioOutros(String nomeDoMeioOutros) {
+    public String setNomeDoMeioOutros(String nomeDoMeioOutros) {
         NomeDoMeioOutros = nomeDoMeioOutros;
+        return nomeDoMeioOutros;
     }
 
     public String getSobrenomeOutros() {
         return sobrenomeOutros;
     }
 
-    public void setSobrenomeOutros(String sobrenomeOutros) {
+    public String setSobrenomeOutros(String sobrenomeOutros) {
         this.sobrenomeOutros = sobrenomeOutros;
+        return sobrenomeOutros;
     }
 
     public void setNomePai(String nomePai) {
