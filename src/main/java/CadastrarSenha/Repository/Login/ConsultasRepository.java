@@ -1,5 +1,6 @@
 package CadastrarSenha.Repository.Login;
 
+import CadastrarSenha.Repository.HistoricoRepository;
 import CadastrarSenha.jdbc.CriarConexao;
 
 import java.sql.Connection;
@@ -15,13 +16,17 @@ public class ConsultasRepository {
     static Scanner leia = new Scanner(System.in);
     static ConsultasRepository consultasRepository = new ConsultasRepository();
     String salvaTokenDigitado = "";
+    String consultaParentesco = "";
 
     public List<String> obtemInformacoesBD() throws SQLException, ClassNotFoundException {
         Connection conexao = CriarConexao.getConnetion();
         System.out.println("DIGITE SUA SENHA TOKEN");
         String pesquisaNumero = leia.nextLine();
         salvaTokenDigitado = pesquisaNumero;
-        String sql = "SELECT token,NOME_DO_MEIO,ULTIMO_NOME FROM moradores.tbl_consultas tc WHERE TOKEN = ?";
+        String sql = "SELECT tc.NOME, tc.NOME_DO_MEIO, tc.ULTIMO_NOME, tc.TOKEN, c.parentesco " +
+                "FROM tbl_consultas tc JOIN cadastro c \n" +
+                "ON tc.NOME = c.nome  \n" +
+                "WHERE tc.TOKEN = ?";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         preparedStatement.setString(1, pesquisaNumero);
 
@@ -32,9 +37,12 @@ public class ConsultasRepository {
             String codigo = rs.getString("token");
             String sobrenome = rs.getString("nome_do_meio");
             String ultimoNome = rs.getString("ultimo_nome");
+            String parentesco = rs.getString("parentesco");
             String.valueOf(listaToken.add(codigo));
             String.valueOf(listaToken.add(sobrenome));
             String.valueOf(listaToken.add(ultimoNome));
+            String.valueOf(listaToken.add(parentesco));
+            consultaParentesco = parentesco;
 //            System.out.println("Token: " + codigo + ", Nome do Meio: " + sobrenome); USAR PARA OUTRA FUNCIONALIDADE
         }
 
@@ -53,19 +61,24 @@ public class ConsultasRepository {
                 System.out.println("ACESSO NEGADO! Nome do [MEIO] não pode estar vazio");
                 return null;
             }
-
+            HistoricoRepository repository = new HistoricoRepository();
             if (retornaToken.contains(sobrenome)) {
                 System.out.println("ACESSO CONCEDIDO!");
+                repository.enviaHistorico(consultaParentesco,"LIBERADO");
+
             } else {
                 System.out.println("ACESSO NEGADO!");
                 System.out.println("Digite seu ultimo nome");
                 String ultimoNome = leia.nextLine();
                 if (ultimoNome.isEmpty()) {
                     System.out.println("ACESSO NEGADO! [ULTIMO] nome nao pode estar vazio");
+                    repository.enviaHistorico(consultaParentesco,"NEGADO");
                 } else if (retornaToken.contains(ultimoNome)){
                     System.out.println("ACESSO CONCEDIDO!");
+                    repository.enviaHistorico(consultaParentesco,"LIBERADO");
                 }else {
                     System.out.println("ACESSO NEGADO!");
+                    repository.enviaHistorico(consultaParentesco,"NEGADO");
                 }
             }
         }

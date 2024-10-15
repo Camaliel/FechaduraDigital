@@ -9,13 +9,10 @@ import java.util.Scanner;
 
 public class HistoricoRepository {
     Conexao DAO = new Conexao();
-    HistoricoEntity entity = new HistoricoEntity();
-    Scanner leia = new Scanner(System.in);
     ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
     Date data = new Date();
     SimpleDateFormat dataAtual = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat horaAtual = new SimpleDateFormat("HH:mm:ss");
-
 
     public void enviaHistorico(String parentesco, String status) {
         String dataSistema = dataAtual.format(data);
