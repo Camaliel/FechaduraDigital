@@ -15,8 +15,9 @@ public class ConsultasRepository {
 
     static Scanner leia = new Scanner(System.in);
     static ConsultasRepository consultasRepository = new ConsultasRepository();
-    String salvaTokenDigitado = "";
-    String consultaParentesco = "";
+    public static String salvaTokenDigitado = "";
+    public static String consultaParentesco = "";
+    public static String status = "";
 
     public List<String> obtemInformacoesBD() throws SQLException, ClassNotFoundException {
         Connection conexao = CriarConexao.getConnetion();
@@ -38,11 +39,14 @@ public class ConsultasRepository {
             String sobrenome = rs.getString("nome_do_meio");
             String ultimoNome = rs.getString("ultimo_nome");
             String parentesco = rs.getString("parentesco");
+            String status = rs.getString("parentesco");
             String.valueOf(listaToken.add(codigo));
             String.valueOf(listaToken.add(sobrenome));
             String.valueOf(listaToken.add(ultimoNome));
             String.valueOf(listaToken.add(parentesco));
+            String.valueOf(listaToken.add(status));
             consultaParentesco = parentesco;
+             status = "LIBERADO";
 //            System.out.println("Token: " + codigo + ", Nome do Meio: " + sobrenome); USAR PARA OUTRA FUNCIONALIDADE
         }
 
@@ -52,33 +56,33 @@ public class ConsultasRepository {
     public String pesquisaNaListaDeUsuarios() throws SQLException, ClassNotFoundException {
 
         String retornaToken = String.valueOf(consultasRepository.obtemInformacoesBD());
-        if (retornaToken.contains(salvaTokenDigitado)){
+        if (retornaToken.contains(salvaTokenDigitado)) {
             System.out.println("NUMERO ENCONTRADO => " + salvaTokenDigitado);
             System.out.println("Confirme seu nome do meio");
             String sobrenome = leia.nextLine();
-
-            if (sobrenome.isEmpty()){
+            if (sobrenome.isEmpty()) {
                 System.out.println("ACESSO NEGADO! Nome do [MEIO] não pode estar vazio");
                 return null;
             }
             HistoricoRepository repository = new HistoricoRepository();
             if (retornaToken.contains(sobrenome)) {
                 System.out.println("ACESSO CONCEDIDO!");
-                repository.enviaHistorico(consultaParentesco,"LIBERADO");
+                repository.enviaHistorico(consultaParentesco, status);
 
             } else {
                 System.out.println("ACESSO NEGADO!");
-                System.out.println("Digite seu ultimo nome");
+                repository.enviaHistorico(consultaParentesco,"1°NEGADO ");
+                System.out.println("Digite seu [ULTIMO] nome");
                 String ultimoNome = leia.nextLine();
                 if (ultimoNome.isEmpty()) {
                     System.out.println("ACESSO NEGADO! [ULTIMO] nome nao pode estar vazio");
-                    repository.enviaHistorico(consultaParentesco,"NEGADO");
-                } else if (retornaToken.contains(ultimoNome)){
+                    repository.enviaHistorico(consultaParentesco, "1°NEGADO°");
+                } else if (retornaToken.contains(ultimoNome)) {
                     System.out.println("ACESSO CONCEDIDO!");
-                    repository.enviaHistorico(consultaParentesco,"LIBERADO");
-                }else {
+                    repository.enviaHistorico(consultaParentesco, status);
+                } else {
                     System.out.println("ACESSO NEGADO!");
-                    repository.enviaHistorico(consultaParentesco,"NEGADO");
+                    repository.enviaHistorico(consultaParentesco, "2°NEGADO");
                 }
             }
         }
@@ -86,6 +90,7 @@ public class ConsultasRepository {
         return salvaTokenDigitado;
 
     }
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         System.out.println(consultasRepository.pesquisaNaListaDeUsuarios());
 

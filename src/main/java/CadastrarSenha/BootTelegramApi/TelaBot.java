@@ -14,15 +14,12 @@ import java.sql.SQLException;
 
 public class TelaBot {
 
-    ChaveToken chaveToken = new ChaveToken();
-    ConfereChaveToken confereChaveToken = new ConfereChaveToken();
-    IncluiToken incluiToken = new IncluiToken();
     public void ligarApi() throws TelegramApiException, SQLException {
            TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
            EcoBot bot = new EcoBot();
            telegramBotsApi.registerBot(new EcoBot());
            System.out.println("LIGADO");
-          
+
 
     }
 
