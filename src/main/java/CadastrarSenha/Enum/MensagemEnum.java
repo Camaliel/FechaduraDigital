@@ -17,7 +17,9 @@ public enum MensagemEnum {
     N_INVALIDO("Numero invalido !"),
     INSIRA_NUMERO("INSIRA UM NUMERO DE TELEFONE"),
     NUMERO_SUCESSO("Numero inserido com sucesso !"),
-    N_ADICIONADO("Numero adicionado ao banco de dados");
+    N_ADICIONADO("Numero adicionado ao banco de dados"),
+    ADICIONE_OPCAO_VALIDA("Digite uma opção valida"),
+    MENSAGEM_HIST("Digite uma opção - 1: Libera | 2: Histórico | 3: Denunciar ");
 
     private String descricao;
 

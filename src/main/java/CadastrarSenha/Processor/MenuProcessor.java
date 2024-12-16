@@ -40,13 +40,13 @@ public class MenuProcessor {
 
 
         System.out.println("Escolha uma opção");
+        bot.ligarApi(); // TODO QUEBRADO NÃO FECHA
         System.out.println("1-Cadastrar | 2-Login");
         int valorOpcao = leia.nextInt();
         try {
             switch (valorOpcao) {
 
                 case 1:
-                    bot.ligarApi(); // TODO QUEBRADO NÃO FECHA
                     menu.menuParente(valor);
                     break;
                 case 2:

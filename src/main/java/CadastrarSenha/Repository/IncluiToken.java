@@ -1,6 +1,6 @@
 package CadastrarSenha.Repository;
 
-import CadastrarSenha.Service.ChaveToken;
+import CadastrarSenha.Service.ChaveTokenService;
 import CadastrarSenha.jdbc.CriarConexao;
 
 import java.sql.Connection;
@@ -20,15 +20,15 @@ public class IncluiToken {
     public String guardaToken = "";
 
     public String incluiToken() throws SQLException {
-        ChaveToken chaveToken = new ChaveToken();
+        ChaveTokenService chaveTokenService = new ChaveTokenService();
 
         Connection conexao = CriarConexao.getConnetion();
-        String tokenTela = chaveToken.getPegaRoleta();
+        String tokenTela = chaveTokenService.getPegaRoleta();
         String incluiNumeroToken = "INSERT INTO administrador.tokens (token) VALUES (?)";
 
 
         PreparedStatement stmnt = conexao.prepareStatement(incluiNumeroToken);
-        stmnt.setString(1, chaveToken.getPegaRoleta());
+        stmnt.setString(1, chaveTokenService.getPegaRoleta());
 
         stmnt.execute();
         conexao.close();

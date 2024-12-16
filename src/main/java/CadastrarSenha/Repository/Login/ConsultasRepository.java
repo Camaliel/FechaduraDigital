@@ -46,7 +46,7 @@ public class ConsultasRepository {
             String.valueOf(listaToken.add(parentesco));
             String.valueOf(listaToken.add(status));
             consultaParentesco = parentesco;
-             status = "LIBERADO";
+            status = "LIBERADO";
 //            System.out.println("Token: " + codigo + ", Nome do Meio: " + sobrenome); USAR PARA OUTRA FUNCIONALIDADE
         }
 
@@ -71,7 +71,7 @@ public class ConsultasRepository {
 
             } else {
                 System.out.println("ACESSO NEGADO!");
-                repository.enviaHistorico(consultaParentesco,"1°NEGADO ");
+                repository.enviaHistorico(consultaParentesco, "1°NEGADO ");
                 System.out.println("Digite seu [ULTIMO] nome");
                 String ultimoNome = leia.nextLine();
                 if (ultimoNome.isEmpty()) {
@@ -86,7 +86,7 @@ public class ConsultasRepository {
                 }
             }
         }
-        leia.close();
+            leia.close();
         return salvaTokenDigitado;
 
     }

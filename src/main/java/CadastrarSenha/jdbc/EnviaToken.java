@@ -1,6 +1,6 @@
 package CadastrarSenha.jdbc;
 
-import CadastrarSenha.Service.ChaveToken;
+import CadastrarSenha.Service.ChaveTokenService;
 import CadastrarSenha.Util.Variavel.ValoresDigitados;
 
 import java.sql.*;
@@ -11,7 +11,7 @@ import java.util.List;
 public class EnviaToken {
 
     String tokenSalvo = "";
-    ChaveToken chaveToken = new ChaveToken();
+    ChaveTokenService chaveTokenService = new ChaveTokenService();
 
     ValoresDigitados valoresDigitados = new ValoresDigitados();
 
@@ -19,12 +19,12 @@ public class EnviaToken {
         this.valorToken = valorToken;
     }
 
-    String valorToken = chaveToken.getPegaToken();
+    String valorToken = chaveTokenService.getPegaToken();
 
 
     public String enviaToken() throws SQLException {
 
-        ChaveToken chaveToken = new ChaveToken();
+        ChaveTokenService chaveTokenService = new ChaveTokenService();
 
         Connection conexao = CriarConexao.getConnetion();
         String valorToken = "INSERT INTO tokens (token) VALUES(?)";

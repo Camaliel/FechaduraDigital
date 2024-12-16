@@ -2,7 +2,7 @@ package CadastrarSenha.Service;
 
 import java.util.Random;
 
-public class ChaveToken {
+public class ChaveTokenService {
     public String getToken() {
         return token;
     }

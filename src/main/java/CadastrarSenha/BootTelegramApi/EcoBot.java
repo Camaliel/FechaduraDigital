@@ -40,6 +40,7 @@ public class EcoBot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
         }
+
     }
 
     private SendMessage responder(Update update) throws SQLException, ClassNotFoundException {

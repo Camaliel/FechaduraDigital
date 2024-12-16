@@ -1,11 +1,9 @@
 package CadastrarSenha.Repository;
 
-import CadastrarSenha.Entities.HistoricoEntity;
 import CadastrarSenha.jdbc.DAO.Conexao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
 public class HistoricoRepository {
     Conexao DAO = new Conexao();
