@@ -54,22 +54,9 @@ public class MenuProcessor {
                     break;
             }
         } catch (InputMismatchException e) {
-            System.out.println("Se fudeu");
+            System.out.println("Não foi");
         }
     }
-
-//        voltarMenu();
-
-//
-//    public void voltarMenu() throws SQLException, TelegramApiException, ClassNotFoundException {
-//        System.out.println("Deseja voltar ao menu principal ? ");
-//        String textoUsuario = leia.nextLine();
-//
-//        while (leia.hasNext() && textoUsuario.equalsIgnoreCase("sim")) {
-//            menuPrincipal();
-//        }
-//    }
-
 
     public static void main(String[] args) throws TelegramApiException, SQLException, ClassNotFoundException {
         MenuProcessor menuProcessor = new MenuProcessor();
