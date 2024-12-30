@@ -39,7 +39,7 @@ public class Respostas {
                 } else if (textoMensagem.getText().startsWith("Token")) {
                     resposta = incluiToken.incluiToken();
                 } else if (textoMensagem.getText().equalsIgnoreCase("hist")) {
-                    resposta = String.valueOf(acessoHistoricoService.historicoHoje());
+                    resposta = String.valueOf(acessoHistoricoService.historicoMesAnterior());
                 } else if (textoMensagem.getText().startsWith("teste")) {
                     resposta = RespostaApiEnum.TESTE_BOT.getDescricao();
                 } else if (textoMensagem.getText().startsWith("Estudando muito?")) {
