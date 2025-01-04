@@ -5,6 +5,7 @@ import CadastrarSenha.Entities.HistoricoEntity;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.SenhaService;
 import CadastrarSenha.jdbc.DAO.Conexao;
+import CadastrarSenha.jdbc.EnviaToken;
 
 import java.sql.SQLException;
 

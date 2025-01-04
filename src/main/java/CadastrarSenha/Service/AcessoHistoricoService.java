@@ -88,7 +88,7 @@ public class AcessoHistoricoService {
     }
 
 
-    private String liberar() {
+    private String liberar() throws SQLException {
         String liberado = "Liberado pelo admin";
         repository.enviaHistorico("Adm", "Liberado");
         return liberado;
