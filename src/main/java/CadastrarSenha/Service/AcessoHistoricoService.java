@@ -8,7 +8,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
 
 public class AcessoHistoricoService {
     Scanner leia = new Scanner(System.in);
@@ -92,10 +95,5 @@ public class AcessoHistoricoService {
         String liberado = "Liberado pelo admin";
         repository.enviaHistorico("Adm", "Liberado");
         return liberado;
-    }
-
-    public static void main(String[] args) throws SQLException {
-        AcessoHistoricoService service = new AcessoHistoricoService();
-        System.out.println(service.menuCelular());
     }
 }

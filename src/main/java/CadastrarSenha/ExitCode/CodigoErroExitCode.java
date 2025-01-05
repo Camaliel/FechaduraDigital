@@ -15,5 +15,4 @@ public enum CodigoErroExitCode {
     CodigoErroExitCode(String descricao) {
         this.descricao = descricao;
     }
-
 }

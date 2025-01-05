@@ -10,11 +10,9 @@ public class TelaBot {
 
     public void ligarApi() throws TelegramApiException, SQLException {
            TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-           EcoBot bot = new EcoBot();
            telegramBotsApi.registerBot(new EcoBot());
            System.out.println("LIGADO");
 
 
     }
-
 }

@@ -8,13 +8,6 @@ import java.sql.Statement;
 
 public class CriacaoDeBancosDAO {
 
-// REFATORAR CODIGO CRIAR METODOS PARA CADA SITUAÇÃO
-    // TODO CRIAR DATABASE  (SE TIVER APARECER MENSAGEM) ...DAR NOME GENERICO ok
-    // TODO CRIAR TABELAS (SE TIVER APARECER MENSAGEM) ...TOKENS ok
-    // TODO CRIAR TABELA (SE TIVER APARECER MENSAGEM) ...PESSOAS
-    // TODO CRIAR TABELA (SE TIVER APARECER MENSAGEM) ...ADMINISTRADOR
-
-
     public void bancoMoradores() throws ClassNotFoundException, SQLException {
         try {
             Connection connection = CriarConexao.getConnetion();
@@ -165,6 +158,9 @@ public class CriacaoDeBancosDAO {
         }
     }
 
+    /*
+    * AUTOMAÇÃO DAS CRIAÇÕES DE TABELAS ... PODE SER MELHORADO COM O PROPERTIES
+    * */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         CriacaoDeBancosDAO criacaoDeBancosDAO = new CriacaoDeBancosDAO();
         criacaoDeBancosDAO.tabelaCadastro();

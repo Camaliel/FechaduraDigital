@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 public class CriarConexao {
     public static Connection getConnetion() {
-//        Class.forName("com.mysql.cj.jdbc.Driver");
         String url = "jdbc:mysql://localhost:3306/moradores";
         final String usuario = "root";
         final String senha = "0000";

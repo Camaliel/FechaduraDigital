@@ -13,7 +13,6 @@ public class EnviaToken {
     String tokenSalvo = "";
     ChaveTokenService chaveTokenService = new ChaveTokenService();
 
-    ValoresDigitados valoresDigitados = new ValoresDigitados();
 
     public void setValorToken(String valorToken) {
         this.valorToken = valorToken;
@@ -23,8 +22,6 @@ public class EnviaToken {
 
 
     public String enviaToken() throws SQLException {
-
-        ChaveTokenService chaveTokenService = new ChaveTokenService();
 
         Connection conexao = CriarConexao.getConnetion();
         String valorToken = "INSERT INTO tokens (token) VALUES(?)";

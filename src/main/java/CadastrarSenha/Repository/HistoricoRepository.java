@@ -3,13 +3,10 @@ package CadastrarSenha.Repository;
 import CadastrarSenha.jdbc.DAO.Conexao;
 import CadastrarSenha.jdbc.EnviaToken;
 
-import javax.mail.internet.HeaderTokenizer;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static CadastrarSenha.Service.CpfService.cpfDigitado;
-import static CadastrarSenha.Service.FamiliarService.confirmaPatriarca;
 import static CadastrarSenha.Util.Menu.*;
 
 public class HistoricoRepository {
@@ -25,7 +22,6 @@ public class HistoricoRepository {
         String nome = nomeArmazenadoPai;
         String nomeDoMeio = nomeDoMeioArmazenadoPai;
         String ultimoNome = sobrenomeArmazenadoPai;
-        String chefe_familia = confirmaPatriarca;
         String token = this.token.enviaToken();
         // RECEBE DOIS PARAMETROS E ENVIA PARA O BANCO DEPENDENDO DO RESULTADO .. À ENTENDER ...
         String sql = "INSERT INTO moradores.historico (TOKEN, NOME, NOME_DO_MEIO, ULTIMO_NOME, DATA, HORA, PARENTESCO, STATUS) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";

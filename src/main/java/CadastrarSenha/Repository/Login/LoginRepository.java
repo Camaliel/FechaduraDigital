@@ -2,16 +2,14 @@ package CadastrarSenha.Repository.Login;
 
 
 import CadastrarSenha.jdbc.CriarConexao;
-import CadastrarSenha.jdbc.DAO.Conexao;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class LoginRepository {
-
-    Connection conexao = CriarConexao.getConnetion();
 
     private String loginDeAcessoComSucesso() throws SQLException {
         Scanner leia = new Scanner(System.in);

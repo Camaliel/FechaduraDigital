@@ -4,9 +4,8 @@ package CadastrarSenha.Service;
 import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Enum.MensagemPatriarcaEnum;
 import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
-import CadastrarSenha.Service.Interface.*;
+import CadastrarSenha.Service.Interface.UsuarioPadraoImpl;
 import CadastrarSenha.Util.Variavel.VarFamiliar;
-import org.glassfish.grizzly.utils.StringFilter;
 
 import java.sql.SQLException;
 import java.util.Scanner;

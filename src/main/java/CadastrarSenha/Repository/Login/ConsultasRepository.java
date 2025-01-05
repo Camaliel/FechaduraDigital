@@ -47,7 +47,6 @@ public class ConsultasRepository {
             String.valueOf(listaToken.add(status));
             consultaParentesco = parentesco;
             status = "LIBERADO";
-//            System.out.println("Token: " + codigo + ", Nome do Meio: " + sobrenome); USAR PARA OUTRA FUNCIONALIDADE
         }
 
         return listaToken;
@@ -88,11 +87,6 @@ public class ConsultasRepository {
         }
             leia.close();
         return salvaTokenDigitado;
-
-    }
-
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        System.out.println(consultasRepository.pesquisaNaListaDeUsuarios());
 
     }
 }

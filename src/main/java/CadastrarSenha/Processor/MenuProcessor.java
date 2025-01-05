@@ -12,8 +12,6 @@ import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static CadastrarSenha.Repository.Login.ConsultasRepository.consultaParentesco;
-import static CadastrarSenha.Repository.Login.ConsultasRepository.status;
 import static CadastrarSenha.Util.Menu.valor;
 
 
@@ -31,8 +29,6 @@ public class MenuProcessor {
      * */
 
     //TODO LEMBRETE: DEIXAR PADRAO E MAIS LIMPO COMO O MENNU 3
-
-    public static String valorSelecionado = "";
 
     public void menuPrincipal() throws TelegramApiException, SQLException, ClassNotFoundException {
         Menu menu = new Menu();

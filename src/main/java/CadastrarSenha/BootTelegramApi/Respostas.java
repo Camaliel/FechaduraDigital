@@ -9,25 +9,17 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Respostas {
-    ChaveTokenService chaveTokenService = new ChaveTokenService();
-    NumeroSalvo lembra = new NumeroSalvo();
     IncluiToken incluiToken = new IncluiToken();
     AcessoHistoricoService acessoHistoricoService = new AcessoHistoricoService();
-
-
-    ConfereChaveToken confereChaveToken = new ConfereChaveToken();
 
     public SendMessage enviaMensagem(Update update) throws SQLException, ClassNotFoundException {
         var textoMensagem = update.getMessage();
         var teste = update.hasChatMember();
         var user = update.getMessage().getChatId();
                 var resposta = "";
-                int resp = 0;
 
                 if (teste) {
                     resposta = RespostaApiEnum.TESTE.getDescricao();
@@ -55,5 +47,4 @@ public class Respostas {
                         .build();
 
             }
-
         }

@@ -10,5 +10,6 @@ public class Main2 {
     public static void main(String[] args) throws TelegramApiException, SQLException, ClassNotFoundException {
         MenuProcessor process = new MenuProcessor();
         process.menuPrincipal();
+
     }
 }

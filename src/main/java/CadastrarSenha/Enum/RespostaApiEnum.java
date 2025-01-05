@@ -15,7 +15,6 @@ public enum RespostaApiEnum {
         return descricao;
     }
 
-
     RespostaApiEnum(String descricao) {
         this.descricao = descricao;
     }

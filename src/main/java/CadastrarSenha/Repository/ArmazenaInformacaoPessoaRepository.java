@@ -5,7 +5,6 @@ import CadastrarSenha.Entities.HistoricoEntity;
 import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.SenhaService;
 import CadastrarSenha.jdbc.DAO.Conexao;
-import CadastrarSenha.jdbc.EnviaToken;
 
 import java.sql.SQLException;
 
@@ -17,7 +16,6 @@ import static CadastrarSenha.Util.Menu.*;
 
 
 public class ArmazenaInformacaoPessoaRepository {
-    FamiliarService familiarService = new FamiliarService();
     Conexao DAO = new Conexao();
     ConfereChaveToken token = new ConfereChaveToken();
 
@@ -69,7 +67,6 @@ public class ArmazenaInformacaoPessoaRepository {
     }
 
     private void persistiMae() throws SQLException, ClassNotFoundException {
-        HistoricoEntity entity = new HistoricoEntity();
         HistoricoRepository repository = new HistoricoRepository();
 
         String nome = nomeArmazenadoMae;
@@ -93,7 +90,6 @@ public class ArmazenaInformacaoPessoaRepository {
     }
 
     private void persistiFilho() throws SQLException, ClassNotFoundException {
-        HistoricoEntity entity = new HistoricoEntity();
         HistoricoRepository repository = new HistoricoRepository();
 
         String nome = nomeArmazenadoFilho;
@@ -117,7 +113,6 @@ public class ArmazenaInformacaoPessoaRepository {
     }
 
     private void persistioutro() throws SQLException, ClassNotFoundException {
-        HistoricoEntity entity = new HistoricoEntity();
         HistoricoRepository repository = new HistoricoRepository();
 
         String nome = nomeArmazenadoOutros;

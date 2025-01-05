@@ -1,20 +1,12 @@
 package CadastrarSenha.Service;
 
 import CadastrarSenha.Util.Variavel.InfoUsuario;
-import org.glassfish.grizzly.streams.Input;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.Scanner;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 public class CpfServiceTest {
