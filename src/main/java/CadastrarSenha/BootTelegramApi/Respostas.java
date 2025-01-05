@@ -30,8 +30,10 @@ public class Respostas {
                     // PEGA VALOR SALVO
                 } else if (textoMensagem.getText().startsWith("Token")) {
                     resposta = incluiToken.incluiToken();
-                } else if (textoMensagem.getText().equalsIgnoreCase("hist")) {
+                } else if (textoMensagem.getText().equalsIgnoreCase("historico anterior")) {
                     resposta = String.valueOf(acessoHistoricoService.historicoMesAnterior());
+                }else if (textoMensagem.getText().equalsIgnoreCase("historico hoje")) {
+                        resposta = String.valueOf(acessoHistoricoService.historicoHoje());
                 } else if (textoMensagem.getText().startsWith("teste")) {
                     resposta = RespostaApiEnum.TESTE_BOT.getDescricao();
                 } else if (textoMensagem.getText().startsWith("Estudando muito?")) {

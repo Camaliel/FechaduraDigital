@@ -1,8 +1,6 @@
 package CadastrarSenha.Service;
 
-import CadastrarSenha.Repository.HistoricoRepository;
 import CadastrarSenha.jdbc.CriarConexao;
-import CadastrarSenha.jdbc.DAO.Conexao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,8 +13,6 @@ import java.util.Scanner;
 
 public class AcessoHistoricoService {
     Scanner leia = new Scanner(System.in);
-    HistoricoRepository repository = new HistoricoRepository();
-    Conexao conexao = new Conexao();
 
     public String menuCelular() throws SQLException {
         System.out.println("Selecione uma opção | 1 Liberar | 2 Historico [Constr] | Denunciar [Constr] | ");
@@ -41,10 +37,10 @@ public class AcessoHistoricoService {
     }
 
 
-    private Object historicoHoje() throws SQLException {
+    public Object historicoHoje() throws SQLException {
         String registro = "";
         Connection conexao = CriarConexao.getConnetion();
-        String sql = "SELECT  * FROM historico h WHERE h.`DATA` = curdate()";
+        String sql = "SELECT  * FROM historico h WHERE h.`DATA` = curdate() ORDER BY hora asc;";
         conexao.prepareStatement(sql);
 
         Statement statement = conexao.createStatement();
@@ -68,7 +64,7 @@ public class AcessoHistoricoService {
     public Object historicoMesAnterior() throws SQLException {
         String registro = "";
         Connection conexao = CriarConexao.getConnetion();
-        String sql = "SELECT *  FROM historico h WHERE `DATA` >= DATE_SUB(curdate(),INTERVAL 2 MONTH) AND h.`DATA` < curdate()";
+        String sql = "SELECT *  FROM historico h WHERE `DATA` >= DATE_SUB(curdate(),INTERVAL 2 MONTH) AND h.`DATA` <= curdate() ORDER BY  DATA, HORA ASC;";
         conexao.prepareStatement(sql);
 
         Statement statement = conexao.createStatement();
@@ -93,7 +89,6 @@ public class AcessoHistoricoService {
 
     private String liberar() throws SQLException {
         String liberado = "Liberado pelo admin";
-        repository.enviaHistorico("Adm", "Liberado");
         return liberado;
     }
 }

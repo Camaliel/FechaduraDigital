@@ -2,8 +2,8 @@ package CadastrarSenha.Repository;
 
 
 import CadastrarSenha.Entities.HistoricoEntity;
-import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.Service.SenhaService;
+import CadastrarSenha.Util.Variavel.VariaveisHistorico;
 import CadastrarSenha.jdbc.DAO.Conexao;
 
 import java.sql.SQLException;
@@ -18,6 +18,7 @@ import static CadastrarSenha.Util.Menu.*;
 public class ArmazenaInformacaoPessoaRepository {
     Conexao DAO = new Conexao();
     ConfereChaveToken token = new ConfereChaveToken();
+    VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
 
 
     public void fimDoPrograma(int valorDigitado){
@@ -60,7 +61,7 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senhaSegura);
         DAO.incluir(sqlNome, nome, parentesco, token, chefe_familia);
         DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome,token);
-        repository.enviaHistorico(parentesco,"CADASTRADO");
+        repository.enviaHistorico(parentesco,"CADASTRADO", nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Liberada");
 
 
         fimDoPrograma(0);
@@ -68,6 +69,7 @@ public class ArmazenaInformacaoPessoaRepository {
 
     private void persistiMae() throws SQLException, ClassNotFoundException {
         HistoricoRepository repository = new HistoricoRepository();
+
 
         String nome = nomeArmazenadoMae;
         String nomeDoMeio = nomeDoMeioArmazenadoMae;
@@ -86,7 +88,8 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senha);
         DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
         DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome,numeroToken);
-        repository.enviaHistorico(parentesco,"CADASTRADO");
+        repository.enviaHistorico(numeroToken,nome, nomeDoMeio, ultimoNome,variaveisHistorico.getData(),variaveisHistorico.getHora(),parentesco,"Liberada");
+        // TOKEN, NOME, NOME_DO_MEIO, ULTIMO_NOME, DATA, HORA, PARENTESCO, STATUS
     }
 
     private void persistiFilho() throws SQLException, ClassNotFoundException {
@@ -109,7 +112,7 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senha);
         DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
         DAO.incluir(sqlTblConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
-        repository.enviaHistorico(parentesco,"CADASTRADO");
+        repository.enviaHistorico(parentesco,"CADASTRADO", nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Liberada");
     }
 
     private void persistioutro() throws SQLException, ClassNotFoundException {
@@ -132,6 +135,6 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senhaSegura);
         DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
         DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome,numeroToken);
-        repository.enviaHistorico(parentesco,"CADASTRADO");
+        repository.enviaHistorico(parentesco,"CADASTRADO", nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Liberada");
     }
 }
