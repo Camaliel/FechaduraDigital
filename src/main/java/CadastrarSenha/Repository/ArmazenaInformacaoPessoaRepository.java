@@ -12,14 +12,13 @@ import static CadastrarSenha.Service.CpfService.cpfDigitado;
 import static CadastrarSenha.Service.FamiliarService.*;
 import static CadastrarSenha.Service.NumeroCelularService.numeroCelularDigitado;
 import static CadastrarSenha.Service.SenhaService.senhaSegura;
-import static CadastrarSenha.Util.Menu.*;
-
+import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.*;
+import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarca;
 
 public class ArmazenaInformacaoPessoaRepository {
     Conexao DAO = new Conexao();
     ConfereChaveToken token = new ConfereChaveToken();
     VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
-
 
     public void fimDoPrograma(int valorDigitado){
         while (valorDigitado == 0){
@@ -62,14 +61,11 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sqlNome, nome, parentesco, token, chefe_familia);
         DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome,token);
         repository.enviaHistorico(parentesco,"CADASTRADO", nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Liberada");
-
-
         fimDoPrograma(0);
     }
 
     private void persistiMae() throws SQLException, ClassNotFoundException {
         HistoricoRepository repository = new HistoricoRepository();
-
 
         String nome = nomeArmazenadoMae;
         String nomeDoMeio = nomeDoMeioArmazenadoMae;
@@ -107,7 +103,7 @@ public class ArmazenaInformacaoPessoaRepository {
 
         String sql = "INSERT INTO moradores.cadastro (nome, nome_do_meio, ultimo_nome, chefe_familia, parentesco, cpf, tel, senha) VALUES (?,?,?,?,?,?,?,?)";
         String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
-        String sqlTblConsulta = "INSERT INTO MORADORES.TBL_CONSULTAS (ID_NOME, NOME, NOME_DO_MEIO, ULTIMO_NOME, TOKEN)";
+        String sqlTblConsulta = "INSERT INTO moradores.tbl_consultas (NOME, NOME_DO_MEIO, ULTIMO_NOME, TOKEN) VALUES (?, ?, ?, ?)";
 
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senha);
         DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);

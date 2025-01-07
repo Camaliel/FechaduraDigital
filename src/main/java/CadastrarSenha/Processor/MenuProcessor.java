@@ -1,62 +1,65 @@
 package CadastrarSenha.Processor;
 
 import CadastrarSenha.BootTelegramApi.TelaBot;
-import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
-import CadastrarSenha.Repository.ConfereChaveToken;
-import CadastrarSenha.Repository.IncluiToken;
+import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Repository.Login.ConsultasRepository;
-import CadastrarSenha.Util.Menu;
+import CadastrarSenha.View.Menu;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.sql.SQLException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static CadastrarSenha.Util.Menu.valor;
+import static CadastrarSenha.View.Menu.valor;
 
 
 public class MenuProcessor {
 
-    ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
     TelaBot bot = new TelaBot();
-    ConfereChaveToken chaveToken = new ConfereChaveToken();
-    IncluiToken incluiToken = new IncluiToken();
     ConsultasRepository consultaRepository = new ConsultasRepository();
     Scanner leia = new Scanner(System.in);
+
+    public int valorRecebidoDigitado;
 
     /*
      * Processa toda a informação recebida e envia para o BANCO.
      * */
 
-    //TODO LEMBRETE: DEIXAR PADRAO E MAIS LIMPO COMO O MENNU 3
-
-    public void menuPrincipal() throws TelegramApiException, SQLException, ClassNotFoundException {
+    public String menuPrincipal() throws TelegramApiException, SQLException, ClassNotFoundException {
         Menu menu = new Menu();
-        //todo fazer de novo instanciar as classes
-
-
         System.out.println("Escolha uma opção");
         bot.ligarApi(); // TODO QUEBRADO NÃO FECHA
         System.out.println("1-Cadastrar | 2-Login");
         int valorOpcao = leia.nextInt();
-        try {
-            switch (valorOpcao) {
 
-                case 1:
-                    menu.menuParente(valor);
-                    break;
-                case 2:
-                    consultaRepository.pesquisaNaListaDeUsuarios();
-                    break;
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Não foi");
+        valorRecebidoDigitado = valorOpcao;
+
+        switch (valorOpcao) {
+            case 1:
+                menu.menuParente(valor);
+                break;
+            case 2:
+                consultaRepository.pesquisaNaListaDeUsuarios();
+                break;
+            default:
+                menuValorInvalido();
+                break;
+        }
+        leia.close();
+        return "fechado";
+    }
+
+
+    public void menuValorInvalido() throws TelegramApiException, SQLException, ClassNotFoundException {
+        MenuProcessor menuProcessor = new MenuProcessor();
+        while (valorRecebidoDigitado > 2) {
+            System.out.println(MensagemEnum.ADICIONE_OPCAO_VALIDA.getDescricao());;
+            menuProcessor.menuPrincipal();
         }
     }
 
     public static void main(String[] args) throws TelegramApiException, SQLException, ClassNotFoundException {
-        MenuProcessor menuProcessor = new MenuProcessor();
-        menuProcessor.menuPrincipal();
-
+        MenuProcessor teste = new MenuProcessor();
+        teste.menuPrincipal();
     }
 }
+

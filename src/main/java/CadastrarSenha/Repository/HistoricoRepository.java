@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static CadastrarSenha.Util.Menu.*;
+import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.*;
 
 public class HistoricoRepository {
     Conexao DAO = new Conexao();

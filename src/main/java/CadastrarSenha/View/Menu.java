@@ -1,4 +1,4 @@
-package CadastrarSenha.Util;
+package CadastrarSenha.View;
 
 import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
 import CadastrarSenha.Service.CpfService;
@@ -9,29 +9,17 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import static CadastrarSenha.Service.CpfService.cpfDigitado;
+import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.*;
+import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarca;
 
 public class Menu {
+    ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
     FamiliarService familiarService = new FamiliarService();
     VarFamiliar varFamiliar = new VarFamiliar();
     CpfService service = new CpfService();
-
     Scanner leia = new Scanner(System.in);
 
-    public static String nomeArmazenadoPai = "";
-    public static String nomeDoMeioArmazenadoPai = "";
-    public static String sobrenomeArmazenadoPai = "";
-
-    public static String nomeArmazenadoMae = "";
-    public static String nomeDoMeioArmazenadoMae = "";
-    public static String sobrenomeArmazenadoMae = "";
-
-    public static String nomeDoMeioArmazenadoOutros = "";
-    public static String sobrenomeArmazenadoOutros = "";
-    public static String nomeArmazenadoOutros = "";
-
     public static String valor = "";
-
-    ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
 
     public String menuParente(String nome) throws SQLException, ClassNotFoundException {
         ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
@@ -66,22 +54,23 @@ public class Menu {
         return valorMenu;
     }
 
-
     private void opcaoPai() throws SQLException, ClassNotFoundException {
         System.out.println("DIGITE SEU NOME");
         String nomePai = leia.next();
-        nomeArmazenadoPai = varFamiliar.setPai(nomePai);
+        nomeArmazenadoPai = nomePai;
 
         System.out.println("DIGITE SEU NOME DO MEIO");
         String nomeDoMeioPai = leia.next();
-        nomeDoMeioArmazenadoPai = varFamiliar.setNomeDoMeioPai(nomeDoMeioPai);
+        nomeDoMeioArmazenadoPai = nomeDoMeioPai;
 
         System.out.println("DIGITE SEU SOBRENOME");
         String sobrenomePai = leia.next();
-        sobrenomeArmazenadoPai = varFamiliar.setSobrenomePai(sobrenomePai);
-        familiarService.patriarca(varFamiliar.getNomePai());
+        sobrenomeArmazenadoPai = sobrenomePai;
+
+        familiarService.patriarca(confirmaPatriarca);
         repository.persistiCadastroPai();
     }
+
     private void opcaoMae() throws SQLException, ClassNotFoundException {
         System.out.println("DIGITE SEU NOME");
         String nomeMae = leia.next();
@@ -97,8 +86,8 @@ public class Menu {
 
         familiarService.matriarca(varFamiliar.getMae());
         repository.persistiCadastroMae();
-
     }
+
     private void opcaoOutros() throws SQLException, ClassNotFoundException {
         System.out.println("DIGITE SEU NOME");
         String nomeOutros = leia.next();

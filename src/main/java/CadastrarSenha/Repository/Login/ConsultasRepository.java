@@ -68,6 +68,7 @@ public class ConsultasRepository {
             if (retornaToken.contains(sobrenome)) {
                 System.out.println("ACESSO CONCEDIDO!");
                 repository.enviaHistorico(salvaTokenDigitado, "Oculto",sobrenome, "Oculto",variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
+                return "PASSOU";
 
             } else {
                 System.out.println("ACESSO NEGADO!");
@@ -88,6 +89,5 @@ public class ConsultasRepository {
         }
             leia.close();
         return salvaTokenDigitado;
-
     }
 }

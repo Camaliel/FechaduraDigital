@@ -13,6 +13,7 @@ import java.util.Scanner;
 import static CadastrarSenha.Service.CpfService.cpfDigitado;
 import static CadastrarSenha.Service.NumeroCelularService.numeroCelularDigitado;
 import static CadastrarSenha.Service.SenhaService.senhaSegura;
+import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarca;
 
 
 public class FamiliarService implements UsuarioPadraoImpl {
@@ -22,11 +23,10 @@ public class FamiliarService implements UsuarioPadraoImpl {
     CpfService cpfService = new CpfService();
     SenhaService senhaService = new SenhaService();
     NumeroCelularService celularService = new NumeroCelularService();
-    public static String confirmaPatriarca = "";
+
     public static String nomeArmazenadoFilho = "";
     public static String nomeDoMeioArmazenadoFilho = "";
     public static String sobrenomeArmazenadoFilho = "";
-
 
     /*
      *
