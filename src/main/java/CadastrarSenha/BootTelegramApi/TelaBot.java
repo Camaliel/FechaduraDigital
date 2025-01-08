@@ -8,11 +8,9 @@ import java.sql.SQLException;
 
 public class TelaBot {
 
-    public void ligarApi() throws TelegramApiException, SQLException {
+    public void ligarApi() throws Throwable {
            TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
            telegramBotsApi.registerBot(new EcoBot());
            System.out.println("LIGADO");
-
-
     }
 }

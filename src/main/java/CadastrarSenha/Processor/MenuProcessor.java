@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 import static CadastrarSenha.View.Menu.valor;
 
-
 public class MenuProcessor {
 
     TelaBot bot = new TelaBot();
@@ -24,7 +23,7 @@ public class MenuProcessor {
      * Processa toda a informação recebida e envia para o BANCO.
      * */
 
-    public String menuPrincipal() throws TelegramApiException, SQLException, ClassNotFoundException {
+    public String menuPrincipal() throws Throwable {
         Menu menu = new Menu();
         System.out.println("Escolha uma opção");
         bot.ligarApi(); // TODO QUEBRADO NÃO FECHA
@@ -39,6 +38,8 @@ public class MenuProcessor {
                 break;
             case 2:
                 consultaRepository.pesquisaNaListaDeUsuarios();
+                System.exit(0); // Usado metodo de saida do sistemas forçando a parada da JVM sem causa de
+                // problema aparente, não gerando erro algum, pois foi saida BEM SUCEDIDA
                 break;
             default:
                 menuValorInvalido();
@@ -48,8 +49,7 @@ public class MenuProcessor {
         return "fechado";
     }
 
-
-    public void menuValorInvalido() throws TelegramApiException, SQLException, ClassNotFoundException {
+    public void menuValorInvalido() throws Throwable {
         MenuProcessor menuProcessor = new MenuProcessor();
         while (valorRecebidoDigitado > 2) {
             System.out.println(MensagemEnum.ADICIONE_OPCAO_VALIDA.getDescricao());;
@@ -57,7 +57,7 @@ public class MenuProcessor {
         }
     }
 
-    public static void main(String[] args) throws TelegramApiException, SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws Throwable {
         MenuProcessor teste = new MenuProcessor();
         teste.menuPrincipal();
     }

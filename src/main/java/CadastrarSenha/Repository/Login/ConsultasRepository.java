@@ -20,6 +20,7 @@ public class ConsultasRepository {
     public static String consultaParentesco = "";
     public static String status = "";
     VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
+
     public List<String> obtemInformacoesBD() throws SQLException, ClassNotFoundException {
         Connection conexao = CriarConexao.getConnetion();
         System.out.println("DIGITE SUA SENHA TOKEN");
@@ -67,27 +68,25 @@ public class ConsultasRepository {
             HistoricoRepository repository = new HistoricoRepository();
             if (retornaToken.contains(sobrenome)) {
                 System.out.println("ACESSO CONCEDIDO!");
-                repository.enviaHistorico(salvaTokenDigitado, "Oculto",sobrenome, "Oculto",variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
-                return "PASSOU";
-
+                repository.enviaHistorico(salvaTokenDigitado, "Oculto", sobrenome, "Oculto", variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
             } else {
                 System.out.println("ACESSO NEGADO!");
-                repository.enviaHistorico(salvaTokenDigitado, "Oculto",sobrenome, "Oculto",variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
+                repository.enviaHistorico(salvaTokenDigitado, "Oculto", sobrenome, "Oculto", variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
                 System.out.println("Digite seu [ULTIMO] nome");
                 String ultimoNome = leia.nextLine();
                 if (ultimoNome.isEmpty()) {
                     System.out.println("ACESSO NEGADO! [ULTIMO] nome nao pode estar vazio");
-                    repository.enviaHistorico(salvaTokenDigitado, "Oculto",sobrenome, "Oculto",variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
+                    repository.enviaHistorico(salvaTokenDigitado, "Oculto", sobrenome, "Oculto", variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
                 } else if (retornaToken.contains(ultimoNome)) {
                     System.out.println("ACESSO CONCEDIDO!");
-                    repository.enviaHistorico(salvaTokenDigitado, "Oculto",sobrenome, "Oculto",variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
+                    repository.enviaHistorico(salvaTokenDigitado, "Oculto", sobrenome, "Oculto", variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
                 } else {
                     System.out.println("ACESSO NEGADO!");
-                    repository.enviaHistorico(salvaTokenDigitado, "Oculto",sobrenome, "Oculto",variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
+                    repository.enviaHistorico(salvaTokenDigitado, "Oculto", sobrenome, "Oculto", variaveisHistorico.getData(), variaveisHistorico.getHora(), consultaParentesco, "Liberado");
                 }
             }
         }
-            leia.close();
+        leia.close();
         return salvaTokenDigitado;
     }
 }

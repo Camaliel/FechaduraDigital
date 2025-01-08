@@ -49,6 +49,5 @@ public class EcoBot extends TelegramLongPollingBot {
 
         return respostas.enviaMensagem(update);
     }
-
 }
 
