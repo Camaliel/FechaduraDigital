@@ -27,7 +27,9 @@ public class ConfereChaveToken {
 
             valorGuardado = valorDigitado;
             System.out.println(" TOKEN VALIDO GUARDADO");
+
             leia.close();
         return valorGuardado;
+
     }
 }

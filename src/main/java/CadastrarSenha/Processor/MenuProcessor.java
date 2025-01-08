@@ -23,7 +23,7 @@ public class MenuProcessor {
      * Processa toda a informação recebida e envia para o BANCO.
      * */
 
-    public String menuPrincipal() throws Throwable {
+    public void menuPrincipal() throws Throwable {
         Menu menu = new Menu();
         System.out.println("Escolha uma opção");
         bot.ligarApi(); // TODO QUEBRADO NÃO FECHA
@@ -38,15 +38,13 @@ public class MenuProcessor {
                 break;
             case 2:
                 consultaRepository.pesquisaNaListaDeUsuarios();
-                System.exit(0); // Usado metodo de saida do sistemas forçando a parada da JVM sem causa de
-                // problema aparente, não gerando erro algum, pois foi saida BEM SUCEDIDA
                 break;
             default:
                 menuValorInvalido();
                 break;
         }
         leia.close();
-        return "fechado";
+        fimDoPrograma();
     }
 
     public void menuValorInvalido() throws Throwable {
@@ -57,6 +55,12 @@ public class MenuProcessor {
         }
     }
 
+    public static void fimDoPrograma(){
+        /*
+        * Força a JVM a fechar de maneira bem sucedida.
+        * */
+        System.exit(0);
+    }
     public static void main(String[] args) throws Throwable {
         MenuProcessor teste = new MenuProcessor();
         teste.menuPrincipal();
