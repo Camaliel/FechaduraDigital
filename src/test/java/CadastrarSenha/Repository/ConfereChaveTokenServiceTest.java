@@ -1,6 +1,6 @@
 package CadastrarSenha.Repository;
 
-import CadastrarSenha.jdbc.EnviaToken;
+import CadastrarSenha.Jdbc.EnviaToken;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

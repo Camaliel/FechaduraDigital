@@ -3,17 +3,15 @@ package CadastrarSenha.Service;
 import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.ExitCode.CodigoErroExitCode;
 import CadastrarSenha.Service.Interface.UsuarioPadraoImpl;
-import CadastrarSenha.Util.Variavel.InfoUsuario;
-
 import java.util.Scanner;
 
-import static CadastrarSenha.Service.NumeroCelularService.numeroCelularDigitado;
 import static CadastrarSenha.Service.SenhaService.senhaSegura;
+import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.cpfDigitado;
+import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.numeroCelular;
 
 
 public class CpfService implements UsuarioPadraoImpl {
-    public static String cpfDigitado = "";
-    InfoUsuario infoUsuario = new InfoUsuario();
+
     Scanner leia = new Scanner(System.in);
     Scanner lerCpf = new Scanner(System.in);
     NumeroCelularService celularService = new NumeroCelularService();
@@ -26,19 +24,18 @@ public class CpfService implements UsuarioPadraoImpl {
     public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
         System.out.println(MensagemEnum.CPF.getDescricao());
         String cpf = lerCpf.nextLine();
-        cpfDigitado = cpf;
 
         while (cpf.length() != 11) {
                 System.out.println(CodigoErroExitCode.COD_3.getDescricao());
                 cpf = lerCpf.nextLine();
                 cpfDigitado = cpf;
-                infoUsuario.setCpf(cpfDigitado);
         }
         if (cpf.length() == 11) {
-            infoUsuario.setCpf(cpfDigitado);
+            cpfDigitado = cpf;
+
         }
         confirmaCPFDigitado();
-        adicionaNumero(numeroCelularDigitado);
+        adicionaNumero(numeroCelular);
         cadastroSenha(senhaSegura);
 
         return cpfDigitado;
@@ -47,7 +44,7 @@ public class CpfService implements UsuarioPadraoImpl {
     public String confirmaCPFDigitado() {
 
         String validadorConfirmacao = "";
-        System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + infoUsuario.getCpf() + " ]\n" + "S/N");
+        System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + cpfDigitado+ " ]\n" + "S/N");
 
         String confirmaCpf = leia.nextLine();
         validadorConfirmacao = confirmaCpf;
@@ -58,27 +55,26 @@ public class CpfService implements UsuarioPadraoImpl {
             String cpf = leia.nextLine();
             cpfDigitado = cpf;
 
-            System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + infoUsuario.getCpf() + " ]\n" + "S/N");
+            System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + cpfDigitado+ " ]\n" + "S/N");
             confirmaCpf = leia.next();
 
             if (confirmaCpf.contains("s") || confirmaCpf.contains("S")) {
-                infoUsuario.setCpf(cpfDigitado);
+                cpfDigitado = cpf;
             }
         }
-        System.out.println("CPF " + infoUsuario.getCpf() + " cadastrado com sucesso!");
+        System.out.println("CPF " + cpfDigitado + " cadastrado com sucesso!");
         System.out.print("PRESS ENTER");
         return validadorConfirmacao;
     }
 
     @Override
-    public String adicionaNumero(String numeroCelular) {
-        celularService.adicionaNumero(numeroCelularDigitado);
-        return numeroCelularDigitado;
+    public String adicionaNumero(String digiteSeuNumeroCelular) {
+        celularService.adicionaNumero(numeroCelular);
+        return numeroCelular;
     }
 
     @Override
     public String cadastroSenha(String senha) {
-        InfoUsuario usuario = new InfoUsuario();
         senhaService.cadastroSenha(senhaSegura);
         return senhaSegura;
     }

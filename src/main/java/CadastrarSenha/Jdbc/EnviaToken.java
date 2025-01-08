@@ -1,7 +1,6 @@
-package CadastrarSenha.jdbc;
+package CadastrarSenha.Jdbc;
 
 import CadastrarSenha.Service.ChaveTokenService;
-import CadastrarSenha.Util.Variavel.ValoresDigitados;
 
 import java.sql.*;
 import java.util.ArrayList;

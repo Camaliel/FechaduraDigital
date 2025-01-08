@@ -1,4 +1,4 @@
-package CadastrarSenha.Util.Variavel;
+package CadastrarSenha.Util.Variaveis;
 
 public class VariaveisHistorico {
 

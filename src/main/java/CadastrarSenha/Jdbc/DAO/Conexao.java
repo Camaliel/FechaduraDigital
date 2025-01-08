@@ -1,6 +1,6 @@
-package CadastrarSenha.jdbc.DAO;
+package CadastrarSenha.Jdbc.DAO;
 
-import CadastrarSenha.jdbc.CriarConexao;
+import CadastrarSenha.Jdbc.CriarConexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

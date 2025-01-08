@@ -1,6 +1,6 @@
 package CadastrarSenha.Repository;
 
-import CadastrarSenha.jdbc.EnviaToken;
+import CadastrarSenha.Jdbc.EnviaToken;
 
 import java.sql.SQLException;
 import java.util.Scanner;

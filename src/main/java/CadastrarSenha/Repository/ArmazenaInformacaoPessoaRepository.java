@@ -3,14 +3,11 @@ package CadastrarSenha.Repository;
 
 import CadastrarSenha.Entities.HistoricoEntity;
 import CadastrarSenha.Service.SenhaService;
-import CadastrarSenha.Util.Variavel.VariaveisHistorico;
-import CadastrarSenha.jdbc.DAO.Conexao;
+import CadastrarSenha.Util.Variaveis.VariaveisHistorico;
+import CadastrarSenha.Jdbc.DAO.Conexao;
 
 import java.sql.SQLException;
 
-import static CadastrarSenha.Service.CpfService.cpfDigitado;
-import static CadastrarSenha.Service.FamiliarService.*;
-import static CadastrarSenha.Service.NumeroCelularService.numeroCelularDigitado;
 import static CadastrarSenha.Service.SenhaService.senhaSegura;
 import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.*;
 import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarca;
@@ -49,7 +46,7 @@ public class ArmazenaInformacaoPessoaRepository {
         String chefe_familia = confirmaPatriarca;
         String parentesco = entity.setParentesco("Pai");
         String cpf = cpfDigitado;
-        String tel = numeroCelularDigitado;
+        String tel = numeroCelular;
         String senhaSegura = SenhaService.senhaSegura;
         String token = this.token.validaChaveToken();
 
@@ -73,7 +70,7 @@ public class ArmazenaInformacaoPessoaRepository {
         String chefe_familia = confirmaPatriarca;
         String parentesco = "mae";
         String cpf = cpfDigitado;
-        String tel = numeroCelularDigitado;
+        String  tel = numeroCelular;
         String senha = senhaSegura;
         String numeroToken = token.validaChaveToken();
 
@@ -97,7 +94,7 @@ public class ArmazenaInformacaoPessoaRepository {
         String chefe_familia = "não";
         String parentesco = "filho(s)";
         String cpf = cpfDigitado;
-        String tel = numeroCelularDigitado;
+        String tel = numeroCelular;
         String senha = senhaSegura;
         String numeroToken = token.validaChaveToken();
 
@@ -120,7 +117,7 @@ public class ArmazenaInformacaoPessoaRepository {
         String chefe_familia = "nao";
         String parentesco = "outros";
         String cpf = cpfDigitado;
-        String tel = numeroCelularDigitado;
+        String tel = numeroCelular;
         String senhaSegura = SenhaService.senhaSegura;
         String numeroToken = token.validaChaveToken();
 

@@ -6,7 +6,7 @@ public interface UsuarioPadraoImpl {
     * */
     String verificaQuantidadeDigitadoCPF(String digiteCpf);
 
-    String adicionaNumero(String numeroCelular);
+    String adicionaNumero(String digiteSeuNumeroCelular);
 
     String cadastroSenha(String senha);
 

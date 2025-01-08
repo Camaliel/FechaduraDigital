@@ -1,8 +1,8 @@
 package CadastrarSenha.Repository;
 
-import CadastrarSenha.Util.Variavel.VariaveisHistorico;
-import CadastrarSenha.jdbc.DAO.Conexao;
-import CadastrarSenha.jdbc.EnviaToken;
+import CadastrarSenha.Util.Variaveis.VariaveisHistorico;
+import CadastrarSenha.Jdbc.DAO.Conexao;
+import CadastrarSenha.Jdbc.EnviaToken;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;

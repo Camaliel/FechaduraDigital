@@ -1,4 +1,4 @@
-package CadastrarSenha.jdbc;
+package CadastrarSenha.Jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

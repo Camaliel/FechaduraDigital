@@ -1,32 +1,23 @@
 package CadastrarSenha.Service;
 
-
 import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Enum.MensagemPatriarcaEnum;
 import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
 import CadastrarSenha.Service.Interface.UsuarioPadraoImpl;
-import CadastrarSenha.Util.Variavel.VarFamiliar;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import static CadastrarSenha.Service.CpfService.cpfDigitado;
-import static CadastrarSenha.Service.NumeroCelularService.numeroCelularDigitado;
 import static CadastrarSenha.Service.SenhaService.senhaSegura;
+import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.*;
+import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaMatriarca;
 import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarca;
 
 
 public class FamiliarService implements UsuarioPadraoImpl {
     static Scanner leia = new Scanner(System.in);
-    static VarFamiliar varFamiliar = new VarFamiliar();
-    static FamiliarService service = new FamiliarService();
     CpfService cpfService = new CpfService();
     SenhaService senhaService = new SenhaService();
     NumeroCelularService celularService = new NumeroCelularService();
-
-    public static String nomeArmazenadoFilho = "";
-    public static String nomeDoMeioArmazenadoFilho = "";
-    public static String sobrenomeArmazenadoFilho = "";
 
     /*
      *
@@ -49,7 +40,7 @@ public class FamiliarService implements UsuarioPadraoImpl {
 
         }
         verificaQuantidadeDigitadoCPF(cpfDigitado);
-        return varFamiliar.getNomePai();
+        return confirmaPatriarca;
     }
 
     public String matriarca(String mae) {
@@ -66,7 +57,7 @@ public class FamiliarService implements UsuarioPadraoImpl {
         }
         verificaQuantidadeDigitadoCPF(cpfDigitado);
         System.out.print("PRESS ENTER");
-        return varFamiliar.getMae();
+        return confirmaMatriarca;
     }
 
     /*
@@ -115,9 +106,9 @@ public class FamiliarService implements UsuarioPadraoImpl {
     }
 
     @Override
-    public String adicionaNumero(String numeroCelular) {
-        celularService.adicionaNumero(numeroCelularDigitado);
-        return numeroCelularDigitado;
+    public String adicionaNumero(String digiteSeuNumeroCelular) {
+        celularService.adicionaNumero(numeroCelular);
+        return numeroCelular;
     }
 
     @Override

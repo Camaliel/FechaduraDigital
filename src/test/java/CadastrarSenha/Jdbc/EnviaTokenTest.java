@@ -1,4 +1,4 @@
-package CadastrarSenha.jdbc;
+package CadastrarSenha.Jdbc;
 
 import org.junit.Before;
 import org.junit.Test;

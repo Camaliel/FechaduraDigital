@@ -1,6 +1,6 @@
 package CadastrarSenha.Service;
 
-import CadastrarSenha.jdbc.CriarConexao;
+import CadastrarSenha.Jdbc.CriarConexao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

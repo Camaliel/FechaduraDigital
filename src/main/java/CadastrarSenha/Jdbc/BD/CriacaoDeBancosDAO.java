@@ -1,6 +1,6 @@
-package CadastrarSenha.jdbc.BD;
+package CadastrarSenha.Jdbc.BD;
 
-import CadastrarSenha.jdbc.CriarConexao;
+import CadastrarSenha.Jdbc.CriarConexao;
 
 import java.sql.Connection;
 import java.sql.SQLException;

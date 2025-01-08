@@ -1,8 +1,8 @@
 package CadastrarSenha.Repository.Login;
 
 import CadastrarSenha.Repository.HistoricoRepository;
-import CadastrarSenha.Util.Variavel.VariaveisHistorico;
-import CadastrarSenha.jdbc.CriarConexao;
+import CadastrarSenha.Util.Variaveis.VariaveisHistorico;
+import CadastrarSenha.Jdbc.CriarConexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
