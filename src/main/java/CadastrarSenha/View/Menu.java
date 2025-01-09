@@ -1,5 +1,6 @@
 package CadastrarSenha.View;
 
+import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
 import CadastrarSenha.Service.CpfService;
 import CadastrarSenha.Service.FamiliarService;
@@ -51,52 +52,72 @@ public class Menu {
     }
 
     public void opcaoPai() throws SQLException, ClassNotFoundException {
-        System.out.println("DIGITE SEU NOME");
-        String nomePai = leia.next();
-        nomeArmazenadoPai = nomePai;
+        try {
+            System.out.println("DIGITE SEU NOME");
+            String nomePai = leia.next();
+            nomeArmazenadoPai = nomePai;
 
-        System.out.println("DIGITE SEU NOME DO MEIO");
-        String nomeDoMeioPai = leia.next();
-        nomeDoMeioArmazenadoPai = nomeDoMeioPai;
+            System.out.println("DIGITE SEU NOME DO MEIO");
+            String nomeDoMeioPai = leia.next();
+            nomeDoMeioArmazenadoPai = nomeDoMeioPai;
 
-        System.out.println("DIGITE SEU SOBRENOME");
-        String sobrenomePai = leia.next();
-        sobrenomeArmazenadoPai = sobrenomePai;
+            System.out.println("DIGITE SEU SOBRENOME");
+            String sobrenomePai = leia.next();
+            sobrenomeArmazenadoPai = sobrenomePai;
 
-        familiarService.patriarca(confirmaPatriarca);
-        repository.persistiCadastroPai();
+            familiarService.patriarca(confirmaPatriarca);
+            repository.persistiCadastroPai();
+            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
+        } catch (Exception e) {
+            System.out.println(MensagemEnum.NAO_ADICIONADO_AO_BANCO.getDescricao());
+
+        }
     }
 
     private void opcaoMae() throws SQLException, ClassNotFoundException {
-        System.out.println("DIGITE SEU NOME");
-        String nomeMae = leia.next();
-        nomeArmazenadoMae = nomeMae;
+        try {
+            System.out.println("DIGITE SEU NOME");
+            String nomeMae = leia.next();
+            nomeArmazenadoMae = nomeMae;
 
-        System.out.println("DIGITE SEU NOME DO MEIO");
-        String nomeDoMeioMae = leia.next();
-        nomeDoMeioArmazenadoMae = nomeDoMeioMae;
+            System.out.println("DIGITE SEU NOME DO MEIO");
+            String nomeDoMeioMae = leia.next();
+            nomeDoMeioArmazenadoMae = nomeDoMeioMae;
 
-        System.out.println("DIGITE SEU ULTIMO NOME");
-        String sobrenomeMae = leia.next();
-        sobrenomeArmazenadoMae = sobrenomeMae;
+            System.out.println("DIGITE SEU ULTIMO NOME");
+            String sobrenomeMae = leia.next();
+            sobrenomeArmazenadoMae = sobrenomeMae;
 
-        familiarService.matriarca(confirmaMatriarca);
-        repository.persistiCadastroMae();
+            familiarService.matriarca(confirmaMatriarca);
+            repository.persistiCadastroMae();
+            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
+
+        } catch (Exception e) {
+            System.out.println(MensagemEnum.NAO_ADICIONADO_AO_BANCO.getDescricao());
+        }
     }
 
     private void opcaoOutros() throws SQLException, ClassNotFoundException {
-        System.out.println("DIGITE SEU NOME");
-        String nomeOutros = leia.next();
-        nomeArmazenadoOutros = nomeOutros;
-        service.verificaQuantidadeDigitadoCPF(cpfDigitado);
+        try {
+            System.out.println("DIGITE SEU NOME");
+            String nomeOutros = leia.next();
+            nomeArmazenadoOutros = nomeOutros;
+            service.verificaQuantidadeDigitadoCPF(cpfDigitado);
 
-        System.out.println("DIGITE SEU NOME DO MEIO");
-        String nomeDoMeioOutros = leia.next();
-        nomeDoMeioArmazenadoOutros = nomeDoMeioOutros;
+            System.out.println("DIGITE SEU NOME DO MEIO");
+            String nomeDoMeioOutros = leia.next();
+            nomeDoMeioArmazenadoOutros = nomeDoMeioOutros;
 
-        System.out.println("DIGITE SEU ULTIMO NOME");
-        String sobrenomeOutros = leia.next();
-        sobrenomeArmazenadoOutros = sobrenomeOutros;
-        repository.persistiCadastroOutros();
+            System.out.println("DIGITE SEU ULTIMO NOME");
+            String sobrenomeOutros = leia.next();
+            sobrenomeArmazenadoOutros = sobrenomeOutros;
+            repository.persistiCadastroOutros();
+
+            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
+
+        } catch (Exception e) {
+            System.out.println(MensagemEnum.NAO_ADICIONADO_AO_BANCO.getDescricao());
+
+        }
     }
 }

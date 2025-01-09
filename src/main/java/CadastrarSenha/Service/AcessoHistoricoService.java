@@ -1,5 +1,7 @@
 package CadastrarSenha.Service;
 
+import CadastrarSenha.Enum.MensagemEnum;
+import CadastrarSenha.Enum.RespostaApiEnum;
 import CadastrarSenha.Jdbc.CriarConexao;
 
 import java.sql.Connection;
@@ -15,7 +17,7 @@ public class AcessoHistoricoService {
     Scanner leia = new Scanner(System.in);
 
     public String menuCelular() throws SQLException {
-        System.out.println("Selecione uma opção | 1 Liberar | 2 Historico [Constr] | Denunciar [Constr] | ");
+   String teste = RespostaApiEnum.MENSAGEM_HIST.getDescricao();
         int valorSelecionado = leia.nextInt();
 
         String opcaoDeAcesso = "";
@@ -85,7 +87,6 @@ public class AcessoHistoricoService {
 
         return listaMesAnterior;
     }
-
 
     private String liberar() throws SQLException {
         String liberado = "Liberado pelo admin";

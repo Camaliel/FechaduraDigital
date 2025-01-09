@@ -1,9 +1,7 @@
 package CadastrarSenha.Service;
 
 import CadastrarSenha.Enum.MensagemEnum;
-
 import java.util.Scanner;
-
 import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.numeroCelular;
 
 public class NumeroCelularService  {
@@ -26,11 +24,10 @@ public class NumeroCelularService  {
             if (numero.length() == 9) {
                 System.out.println(MensagemEnum.NUMERO_SUCESSO.getDescricao());
                 numeroCelular = numero;
-                System.out.println(numeroCelular + " " + MensagemEnum.N_ADICIONADO.getDescricao());
-
+                System.out.println(numeroCelular + " " + MensagemEnum.NUMERO_SUCESSO.getDescricao());
             }
 
-            System.out.print("PRESS ENTER");
+            System.out.print(MensagemEnum.PRESS_ENTER.getDescricao());
             String pressEnter2 = leia.nextLine();
         }
         return numeroCelular;

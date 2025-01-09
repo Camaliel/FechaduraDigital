@@ -2,12 +2,10 @@ package CadastrarSenha.Util.Variaveis;
 
 public class VariaveisHistorico {
 
-
     public String data;
     public String hora;
 
     // DATA, HORA,
-
 
     public String getData() {
         return data;

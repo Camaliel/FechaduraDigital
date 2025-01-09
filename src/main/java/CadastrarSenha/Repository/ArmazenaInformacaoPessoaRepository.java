@@ -17,8 +17,8 @@ public class ArmazenaInformacaoPessoaRepository {
     ConfereChaveToken token = new ConfereChaveToken();
     VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
 
-    public void fimDoPrograma(int valorDigitado){
-        while (valorDigitado == 0){
+    public void fimDoPrograma(int valorDigitado) {
+        while (valorDigitado == 0) {
             break;
         }
     }
@@ -26,12 +26,15 @@ public class ArmazenaInformacaoPessoaRepository {
     public void persistiCadastroPai() throws SQLException, ClassNotFoundException {
         persistiPai();
     }
+
     public void persistiCadastroMae() throws SQLException, ClassNotFoundException {
         persistiMae();
     }
+
     public void persistiCadastroFilho() throws SQLException, ClassNotFoundException {
         persistiFilho();
     }
+
     public void persistiCadastroOutros() throws SQLException, ClassNotFoundException {
         persistioutro();
     }
@@ -56,8 +59,9 @@ public class ArmazenaInformacaoPessoaRepository {
 
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senhaSegura);
         DAO.incluir(sqlNome, nome, parentesco, token, chefe_familia);
-        DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome,token);
-        repository.enviaHistorico(parentesco,"CADASTRADO", nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Liberada");
+        DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, token);
+        repository.enviaHistorico(parentesco, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
+
         fimDoPrograma(0);
     }
 
@@ -70,7 +74,7 @@ public class ArmazenaInformacaoPessoaRepository {
         String chefe_familia = confirmaPatriarca;
         String parentesco = "mae";
         String cpf = cpfDigitado;
-        String  tel = numeroCelular;
+        String tel = numeroCelular;
         String senha = senhaSegura;
         String numeroToken = token.validaChaveToken();
 
@@ -80,8 +84,9 @@ public class ArmazenaInformacaoPessoaRepository {
 
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senha);
         DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
-        DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome,numeroToken);
-        repository.enviaHistorico(numeroToken,nome, nomeDoMeio, ultimoNome,variaveisHistorico.getData(),variaveisHistorico.getHora(),parentesco,"Liberada");
+        DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
+        repository.enviaHistorico(parentesco, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
+
         // TOKEN, NOME, NOME_DO_MEIO, ULTIMO_NOME, DATA, HORA, PARENTESCO, STATUS
     }
 
@@ -105,7 +110,7 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senha);
         DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
         DAO.incluir(sqlTblConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
-        repository.enviaHistorico(parentesco,"CADASTRADO", nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Liberada");
+        repository.enviaHistorico(parentesco, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
     }
 
     private void persistioutro() throws SQLException, ClassNotFoundException {
@@ -121,13 +126,13 @@ public class ArmazenaInformacaoPessoaRepository {
         String senhaSegura = SenhaService.senhaSegura;
         String numeroToken = token.validaChaveToken();
 
-        String sql =  "INSERT INTO moradores.cadastro (nome, sobrenome, ultimo_nome,chefe_familia, parentesco, cpf, tel, senha) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO moradores.cadastro (nome, sobrenome, ultimo_nome,chefe_familia, parentesco, cpf, tel, senha) VALUES (?,?,?,?,?,?,?,?)";
         String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
         String sqlConsulta = "INSERT INTO moradores.tbl_consultas (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
 
         DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senhaSegura);
         DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
-        DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome,numeroToken);
-        repository.enviaHistorico(parentesco,"CADASTRADO", nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Liberada");
+        DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
+        repository.enviaHistorico(parentesco, "CADASTRADO", nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Liberada");
     }
 }

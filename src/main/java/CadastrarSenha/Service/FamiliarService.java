@@ -48,10 +48,8 @@ public class FamiliarService implements UsuarioPadraoImpl {
         System.out.println(MensagemPatriarcaEnum.MATRIARCA.getDescricao());
         String matriaca = leia.nextLine();
         if (matriaca.contains("sim") || matriaca.contains("s")) {
-//            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
             confirmaPatriarca = matriaca;
         } else {
-//            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
             confirmaPatriarca = matriaca;
 
         }
@@ -85,7 +83,7 @@ public class FamiliarService implements UsuarioPadraoImpl {
 
             System.out.println(MensagemEnum.ULTIMO_NOME.getDescricao() + i);
             String ultimoNome = leia.next();
-            nomeDoMeioArmazenadoFilho = ultimoNome;
+            sobrenomeArmazenadoFilho = ultimoNome;
 
             verificaQuantidadeDigitadoCPF(cpfDigitado);
             repository.persistiCadastroFilho();

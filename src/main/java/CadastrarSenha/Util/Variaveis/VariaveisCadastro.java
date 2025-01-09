@@ -19,4 +19,5 @@ public class VariaveisCadastro {
 
     public static String cpfDigitado;
     public static String numeroCelular;
+
 }

@@ -1,5 +1,6 @@
 package CadastrarSenha.Repository;
 
+import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Jdbc.EnviaToken;
 
 import java.sql.SQLException;
@@ -26,7 +27,6 @@ public class ConfereChaveToken {
             }
 
             valorGuardado = valorDigitado;
-            System.out.println(" TOKEN VALIDO GUARDADO");
 
             leia.close();
         return valorGuardado;

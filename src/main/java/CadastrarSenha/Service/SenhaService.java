@@ -7,7 +7,6 @@ public class SenhaService{
 
    public static String senhaSegura = "";
 
-
     public String cadastroSenha(String digiteSenha) {
         System.out.println(MensagemSenhaEnum.CADASTRE_SENHA.getDescricao());
         Scanner leia = new Scanner(System.in);
@@ -18,9 +17,8 @@ public class SenhaService{
                 System.out.println(MensagemSenhaEnum.ERRO_SENHA.getDescricao());
                 senha = leia.nextLine();
         }
-        System.out.println("Senha armezenada");
+        System.out.println(MensagemSenhaEnum.SENHA_CADASTRADA.getDescricao());
 
         return senhaSegura;
     }
-
 }
