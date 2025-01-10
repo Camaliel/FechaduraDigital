@@ -14,7 +14,7 @@ import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarc
 
 public class ArmazenaInformacaoPessoaRepository {
     Conexao DAO = new Conexao();
-    ConfereChaveToken token = new ConfereChaveToken();
+    ConfereChaveTokenRepository token = new ConfereChaveTokenRepository();
     VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
 
     public void fimDoPrograma(int valorDigitado) {

@@ -3,6 +3,7 @@ package CadastrarSenha.Processor;
 import CadastrarSenha.BootTelegramApi.TelaBot;
 import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Repository.Login.ConsultasRepository;
+import CadastrarSenha.Repository.Login.LoginRepository;
 import CadastrarSenha.View.Menu;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -15,6 +16,7 @@ public class MenuProcessor {
 
     TelaBot bot = new TelaBot();
     ConsultasRepository consultaRepository = new ConsultasRepository();
+    LoginRepository loginRepository = new LoginRepository();
     Scanner leia = new Scanner(System.in);
 
     public int valorRecebidoDigitado;
@@ -26,8 +28,8 @@ public class MenuProcessor {
     public void menuPrincipal() throws Throwable {
         Menu menu = new Menu();
         System.out.println("Escolha uma opção");
-        bot.ligarApi(); // TODO QUEBRADO NÃO FECHA
-        System.out.println("1-Cadastrar | 2-Login");
+        bot.ligarApi();
+        System.out.println("1-Cadastrar | 2-Login [Perdi a senha] | 3-Login Direto");
         int valorOpcao = leia.nextInt();
 
         valorRecebidoDigitado = valorOpcao;
@@ -38,6 +40,9 @@ public class MenuProcessor {
                 break;
             case 2:
                 consultaRepository.pesquisaNaListaDeUsuarios();
+                break;
+            case 3:
+                loginRepository.acessoLogin();
                 break;
             default:
                 menuValorInvalido();

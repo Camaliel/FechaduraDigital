@@ -20,13 +20,13 @@ import static org.mockito.Mockito.when;
 public class ConfereGeradorDeChaveTokenServiceTest {
 
     @InjectMocks
-    ConfereChaveToken confereChaveToken;
+    ConfereChaveTokenRepository confereChaveTokenRepository;
 
     @Mock
     EnviaToken enviaToken;
 
     @Mock
-    IncluiToken incluiToken;
+    IncluiTokenRepository incluiTokenRepository;
 
 
 //    private IncluiToken incluiToken;
@@ -38,11 +38,11 @@ public class ConfereGeradorDeChaveTokenServiceTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
-        confereChaveToken = new ConfereChaveToken();
+        confereChaveTokenRepository = new ConfereChaveTokenRepository();
         // Aqui você deve injetar mocks nas dependências, dependendo de como a classe é estruturada
-        confereChaveToken.token = enviaToken;
+        confereChaveTokenRepository.token = enviaToken;
 //        confereChaveToken.incluiToken = incluiToken;
-        incluiToken.incluiTokenAdministracao();
+        incluiTokenRepository.incluiTokenAdministracao();
     }
 
     @Test
@@ -55,7 +55,7 @@ public class ConfereGeradorDeChaveTokenServiceTest {
         System.setIn(new java.io.ByteArrayInputStream(saida.getBytes()));
 
         // Chama metodo testado
-        String resultado = confereChaveToken.validaChaveToken();
+        String resultado = confereChaveTokenRepository.validaChaveToken();
 
         Assert.assertEquals("000000",resultado);
     }
@@ -65,7 +65,7 @@ public class ConfereGeradorDeChaveTokenServiceTest {
         String saida = "0000\n0000\n0000"; // TODO investigar porque tem dois valores
         System.setIn(new java.io.ByteArrayInputStream(saida.getBytes()));
 
-        String resultado = confereChaveToken.validaChaveToken();
+        String resultado = confereChaveTokenRepository.validaChaveToken();
 
         Assert.assertNotEquals("teste",resultado);
     }

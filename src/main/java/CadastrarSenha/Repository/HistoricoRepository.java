@@ -10,7 +10,7 @@ import java.util.Date;
 public class HistoricoRepository {
     Conexao DAO = new Conexao();
     Date data = new Date();
-    IncluiToken token = new IncluiToken();
+    IncluiTokenRepository token = new IncluiTokenRepository();
     SimpleDateFormat dataAtual = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat horaAtual = new SimpleDateFormat("HH:mm:ss");
 

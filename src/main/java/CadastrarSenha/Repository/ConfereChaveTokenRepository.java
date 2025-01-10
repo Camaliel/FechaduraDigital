@@ -12,15 +12,15 @@ import java.util.List;
 import java.util.Scanner;
 
 //TODO ANALISAR PARA APAGAR A CLASSE !!! [LEMBRETE]
-public class ConfereChaveToken {
+public class ConfereChaveTokenRepository {
 
-    IncluiToken incluiToken = new IncluiToken();
+    IncluiTokenRepository incluiTokenRepository = new IncluiTokenRepository();
 
     public String validaChaveToken() throws SQLException, ClassNotFoundException {
         String valorGuardado = "";
 
         Scanner leia = new Scanner(System.in);
-        System.out.println("token => " + incluiToken.incluiTokenAdministracao());
+        System.out.println("token => " + incluiTokenRepository.incluiTokenAdministracao());
         System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
         String valorDigitado = leia.nextLine();
             while (!consultaQueryAdministracao().equals(valorDigitado)) {

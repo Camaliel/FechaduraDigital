@@ -1,7 +1,7 @@
 package CadastrarSenha.BootTelegramApi;
 
 import CadastrarSenha.Enum.RespostaApiEnum;
-import CadastrarSenha.Repository.IncluiToken;
+import CadastrarSenha.Repository.IncluiTokenRepository;
 import CadastrarSenha.Service.AcessoHistoricoService;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 
 public class Respostas {
-    IncluiToken incluiToken = new IncluiToken();
+    IncluiTokenRepository incluiTokenRepository = new IncluiTokenRepository();
     AcessoHistoricoService acessoHistoricoService = new AcessoHistoricoService();
 
     public SendMessage enviaMensagem(Update update) throws SQLException, ClassNotFoundException {
@@ -25,9 +25,9 @@ public class Respostas {
                     resposta = RespostaApiEnum.SOPHIA.getDescricao();
                     // PEGA VALOR SALVO
                 } else if (textoMensagem.getText().startsWith("Token")) {
-                    resposta = incluiToken.incluiTokenAdministracao();
+                    resposta = incluiTokenRepository.incluiTokenAdministracao();
                 } else if (textoMensagem.getText().startsWith("token")) {
-                    resposta = incluiToken.incluiTokenAdministracao();
+                    resposta = incluiTokenRepository.incluiTokenAdministracao();
                 } else if (textoMensagem.getText().equalsIgnoreCase("historico anterior")) {
                     resposta = String.valueOf(acessoHistoricoService.historicoMesAnterior());
                 }else if (textoMensagem.getText().equalsIgnoreCase("historico hoje")) {
