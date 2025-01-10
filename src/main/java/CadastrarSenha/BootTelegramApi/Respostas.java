@@ -1,10 +1,8 @@
 package CadastrarSenha.BootTelegramApi;
 
 import CadastrarSenha.Enum.RespostaApiEnum;
-import CadastrarSenha.Repository.ConfereChaveToken;
 import CadastrarSenha.Repository.IncluiToken;
 import CadastrarSenha.Service.AcessoHistoricoService;
-import CadastrarSenha.Service.ChaveTokenService;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -25,15 +23,17 @@ public class Respostas {
                     resposta = RespostaApiEnum.TESTE.getDescricao();
                 } else if (textoMensagem.getText().startsWith("Sophia")) {
                     resposta = RespostaApiEnum.SOPHIA.getDescricao();
-                } else if (textoMensagem.getText().startsWith("Sophia")) {
-                    resposta = RespostaApiEnum.SOPHIA.getDescricao();
                     // PEGA VALOR SALVO
                 } else if (textoMensagem.getText().startsWith("Token")) {
-                    resposta = incluiToken.incluiToken();
+                    resposta = incluiToken.incluiTokenAdministracao();
+                } else if (textoMensagem.getText().startsWith("token")) {
+                    resposta = incluiToken.incluiTokenAdministracao();
                 } else if (textoMensagem.getText().equalsIgnoreCase("historico anterior")) {
                     resposta = String.valueOf(acessoHistoricoService.historicoMesAnterior());
                 }else if (textoMensagem.getText().equalsIgnoreCase("historico hoje")) {
                         resposta = String.valueOf(acessoHistoricoService.historicoHoje());
+                }else if (textoMensagem.getText().equalsIgnoreCase("menu")) {
+                    resposta = String.valueOf(acessoHistoricoService.menuCelular());
                 } else if (textoMensagem.getText().startsWith("teste")) {
                     resposta = RespostaApiEnum.TESTE_BOT.getDescricao();
                 } else if (textoMensagem.getText().startsWith("Estudando muito?")) {

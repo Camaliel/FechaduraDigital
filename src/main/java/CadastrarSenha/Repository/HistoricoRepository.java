@@ -2,18 +2,15 @@ package CadastrarSenha.Repository;
 
 import CadastrarSenha.Util.Variaveis.VariaveisHistorico;
 import CadastrarSenha.Jdbc.DAO.Conexao;
-import CadastrarSenha.Jdbc.EnviaToken;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.*;
-
 public class HistoricoRepository {
     Conexao DAO = new Conexao();
     Date data = new Date();
-    EnviaToken token = new EnviaToken();
+    IncluiToken token = new IncluiToken();
     SimpleDateFormat dataAtual = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat horaAtual = new SimpleDateFormat("HH:mm:ss");
 

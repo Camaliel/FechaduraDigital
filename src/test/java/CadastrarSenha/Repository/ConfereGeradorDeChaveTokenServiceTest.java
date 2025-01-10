@@ -1,6 +1,5 @@
 package CadastrarSenha.Repository;
 
-import CadastrarSenha.Jdbc.EnviaToken;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +17,7 @@ import java.sql.SQLException;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ConfereChaveTokenServiceTest {
+public class ConfereGeradorDeChaveTokenServiceTest {
 
     @InjectMocks
     ConfereChaveToken confereChaveToken;
@@ -43,7 +42,7 @@ public class ConfereChaveTokenServiceTest {
         // Aqui você deve injetar mocks nas dependências, dependendo de como a classe é estruturada
         confereChaveToken.token = enviaToken;
 //        confereChaveToken.incluiToken = incluiToken;
-        incluiToken.incluiToken();
+        incluiToken.incluiTokenAdministracao();
     }
 
     @Test
