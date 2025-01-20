@@ -5,9 +5,7 @@ import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.Repository.Login.ConsultasRepository;
 import CadastrarSenha.Repository.Login.LoginRepository;
 import CadastrarSenha.View.Menu;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import static CadastrarSenha.View.Menu.valor;
@@ -71,4 +69,3 @@ public class MenuProcessor {
         teste.menuPrincipal();
     }
 }
-
