@@ -1,0 +1,58 @@
+CREATE DATABASE moradores-teste;
+CREATE DATABASE administrador-teste;
+
+CREATE TABLE cadastro-teste (
+  nome VARCHAR(80) NOT NULL,
+  nome_do_meio VARCHAR(80),
+  ultimo_nome VARCHAR(80),
+  chefe_familia VARCHAR(3),
+  parentesco VARCHAR(10),
+  cpf VARCHAR(12) primary key,
+  tel INT,
+  senha INT
+);
+
+CREATE TABLE moradores.tokens-teste (
+ parentesco varchar(10),
+ token VARCHAR(6) primary key,
+ chefe_familia VARCHAR(3),
+ nome varchar(15)
+ };
+
+CREATE TABLE administrador.tokens-teste (
+ id INT
+ parentesco varchar(10),
+ token VARCHAR(6) primary key,
+ chefe_familia VARCHAR(3),
+ nome varchar(15)
+);
+
+CREATE TABLE moradores.tbl_consultas-teste (
+ nome VARCHAR(50),
+ nome_do_meio VARCHAR(50),
+ ultimo_nome VARCHAR(50),
+ token VARCHAR(6) PRIMARY KEY,
+ CONSTRAINT fk_token FOREIGN KEY (token) REFERENCES tokens (token)
+);
+
+CREATE TABLE cadastro-teste (
+ nome VARCHAR(80) NOT NULL,
+ nome_do_meio VARCHAR(80),
+ ultimo_nome VARCHAR(80),
+ chefe_familia VARCHAR(3),
+ parentesco VARCHAR(10),
+ cpf VARCHAR(12) primary key,
+ tel INT,
+ senha INT
+ );
+
+CREATE TABLE moradores.historico-teste (
+ token varchar(6) primary key,
+ nome varchar(50),
+ nome_do_meio varchar(50),
+ ultimo_nome varchar(50),
+ data varchar(10),
+ hora varchar(10),
+ parentesco varchar(10),
+ status varchar(10),
+ );
