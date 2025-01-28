@@ -11,21 +11,21 @@ public class CriacaoDeBancosDAO {
     public void bancoMoradores() throws ClassNotFoundException, SQLException {
         try {
             Connection connection = CriarConexao.getConnetion();
-            String sql = "CREATE DATABASE moradores";
+            String sql = "CREATE DATABASE moradores;";
 
             Statement statement = connection.createStatement();
             statement.execute(sql);
 
-            System.out.println("Banco de dados criado com SUCESSO");
+            System.out.println("Banco de dados [ADMINISTRADOR] criado com SUCESSO");
 
         } catch (SQLException e) {
-            System.out.println("Banco de dados já CONSTA no cadastro");
+            System.out.println("Banco de dados [ADMINISTRADOR] já CONSTA no cadastro");
         }
     }
     public void criarTabelaTokens() throws ClassNotFoundException, SQLException {
         try {
             Connection connection = CriarConexao.getConnetion();
-            String sql = "CREATE DATABASE Tokens";
+            String sql = "CREATE DATABASE moradores.Tokens";
 
             Statement statement = connection.createStatement();
             statement.execute(sql);
@@ -57,7 +57,7 @@ public class CriacaoDeBancosDAO {
             Connection conexao = CriarConexao.getConnetion();
             String sql = " CREATE TABLE moradores.tokens (" +
                     "  parentesco varchar(10)," +
-                    "  token VARCHAR(6) primary key," +
+                    "  token VARCHAR(6) NOT NULL primary key," +
                     "  chefe_familia VARCHAR(3)," +
                     "  nome varchar(15)" +
                     ");";
@@ -75,13 +75,13 @@ public class CriacaoDeBancosDAO {
     public void tabelaAdministradorTokens() throws SQLException {
         try {
             Connection conexao = CriarConexao.getConnetion();
-            String sql = " CREATE TABLE administrador.tokens (" +
-                    " id INT " +
-                    "  parentesco varchar(10)," +
-                    "  token VARCHAR(6) primary key," +
-                    "  chefe_familia VARCHAR(3)," +
-                    "  nome varchar(15)" +
-                    ");";
+            String sql = " CREATE TABLE administrador.tokens (\n" +
+                    " id INT,\n" +
+                    " parentesco varchar(10),\n" +
+                    " token VARCHAR(6) primary key,\n" +
+                    " chefe_familia VARCHAR(3),\n" +
+                    " nome varchar(15)\n" +
+                    " );";
 
             Statement stmt = conexao.createStatement();
             stmt.execute(sql);
@@ -95,13 +95,13 @@ public class CriacaoDeBancosDAO {
     public void tbl_consulta() throws SQLException {
         try {
             Connection conexao = CriarConexao.getConnetion();
-            String sql ="CREATE TABLE moradores.tbl_consultas ( "+
-                    "    nome VARCHAR(50)," +
-                    "    nome_do_meio VARCHAR(50)," +
-                    "    ultimo_nome VARCHAR(50)," +
-                    "    token VARCHAR(6) PRIMARY KEY," +
-                    "    CONSTRAINT fk_token FOREIGN KEY (token) REFERENCES tokens (token) "+
-                    ")";
+            String sql = "CREATE TABLE moradores.tbl_consultas (\n" +
+                    " nome VARCHAR(50),\n" +
+                    " nome_do_meio VARCHAR(50),\n" +
+                    " ultimo_nome VARCHAR(50),\n" +
+                    " token VARCHAR(6) PRIMARY KEY,\n" +
+                    " CONSTRAINT fk_token FOREIGN KEY (token) REFERENCES moradores_teste.tokens_teste (token)\n" +
+                    " );";
 
             Statement stmt = conexao.createStatement();
             stmt.execute(sql);
@@ -116,7 +116,7 @@ public class CriacaoDeBancosDAO {
     public void tabelaCadastro() throws ClassNotFoundException, SQLException {
         Connection conexao = CriarConexao.getConnetion();
         try {
-        String sql = " CREATE TABLE cadastro (" +
+        String sql = " CREATE TABLE moradores.cadastro (" +
                 "nome VARCHAR(80) NOT NULL," +
                 "nome_do_meio VARCHAR(80)," +
                 "ultimo_nome VARCHAR(80)," +
@@ -139,16 +139,16 @@ public class CriacaoDeBancosDAO {
     public void tabelaHistorico() throws ClassNotFoundException, SQLException {
         Connection conexao = CriarConexao.getConnetion();
         try {
-            String sql = "CREATE TABLE moradores.historico (" +
-                    "     token varchar(6) primary key ," +
-                    "     nome varchar(50)," +
-                    "     nome_do_meio varchar(50)," +
-                    "     ultimo_nome varchar(50)," +
-                    "     data varchar(10)," +
-                    "     hora varchar(10)," +
-                    "     parentesco varchar(10)," +
-                    "     status varchar(10)," +
-                    ");";
+            String sql = "CREATE TABLE moradores.historico (\n" +
+                    " token varchar(6) primary key ,\n" +
+                    " nome varchar(50),\n" +
+                    " nome_do_meio varchar(50),\n" +
+                    " ultimo_nome varchar(50),\n" +
+                    " data varchar(10),\n" +
+                    " hora varchar(10),\n" +
+                    " parentesco varchar(10),\n" +
+                    " status varchar(10)\n" +
+                    " );";
 
             Statement statement = conexao.createStatement();
             statement.execute(sql);
@@ -164,11 +164,12 @@ public class CriacaoDeBancosDAO {
     * */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         CriacaoDeBancosDAO criacaoDeBancosDAO = new CriacaoDeBancosDAO();
-        criacaoDeBancosDAO.tabelaCadastro();
-        criacaoDeBancosDAO.tbl_consulta();
-        criacaoDeBancosDAO.tabelaHistorico();
+        criacaoDeBancosDAO.bancoMoradores();
         criacaoDeBancosDAO.bancoAdministrador();
+        criacaoDeBancosDAO.tabelaCadastro();
+        criacaoDeBancosDAO.tabelaHistorico();
         criacaoDeBancosDAO.tabelaMoradoresTokens();
         criacaoDeBancosDAO.tabelaAdministradorTokens();
+        criacaoDeBancosDAO.tbl_consulta();
     }
 }
