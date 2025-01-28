@@ -6,12 +6,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CriacaoDeBancosDAO {
+public class CriacaoDeBancosTesteDAO {
 
-    public void bancoMoradores() throws ClassNotFoundException, SQLException {
+    public void bancoMoradoresTeste() throws ClassNotFoundException, SQLException {
         try {
             Connection connection = CriarConexao.getConnetion();
-            String sql = "CREATE DATABASE moradores";
+            String sql = "CREATE DATABASE moradores-teste";
 
             Statement statement = connection.createStatement();
             statement.execute(sql);
@@ -22,10 +22,10 @@ public class CriacaoDeBancosDAO {
             System.out.println("Banco de dados já CONSTA no cadastro");
         }
     }
-    public void criarTabelaTokens() throws ClassNotFoundException, SQLException {
+    public void criarTabelaTokensTeste() throws ClassNotFoundException, SQLException {
         try {
             Connection connection = CriarConexao.getConnetion();
-            String sql = "CREATE DATABASE Tokens";
+            String sql = "CREATE DATABASE Tokens-teste";
 
             Statement statement = connection.createStatement();
             statement.execute(sql);
@@ -36,10 +36,10 @@ public class CriacaoDeBancosDAO {
             System.out.println("Banco de dados já CONSTA no cadastro");
         }
     }
-    public void bancoAdministrador() throws ClassNotFoundException, SQLException {
+    public void bancoAdministradorTeste() throws ClassNotFoundException, SQLException {
         try {
             Connection connection = CriarConexao.getConnetion();
-            String sql = "CREATE DATABASE administrador";
+            String sql = "CREATE DATABASE administrador-teste";
 
             Statement statement = connection.createStatement();
             statement.execute(sql);
@@ -52,10 +52,10 @@ public class CriacaoDeBancosDAO {
     }
 
 
-    public void tabelaMoradoresTokens() throws SQLException {
+    public void tabelaMoradoresTokensTeste() throws SQLException {
         try {
             Connection conexao = CriarConexao.getConnetion();
-            String sql = " CREATE TABLE moradores.tokens (" +
+            String sql = " CREATE TABLE moradores.tokens-teste (" +
                     "  parentesco varchar(10)," +
                     "  token VARCHAR(6) primary key," +
                     "  chefe_familia VARCHAR(3)," +
@@ -72,10 +72,10 @@ public class CriacaoDeBancosDAO {
         }
     }
 
-    public void tabelaAdministradorTokens() throws SQLException {
+    public void tabelaAdministradorTokensTeste() throws SQLException {
         try {
             Connection conexao = CriarConexao.getConnetion();
-            String sql = " CREATE TABLE administrador.tokens (" +
+            String sql = " CREATE TABLE administrador.tokens-teste (" +
                     " id INT " +
                     "  parentesco varchar(10)," +
                     "  token VARCHAR(6) primary key," +
@@ -92,10 +92,10 @@ public class CriacaoDeBancosDAO {
             System.out.println("Erro ao criar tabela [TOKENS-ADM]");
         }
     }
-    public void tbl_consulta() throws SQLException {
+    public void tbl_consultaTeste() throws SQLException {
         try {
             Connection conexao = CriarConexao.getConnetion();
-            String sql ="CREATE TABLE moradores.tbl_consultas ( "+
+            String sql ="CREATE TABLE moradores.tbl_consultas-teste ( "+
                     "    nome VARCHAR(50)," +
                     "    nome_do_meio VARCHAR(50)," +
                     "    ultimo_nome VARCHAR(50)," +
@@ -113,10 +113,10 @@ public class CriacaoDeBancosDAO {
         }
     }
 
-    public void tabelaCadastro() throws ClassNotFoundException, SQLException {
+    public void tabelaCadastroTeste() throws ClassNotFoundException, SQLException {
         Connection conexao = CriarConexao.getConnetion();
         try {
-        String sql = " CREATE TABLE cadastro (" +
+        String sql = " CREATE TABLE cadastro-teste (" +
                 "nome VARCHAR(80) NOT NULL," +
                 "nome_do_meio VARCHAR(80)," +
                 "ultimo_nome VARCHAR(80)," +
@@ -136,10 +136,10 @@ public class CriacaoDeBancosDAO {
         }
     }
 
-    public void tabelaHistorico() throws ClassNotFoundException, SQLException {
+    public void tabelaHistoricoTeste() throws ClassNotFoundException, SQLException {
         Connection conexao = CriarConexao.getConnetion();
         try {
-            String sql = "CREATE TABLE moradores.historico (" +
+            String sql = "CREATE TABLE moradores.historico-teste (" +
                     "     token varchar(6) primary key ," +
                     "     nome varchar(50)," +
                     "     nome_do_meio varchar(50)," +
@@ -163,12 +163,12 @@ public class CriacaoDeBancosDAO {
     * AUTOMAÇÃO DAS CRIAÇÕES DE TABELAS ... PODE SER MELHORADO COM O PROPERTIES
     * */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        CriacaoDeBancosDAO criacaoDeBancosDAO = new CriacaoDeBancosDAO();
-        criacaoDeBancosDAO.tabelaCadastro();
-        criacaoDeBancosDAO.tbl_consulta();
-        criacaoDeBancosDAO.tabelaHistorico();
-        criacaoDeBancosDAO.bancoAdministrador();
-        criacaoDeBancosDAO.tabelaMoradoresTokens();
-        criacaoDeBancosDAO.tabelaAdministradorTokens();
+        CriacaoDeBancosTesteDAO criacaoDeBancosDAO = new CriacaoDeBancosTesteDAO();
+        criacaoDeBancosDAO.tabelaCadastroTeste();
+        criacaoDeBancosDAO.tbl_consultaTeste();
+        criacaoDeBancosDAO.tabelaHistoricoTeste();
+        criacaoDeBancosDAO.bancoAdministradorTeste();
+        criacaoDeBancosDAO.tabelaMoradoresTokensTeste();
+        criacaoDeBancosDAO.tabelaAdministradorTokensTeste();
     }
 }
