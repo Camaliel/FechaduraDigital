@@ -15,7 +15,7 @@ Para esses casos nâo sera utilizada reconhecimeno facial apenas senha pelo tecl
 
 * Cadastro de senhaService *
 
-![img.png](Diagramas/img.png)
+![img.png](diagramas/img.png)
 
 #### Ao escolher a opção de cadastrar a senhaService entra na opção de familiarService entrando no menu com 4 opções
 ```
