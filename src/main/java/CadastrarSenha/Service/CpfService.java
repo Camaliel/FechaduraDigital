@@ -13,56 +13,43 @@ import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.numeroCelular;
 
 public class CpfService implements UsuarioPadraoImpl {
 
-    Scanner leia = new Scanner(System.in);
-    Scanner lerCpf = new Scanner(System.in);
     NumeroCelularService celularService = new NumeroCelularService();
     SenhaService senhaService = new SenhaService();
-    CpfService cpfService = new CpfService();
-    CpfController cpf = new CpfController(cpfService, System.in);
 
+    CpfController cpf = new CpfController(this,System.in);
 
     /*
      * Logica para verificar a quantidade de numeros digitados do CPF
      * */
 
     public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
-        System.out.println(MensagemEnum.CPF.getDescricao());
+        String teste = "cpf.solicitarCpf()";
 
-
-        while (cpf.solicitarCpf().length() != 11) {
-                System.out.println(CodigoErroExitCode.COD_3.getDescricao());
-                cpf.solicitarCpf();
-        }
-        if (cpf.solicitarCpf().length() == 11) {
-           cpf.solicitarCpf();
-
-        }
         confirmaCPFDigitado();
         adicionaNumero(numeroCelular);
         cadastroSenha(senhaSegura);
 
-        return cpfDigitado;
+        return teste;
     }
 
     public String confirmaCPFDigitado() {
+        Scanner leia = new Scanner(System.in);
+        String confirmaCpf = leia.nextLine();
+        cpfDigitado = cpf.solicitarCpf();
 
         String validadorConfirmacao = "";
-        System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + cpfDigitado+ " ]\n" + "S/N");
-
-        String confirmaCpf = leia.nextLine();
-        validadorConfirmacao = confirmaCpf;
+        System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + cpfDigitado + " ]\n" + "S/N");
+        confirmaCpf = leia.nextLine();
 
         while (confirmaCpf.contains("n") || confirmaCpf.contains("N")) {
             System.out.println("Digite novamente o numero do CPF n°");
 
-            String cpf = leia.nextLine();
-            cpfDigitado = cpf;
 
             System.out.println("CONFIMA O CPF CADASTRADO?" + "[ " + cpfDigitado+ " ]\n" + "S/N");
             confirmaCpf = leia.next();
 
             if (confirmaCpf.contains("s") || confirmaCpf.contains("S")) {
-                cpfDigitado = cpf;
+                cpf.solicitarCpf();
             }
         }
         System.out.println("CPF " + cpfDigitado + " cadastrado com sucesso!");

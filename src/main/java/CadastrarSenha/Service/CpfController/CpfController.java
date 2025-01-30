@@ -1,5 +1,6 @@
 package CadastrarSenha.Service.CpfController;
 
+import CadastrarSenha.ExitCode.CodigoErroExitCode;
 import CadastrarSenha.Service.CpfService;
 
 import java.io.InputStream;
@@ -11,8 +12,6 @@ public class CpfController {
     private final CpfService cpfService;
     private final Scanner scanner;
 
-
-
     // Construtor recebe Scanner para facilitar testes
     public CpfController(CpfService cpfService, InputStream inputStream) {
         this.cpfService = cpfService;
@@ -22,14 +21,20 @@ public class CpfController {
     public String solicitarCpf() {
         System.out.println("Digite seu CPF:");
         String cpfDigitadoPeloUsuario = scanner.nextLine();
+        System.out.print("PRESS ENTER");
 
-        try {
-            String cpfValidado = cpfService.verificaQuantidadeDigitadoCPF(cpfDigitadoPeloUsuario);
-            cpfDigitado = cpfValidado;
-            System.out.println("CPF válido: " + cpfValidado);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        while (cpfDigitadoPeloUsuario.length() < 11) {
+            System.out.println(CodigoErroExitCode.COD_3.getDescricao());
+            if (!scanner.hasNextLine()) {  // Se não houver mais entrada, encerra
+                break;
+            }
+
+            try {
+                System.out.println("CPF válido: " + cpfDigitadoPeloUsuario);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return cpfDigitado;
+        return cpfDigitadoPeloUsuario;
     }
 }
