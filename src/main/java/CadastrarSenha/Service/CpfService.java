@@ -2,6 +2,7 @@ package CadastrarSenha.Service;
 
 import CadastrarSenha.Enum.MensagemEnum;
 import CadastrarSenha.ExitCode.CodigoErroExitCode;
+import CadastrarSenha.Service.CpfController.CpfController;
 import CadastrarSenha.Service.Interface.UsuarioPadraoImpl;
 import java.util.Scanner;
 
@@ -16,6 +17,9 @@ public class CpfService implements UsuarioPadraoImpl {
     Scanner lerCpf = new Scanner(System.in);
     NumeroCelularService celularService = new NumeroCelularService();
     SenhaService senhaService = new SenhaService();
+    CpfService cpfService = new CpfService();
+    CpfController cpf = new CpfController(cpfService, System.in);
+
 
     /*
      * Logica para verificar a quantidade de numeros digitados do CPF
@@ -23,15 +27,14 @@ public class CpfService implements UsuarioPadraoImpl {
 
     public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
         System.out.println(MensagemEnum.CPF.getDescricao());
-        String cpf = lerCpf.nextLine();
 
-        while (cpf.length() != 11) {
+
+        while (cpf.solicitarCpf().length() != 11) {
                 System.out.println(CodigoErroExitCode.COD_3.getDescricao());
-                cpf = lerCpf.nextLine();
-                cpfDigitado = cpf;
+                cpf.solicitarCpf();
         }
-        if (cpf.length() == 11) {
-            cpfDigitado = cpf;
+        if (cpf.solicitarCpf().length() == 11) {
+           cpf.solicitarCpf();
 
         }
         confirmaCPFDigitado();
