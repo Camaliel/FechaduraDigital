@@ -1,25 +1,48 @@
 package CadastrarSenha.Service;
 
 import CadastrarSenha.Service.CpfController.CpfController;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
 import java.io.ByteArrayInputStream;
-import static org.mockito.Mockito.*;
+import java.io.InputStream;
 
-class CpfControllerTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    @Test
-    void deveLerCpfCorretamente() {
-        String cpfSimulado = "12345678900\n"; // Simula a digitação do CPF seguido de "Enter"
-        ByteArrayInputStream inputSimulado = new ByteArrayInputStream(cpfSimulado.getBytes());
+    class CpfControllerTest {
+        private CpfController cpfController;
+        private CpfService cpfServiceMock;
 
-        CpfService cpfServiceMock = mock(CpfService.class);
-        when(cpfServiceMock.verificaQuantidadeDigitadoCPF("12345678900")).thenReturn("12345678900");
+        @BeforeEach
+        void setUp() {
+            cpfServiceMock = Mockito.mock(CpfService.class);
+        }
 
-        CpfController controller = new CpfController(cpfServiceMock, inputSimulado);
-        controller.solicitarCpf(); // Executa sem precisar digitar manualmente
+        @Test
+        void testSolicitarCpf_ComCpfValido() {
+            // Simula a entrada de um CPF válido (11 dígitos)
+            String input = "12345678901\n";
+            InputStream inputStream = new ByteArrayInputStream(input.getBytes());
 
-        verify(cpfServiceMock).verificaQuantidadeDigitadoCPF("12345678900");
+            cpfController = new CpfController(cpfServiceMock, inputStream);
+            String resultado = cpfController.solicitarCpf();
+
+            assertEquals("12345678901", resultado);
+        }
+
+        @Test
+        void testSolicitarCpf_ComEntradaVazia() {
+            // Simula o usuário pressionando ENTER sem digitar nada
+            String input = "\n";
+            InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+
+            cpfController = new CpfController(cpfServiceMock, inputStream);
+            String resultado = cpfController.solicitarCpf();
+
+            // Deve retornar uma string vazia, pois não há CPF válido
+            assertEquals("", resultado);
+            System.setIn(System.in);
+
+        }
     }
-}
-
-

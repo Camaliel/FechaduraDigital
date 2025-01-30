@@ -23,16 +23,15 @@ public class CpfService implements UsuarioPadraoImpl {
      * */
 
     public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
-        String teste = "cpf.solicitarCpf()";
 
-        confirmaCPFDigitado();
+        String cpfConfirmado = confirmaCPFDigitado(cpfDigitado);
         adicionaNumero(numeroCelular);
         cadastroSenha(senhaSegura);
 
-        return teste;
+        return cpfConfirmado;
     }
 
-    public String confirmaCPFDigitado() {
+    public String confirmaCPFDigitado(String digiteSeuCpf) {
         Scanner leia = new Scanner(System.in);
         String confirmaCpf = leia.nextLine();
         cpfDigitado = cpf.solicitarCpf();

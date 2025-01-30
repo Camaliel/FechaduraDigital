@@ -6,8 +6,6 @@ import CadastrarSenha.Service.CpfService;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.cpfDigitado;
-
 public class CpfController {
     private final CpfService cpfService;
     private final Scanner scanner;
