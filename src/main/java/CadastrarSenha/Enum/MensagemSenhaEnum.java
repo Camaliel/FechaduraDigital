@@ -6,7 +6,6 @@ public enum MensagemSenhaEnum {
     ERRO_SENHA("Erro, escolha uma senha com pelo menos 6 digitos");
     String descricao;
 
-
     MensagemSenhaEnum(String descricao) {
         this.descricao = descricao;
     }

@@ -50,7 +50,7 @@ public class MenuProcessor {
         fimDoPrograma();
     }
 
-    public void menuValorInvalido() throws Throwable {
+    private void menuValorInvalido() throws Throwable {
         MenuProcessor menuProcessor = new MenuProcessor();
         while (valorRecebidoDigitado > 2) {
             System.out.println(MensagemEnum.ADICIONE_OPCAO_VALIDA.getDescricao());;
