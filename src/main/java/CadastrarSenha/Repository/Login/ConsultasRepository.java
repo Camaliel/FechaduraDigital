@@ -41,7 +41,7 @@ public class ConsultasRepository {
             String sobrenome = rs.getString("nome_do_meio");
             String ultimoNome = rs.getString("ultimo_nome");
             String parentesco = rs.getString("parentesco");
-            String status = rs.getString("parentesco");
+            String status = rs.getString("status");
             String.valueOf(listaToken.add(codigo));
             String.valueOf(listaToken.add(sobrenome));
             String.valueOf(listaToken.add(ultimoNome));

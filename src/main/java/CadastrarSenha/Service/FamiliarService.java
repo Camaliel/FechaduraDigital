@@ -31,7 +31,7 @@ public class FamiliarService implements UsuarioPadraoImpl {
     public String patriarca(String pai) {
         System.out.println(MensagemPatriarcaEnum.PATRIARCA.getDescricao());
         String patriarca = leia.next();
-
+        System.out.print("PRESS ENTER");
         if (patriarca.contains("sim")) {
             confirmaPatriarca = patriarca;
 
@@ -40,13 +40,15 @@ public class FamiliarService implements UsuarioPadraoImpl {
 
         }
         verificaQuantidadeDigitadoCPF(cpfDigitado);
+        System.out.print("PRESS ENTER");
         return confirmaPatriarca;
     }
 
     public String matriarca(String mae) {
 
         System.out.println(MensagemPatriarcaEnum.MATRIARCA.getDescricao());
-        String matriaca = leia.nextLine();
+        String matriaca = leia.next();
+        System.out.print("PRESS ENTER");
         if (matriaca.contains("sim") || matriaca.contains("s")) {
             confirmaPatriarca = matriaca;
         } else {

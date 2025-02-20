@@ -20,14 +20,14 @@ public class IncluiTokenRepository {
 
 
         PreparedStatement stmnt = conexao.prepareStatement(incluiNumeroToken);
-        stmnt.setString(1, geradorDeChaveTokenService.getPegaRoleta());
+        stmnt.setString(1, tokenTela);
 
         stmnt.execute();
         conexao.close();
 
         return tokenTela;
     }
-    String tokenSalvo = "";
+
     GeradorDeChaveTokenService geradorDeChaveTokenService = new GeradorDeChaveTokenService();
 
 
@@ -39,10 +39,10 @@ public class IncluiTokenRepository {
 
 
     public String enviaToken() throws SQLException {
+        String tokenSalvo = "";
 
         Connection conexao = CriarConexao.getConnetion();
         String valorToken = "INSERT INTO tokens (token) VALUES(?)";
-
         PreparedStatement statement = conexao.prepareStatement(valorToken);
         statement.setString(1, (this.valorToken));
 

@@ -56,8 +56,9 @@ public class CriacaoDeBancosDAO {
         try {
             Connection conexao = CriarConexao.getConnetion();
             String sql = " CREATE TABLE moradores.tokens (" +
+                    " id INT AUTO_INCREMENT PRIMARY KEY, " +
                     "  parentesco varchar(10)," +
-                    "  token VARCHAR(6) NOT NULL primary key," +
+                    "  token VARCHAR(6) NOT NULL," +
                     "  chefe_familia VARCHAR(3)," +
                     "  nome varchar(15)" +
                     ");";
@@ -96,11 +97,11 @@ public class CriacaoDeBancosDAO {
         try {
             Connection conexao = CriarConexao.getConnetion();
             String sql = "CREATE TABLE moradores.tbl_consultas (\n" +
+                    " id INT AUTO_INCREMENT PRIMARY KEY, " +
                     " nome VARCHAR(50),\n" +
                     " nome_do_meio VARCHAR(50),\n" +
                     " ultimo_nome VARCHAR(50),\n" +
-                    " token VARCHAR(6) PRIMARY KEY,\n" +
-                    " CONSTRAINT fk_token FOREIGN KEY (token) REFERENCES moradores_teste.tokens_teste (token)\n" +
+                    " token VARCHAR(6)\n" +
                     " );";
 
             Statement stmt = conexao.createStatement();
@@ -117,12 +118,13 @@ public class CriacaoDeBancosDAO {
         Connection conexao = CriarConexao.getConnetion();
         try {
         String sql = " CREATE TABLE moradores.cadastro (" +
+                " id INT AUTO_INCREMENT PRIMARY KEY, " +
                 "nome VARCHAR(80) NOT NULL," +
                 "nome_do_meio VARCHAR(80)," +
                 "ultimo_nome VARCHAR(80)," +
                 "chefe_familia VARCHAR(3)," +
                 "parentesco VARCHAR(10)," +
-                "cpf VARCHAR(12) primary key," +
+                "cpf VARCHAR(12)," +
                 "tel INT," +
                 "senha INT" +
                 ")";
@@ -140,7 +142,8 @@ public class CriacaoDeBancosDAO {
         Connection conexao = CriarConexao.getConnetion();
         try {
             String sql = "CREATE TABLE moradores.historico (\n" +
-                    " token varchar(6) primary key ,\n" +
+                    " id INT AUTO_INCREMENT PRIMARY KEY, " +
+                    " token varchar(6),\n" +
                     " nome varchar(50),\n" +
                     " nome_do_meio varchar(50),\n" +
                     " ultimo_nome varchar(50),\n" +

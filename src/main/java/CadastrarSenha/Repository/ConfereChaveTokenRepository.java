@@ -1,6 +1,7 @@
 package CadastrarSenha.Repository;
 
 import CadastrarSenha.Jdbc.CriarConexao;
+import CadastrarSenha.Service.GeradorDeChaveTokenService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,27 +16,26 @@ import java.util.Scanner;
 public class ConfereChaveTokenRepository {
 
     IncluiTokenRepository incluiTokenRepository = new IncluiTokenRepository();
+    GeradorDeChaveTokenService geradorDeChaveTokenService = new GeradorDeChaveTokenService();
 
     public String validaChaveToken() throws SQLException, ClassNotFoundException {
         String valorGuardado = "";
 
         Scanner leia = new Scanner(System.in);
-        System.out.println("token => " + incluiTokenRepository.incluiTokenAdministracao());
+//        System.out.println("token => " + incluiTokenRepository.incluiTokenAdministracao());
         System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
         String valorDigitado = leia.nextLine();
-            while (!consultaQueryAdministracao().equals(valorDigitado)) {
+            while (!geradorDeChaveTokenService.getPegaToken().equals(valorDigitado)) {
                 System.out.println(" TOKEN InVALIDO");
-                System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
+                System.out.print("DIGITE OUTRO NUMERO TOKEN ==> ");
                 valorDigitado = leia.nextLine();
                 break;
             }
-
             valorGuardado = valorDigitado;
-
             leia.close();
         return valorGuardado;
-
     }
+
     public String consultaQueryAdministracao() throws SQLException, ClassNotFoundException {
 
         String numeroToken = "";

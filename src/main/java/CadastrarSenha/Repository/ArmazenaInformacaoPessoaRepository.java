@@ -38,7 +38,7 @@ public class ArmazenaInformacaoPessoaRepository {
     public void persistiCadastroOutros() throws SQLException, ClassNotFoundException {
         persistioutro();
     }
-
+    //TODO ARRUMADO, FALTA SOMENTE AJUSTAR OS OUTROS PARA QUE FIQUE DE FORMA UNIFORME E FALTA TOKEN NOS OUTROS...FALTA AJUSTAR O HISTORICO.. O ERRO ERA N
     private void persistiPai() throws SQLException, ClassNotFoundException {
         HistoricoEntity entity = new HistoricoEntity();
         HistoricoRepository repository = new HistoricoRepository();
@@ -51,16 +51,18 @@ public class ArmazenaInformacaoPessoaRepository {
         String cpf = cpfDigitado;
         String tel = numeroCelular;
         String senhaSegura = SenhaService.senhaSegura;
-        String token = this.token.validaChaveToken();
+        String numeroToken = token.validaChaveToken();
 
         String sql = "INSERT INTO moradores.cadastro (nome, nome_do_meio, ultimo_nome, chefe_familia, parentesco, cpf, tel, senha) VALUES (?,?,?,?,?,?,?,?)";
         String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
-        String sqlConsulta = "INSERT INTO moradores.tbl_consultas (nome, nome_do_meio, ultimo_nome, token) VALUES (?,?,?,?)";
+        String sqlToken = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
+        String sqlConsulta = "INSERT INTO moradores.tbl_consultas (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
 
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senhaSegura);
-        DAO.incluir(sqlNome, nome, parentesco, token, chefe_familia);
-        DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, token);
-        repository.enviaHistorico(parentesco, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
+        DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
+        DAO.incluir(sqlToken, nome, parentesco, numeroToken, chefe_familia);
+        DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
+        repository.enviaHistorico(numeroToken, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
 
         fimDoPrograma(0);
     }
@@ -87,7 +89,6 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
         repository.enviaHistorico(parentesco, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
 
-        // TOKEN, NOME, NOME_DO_MEIO, ULTIMO_NOME, DATA, HORA, PARENTESCO, STATUS
     }
 
     private void persistiFilho() throws SQLException, ClassNotFoundException {

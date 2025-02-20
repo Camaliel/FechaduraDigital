@@ -24,10 +24,8 @@ public class Respostas {
                 } else if (textoMensagem.getText().startsWith("Sophia")) {
                     resposta = RespostaApiEnum.SOPHIA.getDescricao();
                     // PEGA VALOR SALVO
-                } else if (textoMensagem.getText().startsWith("Token")) {
-                    resposta = incluiTokenRepository.incluiTokenAdministracao();
                 } else if (textoMensagem.getText().startsWith("token")) {
-                    resposta = incluiTokenRepository.incluiTokenAdministracao();
+                    resposta = incluiTokenRepository.enviaToken();
                 } else if (textoMensagem.getText().equalsIgnoreCase("historico anterior")) {
                     resposta = String.valueOf(acessoHistoricoService.historicoMesAnterior());
                 }else if (textoMensagem.getText().equalsIgnoreCase("historico hoje")) {

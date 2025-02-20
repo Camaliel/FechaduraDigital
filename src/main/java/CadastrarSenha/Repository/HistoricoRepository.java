@@ -20,9 +20,9 @@ public class HistoricoRepository {
         variaveisHistorico.setData(dataSistema);
         String horaSistema = horaAtual.format(this.data);
         variaveisHistorico.setHora(horaSistema);
-        String nome = "Vazio";
-        String nomeDoMeio = "Vazio";
-        String ultimoNome = "Vazio";
+        String nome = "Oculto";
+        String nomeDoMeio = "Oculto";
+        String ultimoNome = "Oculto";
         String token = this.token.enviaToken();
 
         // RECEBE DOIS PARAMETROS E ENVIA PARA O BANCO DEPENDENDO DO RESULTADO .. À ENTENDER ...
