@@ -7,6 +7,5 @@ public class Main {
     public static void main(String[] args) throws Throwable {
         MenuProcessor process = new MenuProcessor();
         process.menuPrincipal();
-
     }
 }

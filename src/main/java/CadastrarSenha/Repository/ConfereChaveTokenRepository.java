@@ -22,7 +22,7 @@ public class ConfereChaveTokenRepository {
         String valorGuardado = "";
 
         Scanner leia = new Scanner(System.in);
-//        System.out.println("token => " + incluiTokenRepository.incluiTokenAdministracao());
+        System.out.println("token => " + incluiTokenRepository.incluiTokenAdministracao());
         System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
         String valorDigitado = leia.nextLine();
             while (!geradorDeChaveTokenService.getPegaToken().equals(valorDigitado)) {
