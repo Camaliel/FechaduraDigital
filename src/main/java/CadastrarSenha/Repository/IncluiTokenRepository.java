@@ -42,7 +42,7 @@ public class IncluiTokenRepository {
         String tokenSalvo = "";
 
         Connection conexao = CriarConexao.getConnetion();
-        String valorToken = "INSERT INTO tokens (token) VALUES(?)";
+        String valorToken = "INSERT INTO moradores.tokens (token) VALUES(?)";
         PreparedStatement statement = conexao.prepareStatement(valorToken);
         statement.setString(1, (this.valorToken));
 

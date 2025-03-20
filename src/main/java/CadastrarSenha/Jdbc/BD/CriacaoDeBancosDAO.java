@@ -57,10 +57,10 @@ public class CriacaoDeBancosDAO {
             Connection conexao = CriarConexao.getConnetion();
             String sql = " CREATE TABLE moradores.tokens (" +
                     " id INT AUTO_INCREMENT PRIMARY KEY, " +
+                    "  nome varchar(15)," +
                     "  parentesco varchar(10)," +
                     "  token VARCHAR(6) NOT NULL," +
-                    "  chefe_familia VARCHAR(3)," +
-                    "  nome varchar(15)" +
+                    "  chefe_familia VARCHAR(3)" +
                     ");";
 
             Statement stmt = conexao.createStatement();
@@ -167,12 +167,12 @@ public class CriacaoDeBancosDAO {
     * */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         CriacaoDeBancosDAO criacaoDeBancosDAO = new CriacaoDeBancosDAO();
-        criacaoDeBancosDAO.bancoMoradores();
-        criacaoDeBancosDAO.bancoAdministrador();
-        criacaoDeBancosDAO.tabelaCadastro();
-        criacaoDeBancosDAO.tabelaHistorico();
+//        criacaoDeBancosDAO.bancoMoradores();
+//        criacaoDeBancosDAO.bancoAdministrador();
+//        criacaoDeBancosDAO.tabelaCadastro();
+//        criacaoDeBancosDAO.tabelaHistorico();
         criacaoDeBancosDAO.tabelaMoradoresTokens();
-        criacaoDeBancosDAO.tabelaAdministradorTokens();
-        criacaoDeBancosDAO.tbl_consulta();
+//        criacaoDeBancosDAO.tabelaAdministradorTokens();
+//        criacaoDeBancosDAO.tbl_consulta();
     }
 }
