@@ -18,6 +18,12 @@ public class ConfereChaveTokenRepository {
     IncluiTokenRepository incluiTokenRepository = new IncluiTokenRepository();
     GeradorDeChaveTokenService geradorDeChaveTokenService = new GeradorDeChaveTokenService();
 
+    public ConfereChaveTokenRepository(IncluiTokenRepository incluiTokenRepository,
+                                       GeradorDeChaveTokenService geradorDeChaveTokenService) {
+        this.incluiTokenRepository = incluiTokenRepository;
+        this.geradorDeChaveTokenService = geradorDeChaveTokenService;
+    }
+
     public String validaChaveToken() throws SQLException, ClassNotFoundException {
         String valorGuardado = "";
 
@@ -25,20 +31,20 @@ public class ConfereChaveTokenRepository {
         System.out.println("token => " + incluiTokenRepository.incluiTokenAdministracao());
         System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
         String valorDigitado = leia.nextLine();
-            while (!geradorDeChaveTokenService.getPegaToken().equals(valorDigitado)) {
-                System.out.println(" TOKEN InVALIDO");
-                System.out.print("DIGITE OUTRO NUMERO TOKEN ==> ");
-                valorDigitado = leia.nextLine();
-                break;
-            }
-            valorGuardado = valorDigitado;
-            leia.close();
+        while (!geradorDeChaveTokenService.getPegaToken().equals(valorDigitado)) {
+            System.out.println(" TOKEN InVALIDO");
+            System.out.print("DIGITE OUTRO NUMERO TOKEN ==> ");
+            valorDigitado = leia.nextLine();
+            break;
+        }
+        valorGuardado = valorDigitado;
+        leia.close();
         return valorGuardado;
     }
 
     public String consultaQueryAdministracao() throws SQLException, ClassNotFoundException {
-
         String numeroToken = "";
+
         Connection conexao = CriarConexao.getConnetion();
         String sql = "select * from administrador.tokens order by id desc limit 1";
 

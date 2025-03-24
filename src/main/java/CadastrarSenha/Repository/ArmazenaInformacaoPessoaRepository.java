@@ -2,6 +2,7 @@ package CadastrarSenha.Repository;
 
 
 import CadastrarSenha.Entities.HistoricoEntity;
+import CadastrarSenha.Service.GeradorDeChaveTokenService;
 import CadastrarSenha.Service.SenhaService;
 import CadastrarSenha.Util.Variaveis.VariaveisHistorico;
 import CadastrarSenha.Jdbc.DAO.Conexao;
@@ -13,11 +14,26 @@ import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.*;
 import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarca;
 
 public class ArmazenaInformacaoPessoaRepository {
-    Conexao DAO = new Conexao();
-    ConfereChaveTokenRepository token = new ConfereChaveTokenRepository();
-    VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
 
-    public void fimDoPrograma(int valorDigitado) {
+    private final Conexao DAO;
+    private final IncluiTokenRepository incluiTokenRepository;
+    private final GeradorDeChaveTokenService geradorDeChaveTokenService;
+    private final ConfereChaveTokenRepository token;
+    private final VariaveisHistorico variaveisHistorico;
+
+    // Construtor com injeção de dependências
+    public ArmazenaInformacaoPessoaRepository(Conexao DAO, IncluiTokenRepository incluiTokenRepository,
+                                              GeradorDeChaveTokenService geradorDeChaveTokenService, ConfereChaveTokenRepository token,
+                                              VariaveisHistorico variaveisHistorico) {
+
+        this.DAO = DAO;
+        this.incluiTokenRepository = incluiTokenRepository;
+        this.geradorDeChaveTokenService = geradorDeChaveTokenService;
+        this.token = token;
+        this.variaveisHistorico = variaveisHistorico;
+    }
+
+    private void fimDoPrograma(int valorDigitado) {
         while (valorDigitado == 0) {
             break;
         }
@@ -38,6 +54,7 @@ public class ArmazenaInformacaoPessoaRepository {
     public void persistiCadastroOutros() throws SQLException, ClassNotFoundException {
         persistioutro();
     }
+
     //TODO ARRUMADO, FALTA SOMENTE AJUSTAR OS OUTROS PARA QUE FIQUE DE FORMA UNIFORME E FALTA TOKEN NOS OUTROS...FALTA AJUSTAR O HISTORICO.. O ERRO ERA N
     private void persistiPai() throws SQLException, ClassNotFoundException {
         HistoricoEntity entity = new HistoricoEntity();

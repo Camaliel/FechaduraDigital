@@ -13,15 +13,24 @@ import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaMatriarc
 import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarca;
 
 public class Menu {
-    ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
-    FamiliarService familiarService = new FamiliarService();
-    CpfService service = new CpfService();
-    Scanner leia = new Scanner(System.in);
+    private final Scanner leia;
+    private final FamiliarService familiarService;
+    private final ArmazenaInformacaoPessoaRepository repository;
+    private final CpfService cpfService;
+
+    // Construtor com injeção de dependências
+    public Menu(FamiliarService familiarService, ArmazenaInformacaoPessoaRepository repository, CpfService cpfService) {
+        this.leia = new Scanner(System.in);
+        this.familiarService = familiarService;
+        this.repository = repository;
+        this.cpfService = cpfService;
+    }
+
 
     public static String valor = "";
 
     public String menuParente(String nome) throws SQLException, ClassNotFoundException {
-        Menu menu = new Menu();
+        Menu menu = new Menu(familiarService, repository, cpfService);
         System.out.println("DIGITE SUA OPCAO:");
         System.out.println("-----------------");
 
@@ -102,7 +111,7 @@ public class Menu {
             System.out.println("DIGITE SEU NOME");
             String nomeOutros = leia.next();
             nomeArmazenadoOutros = nomeOutros;
-            service.verificaQuantidadeDigitadoCPF(cpfDigitado);
+            familiarService.verificaQuantidadeDigitadoCPF(cpfDigitado);
 
             System.out.println("DIGITE SEU NOME DO MEIO");
             String nomeDoMeioOutros = leia.next();

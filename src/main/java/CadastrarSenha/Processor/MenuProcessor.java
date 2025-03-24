@@ -2,8 +2,11 @@ package CadastrarSenha.Processor;
 
 import CadastrarSenha.BootTelegramApi.TelaBot;
 import CadastrarSenha.Enum.MensagemEnum;
+import CadastrarSenha.Repository.ArmazenaInformacaoPessoaRepository;
 import CadastrarSenha.Repository.Login.ConsultasRepository;
 import CadastrarSenha.Repository.Login.LoginRepository;
+import CadastrarSenha.Service.CpfService;
+import CadastrarSenha.Service.FamiliarService;
 import CadastrarSenha.View.Menu;
 
 import java.util.Scanner;
@@ -12,10 +15,26 @@ import static CadastrarSenha.View.Menu.valor;
 
 public class MenuProcessor {
 
-    TelaBot bot = new TelaBot();
-    ConsultasRepository consultaRepository = new ConsultasRepository();
-    LoginRepository loginRepository = new LoginRepository();
-    Scanner leia = new Scanner(System.in);
+    private final TelaBot bot;
+    private final ConsultasRepository consultaRepository;
+    private final LoginRepository loginRepository;
+    private final Scanner leia;
+    private final FamiliarService familiarService;
+    private final ArmazenaInformacaoPessoaRepository repository;
+    private final CpfService cpfService;
+
+    // Construtor com injeção de dependências
+    public MenuProcessor(TelaBot bot, ConsultasRepository consultaRepository, LoginRepository loginRepository,
+                         Scanner leia, FamiliarService familiarService, ArmazenaInformacaoPessoaRepository repository,
+                         CpfService cpfService) {
+        this.bot = bot;
+        this.consultaRepository = consultaRepository;
+        this.loginRepository = loginRepository;
+        this.leia = leia;
+        this.familiarService = familiarService;
+        this.repository = repository;
+        this.cpfService = cpfService;
+    }
 
     public int valorRecebidoDigitado;
 
@@ -24,7 +43,8 @@ public class MenuProcessor {
      * */
 
     public void menuPrincipal() throws Throwable {
-        Menu menu = new Menu();
+
+        Menu menu = new Menu(familiarService, repository, cpfService);
         System.out.println("Escolha uma opção");
         bot.ligarApi();
         System.out.println("1-Cadastrar | 2-Login [Perdi a senha] | 3-Login Direto");
@@ -51,21 +71,18 @@ public class MenuProcessor {
     }
 
     private void menuValorInvalido() throws Throwable {
-        MenuProcessor menuProcessor = new MenuProcessor();
+        MenuProcessor menuProcessor = new MenuProcessor(bot, consultaRepository, loginRepository, leia, familiarService, repository, cpfService);
+
         while (valorRecebidoDigitado > 2) {
-            System.out.println(MensagemEnum.ADICIONE_OPCAO_VALIDA.getDescricao());;
+            System.out.println(MensagemEnum.ADICIONE_OPCAO_VALIDA.getDescricao());
             menuProcessor.menuPrincipal();
         }
     }
 
-    public static void fimDoPrograma(){
+    public static void fimDoPrograma() {
         /*
-        * Força a JVM a fechar de maneira bem sucedida.
-        * */
+         * Força a JVM a fechar de maneira bem sucedida.
+         * */
         System.exit(0);
-    }
-    public static void main(String[] args) throws Throwable {
-        MenuProcessor teste = new MenuProcessor();
-        teste.menuPrincipal();
     }
 }

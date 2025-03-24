@@ -14,10 +14,21 @@ import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarc
 
 
 public class FamiliarService implements UsuarioPadraoImpl {
-    static Scanner leia = new Scanner(System.in);
-    CpfService cpfService = new CpfService();
-    SenhaService senhaService = new SenhaService();
-    NumeroCelularService celularService = new NumeroCelularService();
+    Scanner leia;
+
+    public FamiliarService(ArmazenaInformacaoPessoaRepository repository, NumeroCelularService celularService, SenhaService senhaService, CpfService cpfService, Scanner leia) {
+        this.repository = repository;
+        this.celularService = celularService;
+        this.senhaService = senhaService;
+        this.cpfService = cpfService;
+        this.leia = leia;
+    }
+
+    CpfService cpfService;
+    SenhaService senhaService;
+    NumeroCelularService celularService ;
+    private final ArmazenaInformacaoPessoaRepository repository;
+
 
     /*
      *
@@ -65,7 +76,7 @@ public class FamiliarService implements UsuarioPadraoImpl {
      * para o cadastro !
      * */
     public int quantidadeDeFilhos() throws SQLException, ClassNotFoundException {
-        ArmazenaInformacaoPessoaRepository repository = new ArmazenaInformacaoPessoaRepository();
+
         Scanner leia = new Scanner(System.in);
         int quantidadeRecebida = 0;
 
@@ -94,10 +105,10 @@ public class FamiliarService implements UsuarioPadraoImpl {
         return quantidadeRecebida;
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        FamiliarService service = new FamiliarService();
-        service.quantidadeDeFilhos();
-    }
+//    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+//        FamiliarService service = new FamiliarService();
+//        service.quantidadeDeFilhos();
+//    }
 
     @Override
     public String verificaQuantidadeDigitadoCPF(String digiteCpf) {
