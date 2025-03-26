@@ -10,13 +10,12 @@ import static CadastrarSenha.Service.SenhaService.senhaSegura;
 import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.cpfDigitado;
 import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.numeroCelular;
 
-
 public class CpfService implements UsuarioPadraoImpl {
 
     NumeroCelularService celularService = new NumeroCelularService();
     SenhaService senhaService = new SenhaService();
 
-    CpfController cpf = new CpfController(this,System.in);
+    CpfController cpf = new CpfController(System.in);
 
     /*
      * Logica para verificar a quantidade de numeros digitados do CPF

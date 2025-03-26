@@ -7,12 +7,10 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class CpfController {
-    private final CpfService cpfService;
     private final Scanner scanner;
 
     // Construtor recebe Scanner para facilitar testes
-    public CpfController(CpfService cpfService, InputStream inputStream) {
-        this.cpfService = cpfService;
+    public CpfController(InputStream inputStream) {
         this.scanner = new Scanner(inputStream);
     }
 
