@@ -15,8 +15,8 @@ import java.util.Scanner;
 //TODO ANALISAR PARA APAGAR A CLASSE !!! [LEMBRETE]
 public class ConfereChaveTokenRepository {
 
-    IncluiTokenRepository incluiTokenRepository = new IncluiTokenRepository();
-    GeradorDeChaveTokenService geradorDeChaveTokenService = new GeradorDeChaveTokenService();
+    IncluiTokenRepository incluiTokenRepository;
+    GeradorDeChaveTokenService geradorDeChaveTokenService;
 
     public ConfereChaveTokenRepository(IncluiTokenRepository incluiTokenRepository,
                                        GeradorDeChaveTokenService geradorDeChaveTokenService) {
@@ -25,17 +25,19 @@ public class ConfereChaveTokenRepository {
     }
 
     public String validaChaveToken() throws SQLException, ClassNotFoundException {
-        String valorGuardado = "";
-
         Scanner leia = new Scanner(System.in);
-        System.out.println("token => " + incluiTokenRepository.incluiTokenAdministracao());
+        String valorGuardado = "";
+        System.out.println();
+        System.out.println("token => " + geradorDeChaveTokenService.getPegaToken());
         System.out.print("DIGITE SEU NUMERO TOKEN ==> ");
         String valorDigitado = leia.nextLine();
-        while (!geradorDeChaveTokenService.getPegaToken().equals(valorDigitado)) {
-            System.out.println(" TOKEN InVALIDO");
-            System.out.print("DIGITE OUTRO NUMERO TOKEN ==> ");
-            valorDigitado = leia.nextLine();
-            break;
+        if (!geradorDeChaveTokenService.getPegaToken().equals(valorDigitado)) {
+            while (!geradorDeChaveTokenService.getPegaToken().equals(valorDigitado)) {
+                System.out.println(" TOKEN InVALIDO");
+                System.out.print("DIGITE OUTRO NUMERO TOKEN ==> ");
+                valorDigitado = leia.nextLine();
+                break;
+            }
         }
         valorGuardado = valorDigitado;
         leia.close();
