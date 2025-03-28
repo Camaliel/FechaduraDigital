@@ -26,7 +26,7 @@ public class LoginRepository {
         System.out.println("Digite seu numero de acesso !");
         String loginTeclado = leia.nextLine();
         Connection conexao = CriarConexao.getConnetion();
-        String sql = "SELECT token, nome FROM moradores.tokens WHERE token = ?";
+        String sql = "SELECT moradores.tokens , moradores.nome FROM moradores.tokens WHERE token = ?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setString(1, loginTeclado);
         String loginConfere = "";

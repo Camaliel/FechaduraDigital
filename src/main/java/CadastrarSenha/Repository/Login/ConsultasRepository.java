@@ -26,10 +26,20 @@ public class ConsultasRepository {
         System.out.println("DIGITE SUA SENHA TOKEN");
         String pesquisaNumero = leia.nextLine();
         salvaTokenDigitado = pesquisaNumero;
-        String sql = "SELECT tc.NOME, tc.NOME_DO_MEIO, tc.ULTIMO_NOME, tc.TOKEN, c.parentesco " +
-                "FROM tbl_consultas tc JOIN cadastro c \n" +
-                "ON tc.NOME = c.nome  \n" +
-                "WHERE tc.TOKEN = ?";
+        String sql = "SELECT \n" +
+                "    tc.NOME, \n" +
+                "    tc.NOME_DO_MEIO, \n" +
+                "    tc.ULTIMO_NOME, \n" +
+                "    tc.TOKEN, \n" +
+                "    c.parentesco\n" +
+                "FROM \n" +
+                "    moradores.tbl_consultas tc\n" +
+                "JOIN \n" +
+                "    moradores.cadastro c\n" +
+                "ON \n" +
+                "    tc.NOME = c.nome\n" +
+                "WHERE \n" +
+                "    tc.TOKEN = ?;";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
         preparedStatement.setString(1, pesquisaNumero);
 
@@ -37,17 +47,14 @@ public class ConsultasRepository {
 
         List<String> listaToken = new ArrayList<>();
         while (rs.next()) {
-            String codigo = rs.getString("token");
+            String nome = rs.getString("nome");
             String sobrenome = rs.getString("nome_do_meio");
             String ultimoNome = rs.getString("ultimo_nome");
-            String parentesco = rs.getString("parentesco");
-            String status = rs.getString("status");
-            String.valueOf(listaToken.add(codigo));
+            String token = rs.getString("token");
+            String.valueOf(listaToken.add(nome));
             String.valueOf(listaToken.add(sobrenome));
             String.valueOf(listaToken.add(ultimoNome));
-            String.valueOf(listaToken.add(parentesco));
-            String.valueOf(listaToken.add(status));
-            consultaParentesco = parentesco;
+            String.valueOf(listaToken.add(token));
             status = "LIBERADO";
         }
 
