@@ -70,13 +70,11 @@ public class ArmazenaInformacaoPessoaRepository {
         String senhaSegura = SenhaService.senhaSegura;
         String numeroToken = token.validaChaveToken();
 
-        String sql = "INSERT INTO moradores.cadastro (nome, nome_do_meio, ultimo_nome, chefe_familia, parentesco, cpf, tel, senha) VALUES (?,?,?,?,?,?,?,?)";
-        String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
-        String sqlToken = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
-        String sqlConsulta = "INSERT INTO moradores.tbl_consultas (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO MORADORES.CADASTRO (NOME, NOME_DO_MEIO, ULTIMO_NOME, CHEFE_FAMILIA, PARENTESCO, CPF, TEL, SENHA) VALUES (?,?,?,?,?,?,?,?)";
+        String sqlToken = "INSERT INTO MORADORES.TOKENS (NOME, PARENTESCO, TOKEN, CHEFE_FAMILIA) VALUES (?,?,?,?)";
+        String sqlConsulta = "INSERT INTO MORADORES.TBL_CONSULTAS (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
 
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senhaSegura);
-        DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
         DAO.incluir(sqlToken, nome, parentesco, numeroToken, chefe_familia);
         DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
         repository.enviaHistorico(numeroToken, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
@@ -97,12 +95,12 @@ public class ArmazenaInformacaoPessoaRepository {
         String senha = senhaSegura;
         String numeroToken = token.validaChaveToken();
 
-        String sql = "INSERT INTO moradores.cadastro (nome, nome_do_meio, ultimo_nome, chefe_familia, parentesco, cpf, tel, senha) VALUES (?,?,?,?,?,?,?,?)";
-        String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
-        String sqlConsulta = "INSERT INTO moradores.tbl_consultas (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO MORADORES.CADASTRO (NOME, NOME_DO_MEIO, ULTIMO_NOME, CHEFE_FAMILIA, PARENTESCO, CPF, TEL, SENHA) VALUES (?,?,?,?,?,?,?,?)";
+        String sqlToken = "INSERT INTO MORADORES.TOKENS (NOME, PARENTESCO, TOKEN, CHEFE_FAMILIA) VALUES (?,?,?,?)";
+        String sqlConsulta = "INSERT INTO MORADORES.TBL_CONSULTAS (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
 
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senha);
-        DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
+        DAO.incluir(sqlToken, nome, parentesco, numeroToken, chefe_familia);
         DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
         repository.enviaHistorico(parentesco, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
 
@@ -121,13 +119,13 @@ public class ArmazenaInformacaoPessoaRepository {
         String senha = senhaSegura;
         String numeroToken = token.validaChaveToken();
 
-        String sql = "INSERT INTO moradores.cadastro (nome, nome_do_meio, ultimo_nome, chefe_familia, parentesco, cpf, tel, senha) VALUES (?,?,?,?,?,?,?,?)";
-        String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
-        String sqlTblConsulta = "INSERT INTO moradores.tbl_consultas (NOME, NOME_DO_MEIO, ULTIMO_NOME, TOKEN) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO MORADORES.CADASTRO (NOME, NOME_DO_MEIO, ULTIMO_NOME, CHEFE_FAMILIA, PARENTESCO, CPF, TEL, SENHA) VALUES (?,?,?,?,?,?,?,?)";
+        String sqlToken = "INSERT INTO MORADORES.TOKENS (NOME, PARENTESCO, TOKEN, CHEFE_FAMILIA) VALUES (?,?,?,?)";
+        String sqlConsulta = "INSERT INTO MORADORES.TBL_CONSULTAS (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
 
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senha);
-        DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
-        DAO.incluir(sqlTblConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
+        DAO.incluir(sqlToken, nome, parentesco, numeroToken, chefe_familia);
+        DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
         repository.enviaHistorico(parentesco, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
     }
 
@@ -144,12 +142,12 @@ public class ArmazenaInformacaoPessoaRepository {
         String senhaSegura = SenhaService.senhaSegura;
         String numeroToken = token.validaChaveToken();
 
-        String sql = "INSERT INTO moradores.cadastro (nome, sobrenome, ultimo_nome,chefe_familia, parentesco, cpf, tel, senha) VALUES (?,?,?,?,?,?,?,?)";
-        String sqlNome = "INSERT INTO moradores.tokens (nome, parentesco, token, chefe_familia) VALUES (?,?,?,?)";
-        String sqlConsulta = "INSERT INTO moradores.tbl_consultas (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO MORADORES.CADASTRO (NOME, NOME_DO_MEIO, ULTIMO_NOME, CHEFE_FAMILIA, PARENTESCO, CPF, TEL, SENHA) VALUES (?,?,?,?,?,?,?,?)";
+        String sqlToken = "INSERT INTO MORADORES.TOKENS (NOME, PARENTESCO, TOKEN, CHEFE_FAMILIA) VALUES (?,?,?,?)";
+        String sqlConsulta = "INSERT INTO MORADORES.TBL_CONSULTAS (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
 
         DAO.incluir(sql, nome, chefe_familia, parentesco, cpf, tel, senhaSegura);
-        DAO.incluir(sqlNome, nome, parentesco, numeroToken, chefe_familia);
+        DAO.incluir(sqlToken, nome, parentesco, numeroToken, chefe_familia);
         DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
         repository.enviaHistorico(parentesco, "CADASTRADO", nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Liberada");
     }

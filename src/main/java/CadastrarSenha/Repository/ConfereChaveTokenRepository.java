@@ -48,7 +48,7 @@ public class ConfereChaveTokenRepository {
         String numeroToken = "";
 
         Connection conexao = CriarConexao.getConnetion();
-        String sql = "select * from administrador.tokens order by id desc limit 1";
+        String sql = "select * from ADMINISTRADOR.TOKENS order by id desc limit 1";
 
         Statement statement = conexao.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);

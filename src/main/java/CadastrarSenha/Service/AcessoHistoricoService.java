@@ -42,7 +42,7 @@ public class AcessoHistoricoService {
     public Object historicoHoje() throws SQLException {
         String registro = "";
         Connection conexao = CriarConexao.getConnetion();
-        String sql = "SELECT  * FROM moradores.historico h WHERE h.`DATA` = curdate() ORDER BY hora asc;";
+        String sql = "SELECT  * FROM MORADORES.HISTORICO h WHERE h.`DATA` = curdate() ORDER BY hora asc;";
         conexao.prepareStatement(sql);
 
         Statement statement = conexao.createStatement();
@@ -66,7 +66,7 @@ public class AcessoHistoricoService {
     public Object historicoMesAnterior() throws SQLException {
         String registro = "";
         Connection conexao = CriarConexao.getConnetion();
-        String sql = "SELECT *  FROM moradores.historico h WHERE `DATA` >= DATE_SUB(curdate(),INTERVAL 2 MONTH) AND h.`DATA` <= curdate() ORDER BY  DATA, HORA ASC;";
+        String sql = "SELECT *  FROM MORADORES.HISTORICO h WHERE `DATA` >= DATE_SUB(curdate(),INTERVAL 2 MONTH) AND h.`DATA` <= curdate() ORDER BY  DATA, HORA ASC;";
         conexao.prepareStatement(sql);
 
         Statement statement = conexao.createStatement();
