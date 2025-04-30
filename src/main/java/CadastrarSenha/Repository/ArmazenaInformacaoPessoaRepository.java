@@ -102,7 +102,7 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senha);
         DAO.incluir(sqlToken, nome, parentesco, numeroToken, chefe_familia);
         DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
-        repository.enviaHistorico(parentesco, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
+        repository.enviaHistorico(numeroToken, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
 
     }
 

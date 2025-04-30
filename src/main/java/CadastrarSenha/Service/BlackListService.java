@@ -51,23 +51,20 @@ public class BlackListService {
         String sql = "SELECT * FROM MORADORES.HISTORICO tc WHERE TOKEN = ?";
 
         PreparedStatement statement = conexao.prepareStatement(sql);
-
         statement.setString(1, nomeUsuarioId);
         ResultSet rs = statement.executeQuery();
 
-
         List<String> listaDeUsuariosAtivos = new ArrayList<>();
         while (rs.next()) {
-             nome = rs.getString("NOME");
-             nome_do_meio = rs.getString("NOME_DO_MEIO");
-             ultimo_nome = rs.getString("ULTIMO_NOME");
+            nome = rs.getString("NOME");
+            nome_do_meio = rs.getString("NOME_DO_MEIO");
+            ultimo_nome = rs.getString("ULTIMO_NOME");
             token = rs.getString("TOKEN");
             parente = rs.getString("PARENTESCO");
 
-
-            nome = String.valueOf(listaDeUsuariosAtivos.add(nome));
-            nome_do_meio = String.valueOf(listaDeUsuariosAtivos.add(nome_do_meio));
-            ultimo_nome = String.valueOf(listaDeUsuariosAtivos.add(ultimo_nome));
+            listaDeUsuariosAtivos.add(nome);
+            listaDeUsuariosAtivos.add(nome_do_meio);
+            listaDeUsuariosAtivos.add(ultimo_nome);
             listaDeUsuariosAtivos.add(token);
             listaDeUsuariosAtivos.add(parente);
         }
@@ -83,12 +80,11 @@ public class BlackListService {
 
             DAO.incluir(sqlBloqueado, nome, nome_do_meio, ultimo_nome, bloqueado_por, token, desbloqueado_por, dia, hora);
             System.out.println("USUARIO BLOQUEADO");
-
             repository.enviaHistorico(token, nome, nome_do_meio, ultimo_nome, dia, hora, parente, "Bloqueado");
         } else {
             System.out.println("Operação cancelada");
         }
-        return true;
+        return listaDeUsuariosAtivos;
     }
 
     public Object removeDaListaNegra() throws SQLException {
