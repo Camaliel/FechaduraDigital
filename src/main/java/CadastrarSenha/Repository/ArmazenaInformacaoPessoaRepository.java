@@ -2,14 +2,13 @@ package CadastrarSenha.Repository;
 
 
 import CadastrarSenha.Entities.HistoricoEntity;
+import CadastrarSenha.Jdbc.DAO.Conexao;
 import CadastrarSenha.Service.GeradorDeChaveTokenService;
 import CadastrarSenha.Service.GeradorDeNomesDeUsuariosService;
 import CadastrarSenha.Service.SenhaService;
 import CadastrarSenha.Util.Variaveis.VariaveisHistorico;
-import CadastrarSenha.Jdbc.DAO.Conexao;
 
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Random;
 
 import static CadastrarSenha.Service.SenhaService.senhaSegura;
@@ -19,8 +18,6 @@ import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarc
 public class ArmazenaInformacaoPessoaRepository {
 
     private final Conexao DAO;
-    //    private final IncluiTokenRepository incluiTokenRepository;
-//    private final GeradorDeChaveTokenService geradorDeChaveTokenService;
     private final ConfereChaveTokenRepository token;
     private final VariaveisHistorico variaveisHistorico;
 
@@ -30,8 +27,6 @@ public class ArmazenaInformacaoPessoaRepository {
                                               VariaveisHistorico variaveisHistorico) {
 
         this.DAO = DAO;
-//        this.incluiTokenRepository = incluiTokenRepository;
-//        this.geradorDeChaveTokenService = geradorDeChaveTokenService;
         this.token = token;
         this.variaveisHistorico = variaveisHistorico;
     }
@@ -73,7 +68,7 @@ public class ArmazenaInformacaoPessoaRepository {
         String nomeDoMeio = gerador.geradorSobrenome();
         String ultimoNome = gerador.geradorUltimoNome();
         String chefe_familia = "s";
-        String parentesco = entity.setParentesco("Bot-teste");
+        String parentesco = entity.setParentesco("Bot");
         String cpf = gerador();
         String tel = geradorTelefone();
         String senhaSegura = geradorSenha();
@@ -236,8 +231,5 @@ public class ArmazenaInformacaoPessoaRepository {
 
         System.out.println(armazenaInformacaoPessoaRepository.persistiAleatorio());
 
-
     }
-
-
 }

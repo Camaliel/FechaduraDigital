@@ -39,6 +39,34 @@ public class AcessoHistoricoService {
     }
 
 
+    public Object historicoHojeCompleto() throws SQLException {
+        String registro = "";
+        Connection conexao = CriarConexao.getConnetion();
+        String sql = "SELECT  * FROM MORADORES.HISTORICO h WHERE h.`DATA` = curdate() ORDER BY hora asc;";
+        conexao.prepareStatement(sql);
+
+        Statement statement = conexao.createStatement();
+        ResultSet rs = statement.executeQuery(sql);
+
+        List<String> listaHoje = new ArrayList<>();
+        String teste = "Data   |   Hora   | Parentesco   |     Status   |\n";
+        listaHoje.add(teste);
+        while (rs.next()) {
+            Date data = rs.getDate("DATA");
+            String hora = rs.getString("HORA");
+            String nome = rs.getString("NOME");
+            String sobrenome = rs.getString("NOME_DO_MEIO");
+            String ultimoNome = rs.getString("ULTIMO_NOME");
+            String parentesco = rs.getString("PARENTESCO");
+            String status = rs.getString("STATUS");
+
+            registro = data + " | " + hora + " | " + nome + " " + sobrenome + " "+
+                    ultimoNome + " | " + parentesco + " |" + status + " |\n";
+            listaHoje.add(registro);
+        }
+
+        return listaHoje;
+    }
     public Object historicoHoje() throws SQLException {
         String registro = "";
         Connection conexao = CriarConexao.getConnetion();
@@ -82,6 +110,34 @@ public class AcessoHistoricoService {
             String status = rs.getString("STATUS");
 
             registro = data + " | " + hora + " | " + parentesco + " | " + status + " |\n";
+            listaMesAnterior.add(registro);
+        }
+
+        return listaMesAnterior;
+    }
+    public Object historicoMesAnteriorCompleto() throws SQLException {
+        String registro = "";
+        Connection conexao = CriarConexao.getConnetion();
+        String sql = "SELECT *  FROM MORADORES.HISTORICO h WHERE `DATA` >= DATE_SUB(curdate(),INTERVAL 2 MONTH) AND h.`DATA` <= curdate() ORDER BY  DATA, HORA ASC;";
+        conexao.prepareStatement(sql);
+
+        Statement statement = conexao.createStatement();
+        ResultSet rs = statement.executeQuery(sql);
+
+        List<String> listaMesAnterior = new ArrayList<>();
+        String teste = "Data   |   Hora   | Parentesco   |     Status   |\n";
+        listaMesAnterior.add(teste);
+        while (rs.next()) {
+            Date data = rs.getDate("DATA");
+            String hora = rs.getString("HORA");
+            String nome = rs.getString("NOME");
+            String sobrenome = rs.getString("NOME_DO_MEIO");
+            String ultimoNome = rs.getString("ULTIMO_NOME");
+            String parentesco = rs.getString("PARENTESCO");
+            String status = rs.getString("STATUS");
+
+            registro = data + " | " + hora + " | " + nome + " " + sobrenome + " "+
+                    ultimoNome + " | " + parentesco + " |" + status + " |\n";
             listaMesAnterior.add(registro);
         }
 
