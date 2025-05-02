@@ -33,7 +33,7 @@ public class GeradorDeNomesDeUsuariosService {
         listaNomes.put(19, "Bernado");
         listaNomes.put(20, "Hector");
 
-        for (int i = 0; i <= listaNomes.size(); i++) {
+        for (int i = 0; i < listaNomes.size(); i++) {
             nome = listaNomes.get(geradorNome.nextInt(19));
         }
         return nome;
@@ -102,6 +102,7 @@ public class GeradorDeNomesDeUsuariosService {
 
         for (int i = 0; i <= listaUltimoNomes.size(); i++){
             ultimoNome = listaUltimoNomes.get(geradorUltimoNome.nextInt(19));
+
         }
         return ultimoNome;
 

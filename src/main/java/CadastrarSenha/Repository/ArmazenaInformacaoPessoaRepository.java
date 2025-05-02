@@ -3,6 +3,7 @@ package CadastrarSenha.Repository;
 
 import CadastrarSenha.Entities.HistoricoEntity;
 import CadastrarSenha.Service.GeradorDeChaveTokenService;
+import CadastrarSenha.Service.GeradorDeNomesDeUsuariosService;
 import CadastrarSenha.Service.SenhaService;
 import CadastrarSenha.Util.Variaveis.VariaveisHistorico;
 import CadastrarSenha.Jdbc.DAO.Conexao;
@@ -66,10 +67,11 @@ public class ArmazenaInformacaoPessoaRepository {
     private boolean persistiAleatorio() throws SQLException, ClassNotFoundException {
         HistoricoEntity entity = new HistoricoEntity();
         HistoricoRepository repository = new HistoricoRepository();
+        GeradorDeNomesDeUsuariosService gerador = new GeradorDeNomesDeUsuariosService();
 
-        String nome = "teste";
-        String nomeDoMeio = "teste";
-        String ultimoNome = "teste";
+        String nome = gerador.geradorUsuarios();
+        String nomeDoMeio = gerador.geradorSobrenome();
+        String ultimoNome = gerador.geradorUltimoNome();
         String chefe_familia = "s";
         String parentesco = entity.setParentesco("Bot-teste");
         String cpf = gerador();
@@ -232,7 +234,7 @@ public class ArmazenaInformacaoPessoaRepository {
         ArmazenaInformacaoPessoaRepository armazenaInformacaoPessoaRepository = new ArmazenaInformacaoPessoaRepository(DAO,
                 repository, geradorDeChaveTokenService,token,variaveisHistorico1);
 
-        System.out.println(armazenaInformacaoPessoaRepository.geradorSenha());
+        System.out.println(armazenaInformacaoPessoaRepository.persistiAleatorio());
 
 
     }
