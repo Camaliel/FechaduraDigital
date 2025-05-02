@@ -22,9 +22,6 @@ public class HistoricoRepository {
         variaveisHistorico.setData(dataSistema);
         String horaSistema = horaAtual.format(this.data);
         variaveisHistorico.setHora(horaSistema);
-//        String nome = primeiroNome;
-//        String nomeDoMeio = nomeDoMEio;
-//        String ultimoNome = ultimoNOme;
         String token = numeroToken;
 
         // RECEBE DOIS PARAMETROS E ENVIA PARA O BANCO DEPENDENDO DO RESULTADO .. À ENTENDER ...

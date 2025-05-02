@@ -34,6 +34,7 @@ public class Menu {
         System.out.println("DIGITE SUA OPCAO:");
         System.out.println("-----------------");
 
+        System.out.println("0 - teste");
         System.out.println("1 - Pai");
         System.out.println("2 - Mae");
         System.out.println("3 - Filho");
@@ -42,6 +43,8 @@ public class Menu {
         String valor = leia.nextLine();
         menu.valor = valor;
         switch (valor) {
+            case "0":
+                opcaoTesteRandomico();
             case "1":
                 opcaoPai();
                 break;
@@ -58,6 +61,26 @@ public class Menu {
                 opcaoOutros();
         }
         return menu.toString();
+    }
+
+    public void opcaoTesteRandomico() throws SQLException, ClassNotFoundException {
+        try {
+            System.out.println("DIGITE SEU NOME");
+            nomeArmazenadoPai = "Nome aleatorio";
+
+            System.out.println("DIGITE SEU NOME DO MEIO");
+            nomeDoMeioArmazenadoPai = "Sobrenome aleatorio";
+
+            System.out.println("DIGITE SEU SOBRENOME");
+            sobrenomeArmazenadoPai = "Ultimo nome aleatorio";
+
+            familiarService.patriarca(confirmaPatriarca);
+            repository.persistiCadastroAleatorio();
+            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
+        } catch (Exception e) {
+            System.out.println(MensagemEnum.NAO_ADICIONADO_AO_BANCO.getDescricao());
+
+        }
     }
 
     public void opcaoPai() throws SQLException, ClassNotFoundException {

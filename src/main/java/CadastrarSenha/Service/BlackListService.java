@@ -22,6 +22,16 @@ public class BlackListService {
     Conexao DAO = new Conexao();
     Scanner leia = new Scanner(System.in);
     HistoricoRepository repository = new HistoricoRepository();
+
+    public BlackListService(Conexao DAO, Scanner leia, HistoricoRepository repository, VariaveisHistorico variaveisHistorico,
+                            Date data, IncluiTokenRepository token, SimpleDateFormat dataAtual, SimpleDateFormat horaAtual) {
+        this.variaveisHistorico = variaveisHistorico;
+        this.data = data;
+        this.token = token;
+        this.dataAtual = dataAtual;
+        this.horaAtual = horaAtual;
+    }
+
     VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
     Date data = new Date();
     IncluiTokenRepository token = new IncluiTokenRepository();
@@ -56,12 +66,15 @@ public class BlackListService {
 
         List<String> listaDeUsuariosAtivos = new ArrayList<>();
         while (rs.next()) {
+
+            // RECEBE O QUE TIVER NO CAMPO = NOME
             nome = rs.getString("NOME");
             nome_do_meio = rs.getString("NOME_DO_MEIO");
             ultimo_nome = rs.getString("ULTIMO_NOME");
             token = rs.getString("TOKEN");
             parente = rs.getString("PARENTESCO");
 
+            // ADICIONA A O OBJETO A LISTA O QUE FOI RECEBIDO E ARMAZENADO NA VARIAVEL NOME PELO CAMPO
             listaDeUsuariosAtivos.add(nome);
             listaDeUsuariosAtivos.add(nome_do_meio);
             listaDeUsuariosAtivos.add(ultimo_nome);
@@ -84,7 +97,7 @@ public class BlackListService {
         } else {
             System.out.println("Operação cancelada");
         }
-        return listaDeUsuariosAtivos;
+        return true;
     }
 
     public Object removeDaListaNegra() throws SQLException {
@@ -112,7 +125,17 @@ public class BlackListService {
     }
 
     public static void main(String[] args) throws SQLException {
-        BlackListService service = new BlackListService();
+
+        Conexao DAO = new Conexao();
+        Scanner leia = new Scanner(System.in);
+        HistoricoRepository historicoRepository = new HistoricoRepository();
+        VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
+        IncluiTokenRepository token = new IncluiTokenRepository();
+        Date data = new Date();
+        SimpleDateFormat dataAtual = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat horaAtual = new SimpleDateFormat("HH:mm:ss");
+
+        BlackListService service = new BlackListService(DAO, leia, historicoRepository, variaveisHistorico, data, token, dataAtual, horaAtual);
         service.bloquearUsuario();
 //        service.removeDaListaNegra();
     }

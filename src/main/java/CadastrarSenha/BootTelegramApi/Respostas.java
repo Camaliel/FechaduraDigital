@@ -28,7 +28,7 @@ public class Respostas {
                     resposta = incluiTokenRepository.enviaToken();
                 } else if (textoMensagem.getText().equalsIgnoreCase("historico anterior")) {
                     resposta = String.valueOf(acessoHistoricoService.historicoMesAnterior());
-                }else if (textoMensagem.getText().equalsIgnoreCase("historico hoje")) {
+                }else if (textoMensagem.getText().equalsIgnoreCase("historico")) {
                         resposta = String.valueOf(acessoHistoricoService.historicoHoje());
                 }else if (textoMensagem.getText().equalsIgnoreCase("menu")) {
                     resposta = String.valueOf(acessoHistoricoService.menuCelular());

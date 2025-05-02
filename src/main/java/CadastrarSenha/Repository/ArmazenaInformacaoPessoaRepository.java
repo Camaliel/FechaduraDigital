@@ -8,6 +8,8 @@ import CadastrarSenha.Util.Variaveis.VariaveisHistorico;
 import CadastrarSenha.Jdbc.DAO.Conexao;
 
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Random;
 
 import static CadastrarSenha.Service.SenhaService.senhaSegura;
 import static CadastrarSenha.Util.Variaveis.VariaveisCadastro.*;
@@ -16,8 +18,8 @@ import static CadastrarSenha.Util.Variaveis.VariaveisPatriarcas.confirmaPatriarc
 public class ArmazenaInformacaoPessoaRepository {
 
     private final Conexao DAO;
-    private final IncluiTokenRepository incluiTokenRepository;
-    private final GeradorDeChaveTokenService geradorDeChaveTokenService;
+    //    private final IncluiTokenRepository incluiTokenRepository;
+//    private final GeradorDeChaveTokenService geradorDeChaveTokenService;
     private final ConfereChaveTokenRepository token;
     private final VariaveisHistorico variaveisHistorico;
 
@@ -27,8 +29,8 @@ public class ArmazenaInformacaoPessoaRepository {
                                               VariaveisHistorico variaveisHistorico) {
 
         this.DAO = DAO;
-        this.incluiTokenRepository = incluiTokenRepository;
-        this.geradorDeChaveTokenService = geradorDeChaveTokenService;
+//        this.incluiTokenRepository = incluiTokenRepository;
+//        this.geradorDeChaveTokenService = geradorDeChaveTokenService;
         this.token = token;
         this.variaveisHistorico = variaveisHistorico;
     }
@@ -37,6 +39,10 @@ public class ArmazenaInformacaoPessoaRepository {
         while (valorDigitado == 0) {
             break;
         }
+    }
+
+    public void persistiCadastroAleatorio() throws SQLException, ClassNotFoundException {
+        persistiAleatorio();
     }
 
     public void persistiCadastroPai() throws SQLException, ClassNotFoundException {
@@ -56,6 +62,34 @@ public class ArmazenaInformacaoPessoaRepository {
     }
 
     //TODO ARRUMADO, FALTA SOMENTE AJUSTAR OS OUTROS PARA QUE FIQUE DE FORMA UNIFORME E FALTA TOKEN NOS OUTROS...FALTA AJUSTAR O HISTORICO.. O ERRO ERA N
+
+    private boolean persistiAleatorio() throws SQLException, ClassNotFoundException {
+        HistoricoEntity entity = new HistoricoEntity();
+        HistoricoRepository repository = new HistoricoRepository();
+
+        String nome = "teste";
+        String nomeDoMeio = "teste";
+        String ultimoNome = "teste";
+        String chefe_familia = "s";
+        String parentesco = entity.setParentesco("Bot-teste");
+        String cpf = gerador();
+        String tel = geradorTelefone();
+        String senhaSegura = geradorSenha();
+        String numeroToken = token.validaChaveToken();
+
+        String sql = "INSERT INTO MORADORES.CADASTRO (NOME, NOME_DO_MEIO, ULTIMO_NOME, CHEFE_FAMILIA, PARENTESCO, CPF, TEL, SENHA) VALUES (?,?,?,?,?,?,?,?)";
+        String sqlToken = "INSERT INTO MORADORES.TOKENS (NOME, PARENTESCO, TOKEN, CHEFE_FAMILIA) VALUES (?,?,?,?)";
+        String sqlConsulta = "INSERT INTO MORADORES.TBL_CONSULTAS (NOME,NOME_DO_MEIO,ULTIMO_NOME,TOKEN) VALUES (?,?,?,?)";
+
+        DAO.incluir(sql, nome, nomeDoMeio, ultimoNome, chefe_familia, parentesco, cpf, tel, senhaSegura);
+        DAO.incluir(sqlToken, nome, parentesco, numeroToken, chefe_familia);
+        DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
+        repository.enviaHistorico(numeroToken, nome, nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Cadastrado");
+
+        fimDoPrograma(0);
+        return true;
+    }
+
     private void persistiPai() throws SQLException, ClassNotFoundException {
         HistoricoEntity entity = new HistoricoEntity();
         HistoricoRepository repository = new HistoricoRepository();
@@ -151,4 +185,57 @@ public class ArmazenaInformacaoPessoaRepository {
         DAO.incluir(sqlConsulta, nome, nomeDoMeio, ultimoNome, numeroToken);
         repository.enviaHistorico(parentesco, "CADASTRADO", nomeDoMeio, ultimoNome, variaveisHistorico.getData(), variaveisHistorico.getHora(), parentesco, "Liberada");
     }
+
+    public String gerador() {
+        System.out.println("INFORMAÇÕES PREENCHIDAS AUTO-MAGICAMENTE PARA TESTES");
+        Random rnd = new Random();
+        int[] numeroRandomico = new int[11];
+        String teste = "";
+        for (int i = 0; i <= 10; i++) {
+            numeroRandomico[i] = rnd.nextInt(10);
+            teste += String.valueOf(numeroRandomico[i]);
+        }
+            return teste;
+    }
+
+    public String geradorTelefone() {
+        System.out.println("INFORMAÇÕES PREENCHIDAS AUTO-MAGICAMENTE PARA TESTES");
+        Random rnd = new Random();
+        int[] numeroRandomico = new int[9];
+        String teste = "";
+        for (int i = 0; i <= 8; i++) {
+            numeroRandomico[i] = rnd.nextInt(8);
+            teste += String.valueOf(numeroRandomico[i]);
+        }
+        return teste;
+    }
+
+    public String geradorSenha() {
+        System.out.println("INFORMAÇÕES PREENCHIDAS AUTO-MAGICAMENTE PARA TESTES");
+        Random rnd = new Random();
+        int[] numeroRandomico = new int[7];
+        String teste = "";
+        for (int i = 0; i <= 5; i++) {
+            numeroRandomico[i] = rnd.nextInt(6);
+            teste += String.valueOf(numeroRandomico[i]);
+        }
+        return teste;
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+
+        Conexao DAO = new Conexao();
+        IncluiTokenRepository repository = new IncluiTokenRepository();
+        GeradorDeChaveTokenService geradorDeChaveTokenService = new GeradorDeChaveTokenService();
+        ConfereChaveTokenRepository token = new ConfereChaveTokenRepository(repository, geradorDeChaveTokenService);
+        VariaveisHistorico variaveisHistorico1 = new VariaveisHistorico();
+        ArmazenaInformacaoPessoaRepository armazenaInformacaoPessoaRepository = new ArmazenaInformacaoPessoaRepository(DAO,
+                repository, geradorDeChaveTokenService,token,variaveisHistorico1);
+
+        System.out.println(armazenaInformacaoPessoaRepository.geradorSenha());
+
+
+    }
+
+
 }
