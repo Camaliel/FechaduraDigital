@@ -11,7 +11,7 @@ public enum RespostaApiEnum {
     TESTE_BOT("Testando escrita do bot"),
     APRENDENDO("Estou empenhado em aprender sua linguagem de programação, cada dia um novo aprendizado .. bip bip"),
     SOPHIA("jA TERMINOU O DEVER DE MATEMATICA?"),
-    TESTE("BEM VINDO?");
+    TESTE("BEM VINDO ... Digite seu token para começarmos");
 
     String descricao;
 
