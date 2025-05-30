@@ -15,21 +15,23 @@ import java.util.Scanner;
 
 public class AcessoHistoricoService {
     Scanner leia = new Scanner(System.in);
+    public static String  testandoValorCelular = "";
+
 
     public String menuCelular() throws SQLException {
    String teste = RespostaApiEnum.MENSAGEM_HIST.getDescricao();
-        int valorSelecionado = leia.nextInt();
+//        int valorSelecionado = leia.nextInt();
 
         String opcaoDeAcesso = "";
 
-        switch (valorSelecionado) {
-            case 1:
+        switch (testandoValorCelular) {
+            case "1":
                 opcaoDeAcesso = liberar();
                 break;
-            case 2:
+            case "2":
                 opcaoDeAcesso = String.valueOf(historicoHoje());
                 break;
-            case 3:
+            case "3":
                 opcaoDeAcesso = String.valueOf(historicoMesAnterior());
 
             default:
@@ -95,8 +97,8 @@ public class AcessoHistoricoService {
         String registro = "";
         Connection conexao = CriarConexao.getConnetion();
         String sql = "SELECT *  FROM MORADORES.HISTORICO h WHERE `DATA` >= DATE_SUB(curdate(),INTERVAL 2 MONTH) AND h.`DATA` <= curdate() ORDER BY  DATA, HORA ASC;";
-        conexao.prepareStatement(sql);
 
+        conexao.prepareStatement(sql);
         Statement statement = conexao.createStatement();
         ResultSet rs = statement.executeQuery(sql);
 

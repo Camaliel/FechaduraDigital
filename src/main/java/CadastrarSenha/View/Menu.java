@@ -44,7 +44,7 @@ public class Menu {
         menu.valor = valor;
         switch (valor) {
             case "0":
-                opcaoTesteRandomico();
+                repository.persistiCadastroAleatorio();
             case "1":
                 opcaoPai();
                 break;
