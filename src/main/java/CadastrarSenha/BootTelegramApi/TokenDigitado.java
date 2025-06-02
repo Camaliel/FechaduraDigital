@@ -14,9 +14,8 @@ public class TokenDigitado {
     static String insereValor = "";
     static String valorRetornadoComSucesso;
 
-    public Object tokenDigitadoTelegram() throws SQLException {
-        String registro = "";
-        String tokenLista = "";
+    public String tokenDigitadoTelegram() throws SQLException {
+        String tokenLista;
 
         String sql = "SELECT TOKEN FROM MORADORES.TOKENS;";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
@@ -27,22 +26,23 @@ public class TokenDigitado {
         while (rs.next()) {
             tokenLista = rs.getString("TOKEN");
 
-            registro = tokenLista;
-            listaRetorno.add(registro);
-
+            listaRetorno.add(tokenLista);
         }
 
-        if (insereValor.contains(registro)){
-            valorRetornadoComSucesso = insereValor;
-            return valorRetornadoComSucesso;
-        }else {
-            valorRetornadoComSucesso = "Token retornado invalido";
-            return valorRetornadoComSucesso;
+        for (String nomes : listaRetorno) {
+            System.out.println(nomes);
+            if (insereValor.equals(nomes)) {
+                return valorRetornadoComSucesso = insereValor;
+            }
         }
 
+        //TODO CRIAR LOGICA PARA APENAS OS ADMINS ENTRAREM NA OPÇÃO
+        
         // PROCURAR UMA FORMA DE ARMAZENAR O VALOR QUE FOR DIGITADO NO TELEGRAM LER DOCUMENTAÇÃO
 
+        return null;
     }
+
 
 // CRIAR OUTRO METODO SOMENTE PRA O CELULAR
 

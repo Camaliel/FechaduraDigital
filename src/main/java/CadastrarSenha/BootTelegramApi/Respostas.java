@@ -81,6 +81,8 @@ public class Respostas {
             insereValor = textoMensagem.getText().replaceFirst("senha", "").trim();
             if (insereValor.contains(tokenDigitado.tokenDigitadoTelegram().toString())){
                 resposta = valorRetornadoComSucesso;
+            }else{
+                resposta = "Valor nao encontrado";
             }
             // Atualiza o token com base no que o usuário digitou no Telegram
 
