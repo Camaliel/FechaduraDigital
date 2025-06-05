@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TokenDigitado {
     Connection conexao = CriarConexao.getConnetion();
@@ -17,7 +18,7 @@ public class TokenDigitado {
     public String tokenDigitadoTelegram() throws SQLException {
         String tokenLista;
 
-        String sql = "SELECT TOKEN FROM MORADORES.TOKENS;";
+        String sql = "SELECT TOKEN, CHEFE_FAMILIA FROM MORADORES.TOKENS where MORADORES.TOKENS.CHEFE_FAMILIA = 'S'";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 
         ResultSet rs = preparedStatement.executeQuery();
@@ -27,20 +28,18 @@ public class TokenDigitado {
             tokenLista = rs.getString("TOKEN");
 
             listaRetorno.add(tokenLista);
-        }
 
-        for (String nomes : listaRetorno) {
-            System.out.println(nomes);
-            if (insereValor.equals(nomes)) {
-                return valorRetornadoComSucesso = insereValor;
+
+            for (String chefesDeFamilia : listaRetorno) {
+                if (insereValor.equalsIgnoreCase(chefesDeFamilia)) {
+                    return valorRetornadoComSucesso = insereValor;
+                }
             }
         }
-
-        //TODO CRIAR LOGICA PARA APENAS OS ADMINS ENTRAREM NA OPÇÃO
         
         // PROCURAR UMA FORMA DE ARMAZENAR O VALOR QUE FOR DIGITADO NO TELEGRAM LER DOCUMENTAÇÃO
 
-        return null;
+        return "valor encontrado";
     }
 
 
