@@ -29,19 +29,17 @@ public class TokenDigitado {
 
             listaRetorno.add(tokenLista);
 
-
             for (String chefesDeFamilia : listaRetorno) {
                 if (insereValor.equalsIgnoreCase(chefesDeFamilia)) {
                     return valorRetornadoComSucesso = insereValor;
                 }
             }
         }
-        
+            valorRetornadoComSucesso = "Valor não encontrado";
         // PROCURAR UMA FORMA DE ARMAZENAR O VALOR QUE FOR DIGITADO NO TELEGRAM LER DOCUMENTAÇÃO
 
-        return "valor encontrado";
+        return valorRetornadoComSucesso;
     }
-
 
 // CRIAR OUTRO METODO SOMENTE PRA O CELULAR
 
