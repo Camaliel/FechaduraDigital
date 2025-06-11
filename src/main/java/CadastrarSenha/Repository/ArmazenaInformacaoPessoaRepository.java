@@ -67,7 +67,7 @@ public class ArmazenaInformacaoPessoaRepository {
         String nome = gerador.geradorUsuarios();
         String nomeDoMeio = gerador.geradorSobrenome();
         String ultimoNome = gerador.geradorUltimoNome();
-        String chefe_familia = "s";
+        String chefe_familia = gerador.geradorAleatorioChefeFamilia();
         String parentesco = entity.setParentesco("Bot");
         String cpf = gerador();
         String tel = geradorTelefone();

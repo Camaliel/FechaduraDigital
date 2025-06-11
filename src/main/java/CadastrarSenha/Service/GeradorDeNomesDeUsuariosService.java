@@ -1,5 +1,7 @@
 package CadastrarSenha.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -107,9 +109,26 @@ public class GeradorDeNomesDeUsuariosService {
         return ultimoNome;
 
     }
+    public String geradorAleatorioChefeFamilia(){
+        Random geradorChefeFamilia = new Random();
+        ArrayList<String>geradoLista = new ArrayList<>();
+        geradoLista.add("s");
+        geradoLista.add("n");
+        geradoLista.add("n");
+        String testando = "";
+
+
+            for (int i = 0;i<= geradoLista.size();i++){
+                testando = geradoLista.get(geradorChefeFamilia.nextInt(3));
+            }
+
+        return testando ;
+    }
 
     public static void main(String[] args) {
         GeradorDeNomesDeUsuariosService teste = new GeradorDeNomesDeUsuariosService();
-        System.out.println(teste.geradorUsuarios() + " " + teste.geradorSobrenome() + " " +teste.geradorUltimoNome());
+//        System.out.println(teste.geradorUsuarios() + " " + teste.geradorSobrenome() + " " +teste.geradorUltimoNome());
+        System.out.println(teste.geradorAleatorioChefeFamilia());
+
     }
 }

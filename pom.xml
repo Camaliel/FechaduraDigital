@@ -37,7 +37,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.5.0</version> <!-- Versão mais recente -->
+            <version>5.13.0</version> <!-- Versão mais recente -->
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -65,6 +65,7 @@
             <scope>test</scope>
         </dependency>
 
+
     </dependencies>
 
     <properties>
@@ -77,6 +78,8 @@
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2</url>
         </repository>
+
     </repositories>
+
 
 </project>

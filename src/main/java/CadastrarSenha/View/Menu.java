@@ -63,26 +63,6 @@ public class Menu {
         return menu.toString();
     }
 
-    public void opcaoTesteRandomico() throws SQLException, ClassNotFoundException {
-        try {
-            System.out.println("DIGITE SEU NOME");
-            nomeArmazenadoPai = "Nome aleatorio";
-
-            System.out.println("DIGITE SEU NOME DO MEIO");
-            nomeDoMeioArmazenadoPai = "Sobrenome aleatorio";
-
-            System.out.println("DIGITE SEU SOBRENOME");
-            sobrenomeArmazenadoPai = "Ultimo nome aleatorio";
-
-            familiarService.patriarca(confirmaPatriarca);
-            repository.persistiCadastroAleatorio();
-            System.out.println(MensagemEnum.ADICIONADO_AO_BANCO.getDescricao());
-        } catch (Exception e) {
-            System.out.println(MensagemEnum.NAO_ADICIONADO_AO_BANCO.getDescricao());
-
-        }
-    }
-
     public void opcaoPai() throws SQLException, ClassNotFoundException {
         try {
             System.out.println("DIGITE SEU NOME");
