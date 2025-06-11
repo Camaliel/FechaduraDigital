@@ -111,17 +111,12 @@ public class GeradorDeNomesDeUsuariosService {
     }
     public String geradorAleatorioChefeFamilia(){
         Random geradorChefeFamilia = new Random();
-        ArrayList<String>geradoLista = new ArrayList<>();
-        geradoLista.add("s");
-        geradoLista.add("n");
-        geradoLista.add("n");
+       String[] geradoLista = {"n","s","n"};
         String testando = "";
 
-
-            for (int i = 0;i<= geradoLista.size();i++){
-                testando = geradoLista.get(geradorChefeFamilia.nextInt(3));
+            for (int i = 0;i<= geradoLista.length;i++){
+                testando = geradoLista[geradorChefeFamilia.nextInt(3)];
             }
-
         return testando ;
     }
 
