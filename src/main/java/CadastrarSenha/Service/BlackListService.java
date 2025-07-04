@@ -1,142 +1,71 @@
 package CadastrarSenha.Service;
 
-import CadastrarSenha.Entities.HistoricoEntity;
 import CadastrarSenha.Jdbc.CriarConexao;
 import CadastrarSenha.Jdbc.DAO.Conexao;
 import CadastrarSenha.Repository.HistoricoRepository;
-import CadastrarSenha.Repository.IncluiTokenRepository;
-import CadastrarSenha.Util.Variaveis.VariaveisHistorico;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 public class BlackListService {
 
+    public static String testandoValor = "";
+
     Conexao DAO = new Conexao();
-    Scanner leia = new Scanner(System.in);
     HistoricoRepository repository = new HistoricoRepository();
 
-    public BlackListService(Conexao DAO, Scanner leia, HistoricoRepository repository, VariaveisHistorico variaveisHistorico,
-                            Date data, IncluiTokenRepository token, SimpleDateFormat dataAtual, SimpleDateFormat horaAtual) {
-        this.variaveisHistorico = variaveisHistorico;
-        this.data = data;
-        this.token = token;
-        this.dataAtual = dataAtual;
-        this.horaAtual = horaAtual;
-    }
 
-    VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
-    Date data = new Date();
-    IncluiTokenRepository token = new IncluiTokenRepository();
-    SimpleDateFormat dataAtual = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat horaAtual = new SimpleDateFormat("HH:mm:ss");
+
+//        public List<String> bloquearUsuario() throws SQLException {
+//            String registro = "";
+//        Connection connection = CriarConexao.getConnetion();
+//        String sql = "SELECT TOKEN FROM MORADORES.TOKENS ";
+//        connection.prepareStatement(sql); // Linha inútil
+//
+//        Statement statement = connection.createStatement();
+//        ResultSet resultSet = statement.executeQuery(sql);
+//
+//        List<String> listaToken = new ArrayList<>();
+//            while (resultSet.next()) {
+//                String token = resultSet.getString("TOKEN");
+//                registro = token ;
+//                listaToken.add(registro);
+//            }
+//
+//        return listaToken;
+//    }
 
     public Object bloquearUsuario() throws SQLException {
-        HistoricoEntity entity = new HistoricoEntity();
+        String registro = "";
         Connection conexao = CriarConexao.getConnetion();
-        VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
-        String dataSistema = dataAtual.format(this.data);
-        variaveisHistorico.setData(dataSistema);
-        String horaSistema = horaAtual.format(this.data);
-        variaveisHistorico.setHora(horaSistema);
-        System.out.println("DIGITE O ID DO USUARIO PARA CONSULTAR");
-        String nomeUsuarioId = leia.nextLine();
-        String nome = "";
-        String nome_do_meio = "";
-        String ultimo_nome = "";
-        String token = nomeUsuarioId;
-        String bloqueado_por = "ADM";
-        String desbloqueado_por = "";
-        String dia = "hoje";
-        String hora = "agora";
-        String parente = "";
+        String sql = "SELECT token  FROM MORADORES.TOKENS;";
 
-        String sql = "SELECT * FROM MORADORES.HISTORICO tc WHERE TOKEN = ?";
+        conexao.prepareStatement(sql);
+        Statement statement = conexao.createStatement();
+        ResultSet rs = statement.executeQuery(sql);
 
-        PreparedStatement statement = conexao.prepareStatement(sql);
-        statement.setString(1, nomeUsuarioId);
-        ResultSet rs = statement.executeQuery();
-
-        List<String> listaDeUsuariosAtivos = new ArrayList<>();
+        List<String> listaMesAnterior = new ArrayList<>();
+        String teste = "Token  \n";
+        listaMesAnterior.add(teste);
         while (rs.next()) {
 
-            // RECEBE O QUE TIVER NO CAMPO = NOME
-            nome = rs.getString("NOME");
-            nome_do_meio = rs.getString("NOME_DO_MEIO");
-            ultimo_nome = rs.getString("ULTIMO_NOME");
-            token = rs.getString("TOKEN");
-            parente = rs.getString("PARENTESCO");
+            String tokenLista = rs.getString("TOKEN");
 
-            // ADICIONA A O OBJETO A LISTA O QUE FOI RECEBIDO E ARMAZENADO NA VARIAVEL NOME PELO CAMPO
-            listaDeUsuariosAtivos.add(nome);
-            listaDeUsuariosAtivos.add(nome_do_meio);
-            listaDeUsuariosAtivos.add(ultimo_nome);
-            listaDeUsuariosAtivos.add(token);
-            listaDeUsuariosAtivos.add(parente);
+            registro =  tokenLista +"\n";
+            listaMesAnterior.add(registro);
         }
 
-        for (String listaUsuario : listaDeUsuariosAtivos) {
-            System.out.println(listaUsuario);
-        }
-        System.out.println("Gostaria de bloquear este ID: S|N");
-        String respostaUsuario = leia.nextLine();
-        if (respostaUsuario.equalsIgnoreCase("S")) {
-            String sqlBloqueado = "INSERT INTO MORADORES.LISTA_NEGRA (NOME, SOBRENOME, ULTIMO_NOME, BLOQUEADO_POR, TOKEN, " +
-                    "DESBLOQUEADO_POR, DATA, HORA) values (?,?,?,?,?,?,?,?)";
-
-            DAO.incluir(sqlBloqueado, nome, nome_do_meio, ultimo_nome, bloqueado_por, token, desbloqueado_por, dia, hora);
-            System.out.println("USUARIO BLOQUEADO");
-            repository.enviaHistorico(token, nome, nome_do_meio, ultimo_nome, dia, hora, parente, "Bloqueado");
-        } else {
-            System.out.println("Operação cancelada");
-        }
-        return true;
+        return listaMesAnterior;
     }
 
-    public Object removeDaListaNegra() throws SQLException {
-        VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
-        String dataSistema = dataAtual.format(this.data);
-        variaveisHistorico.setData(dataSistema);
-        String horaSistema = horaAtual.format(this.data);
-        variaveisHistorico.setHora(horaSistema);
-        System.out.println("DIGITE O ID DO USUARIO PARA CONSULTAR");
-        String nomeUsuarioId = leia.nextLine();
-        String nome = "";
-        String nome_do_meio = "";
-        String ultimo_nome = "";
-        String token = nomeUsuarioId;
-        String dia = "hoje";
-        String hora = "agora";
-        String parente = "";
-        System.out.println("REMOVER USUARIO DA LISTA DE BLOQUEADOS");
-        String removeLinha = leia.nextLine();
-        String sqlRemoveUsuario = "DELETE from MORADORES.LISTA_NEGRA WHERE token = ?";
-        DAO.incluir(sqlRemoveUsuario, removeLinha);
-        repository.enviaHistorico(token, nome, nome_do_meio, ultimo_nome, dia, hora, parente, "Desbl");
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        return true;
-    }
-
-    public static void main(String[] args) throws SQLException {
-
-        Conexao DAO = new Conexao();
-        Scanner leia = new Scanner(System.in);
-        HistoricoRepository historicoRepository = new HistoricoRepository();
-        VariaveisHistorico variaveisHistorico = new VariaveisHistorico();
-        IncluiTokenRepository token = new IncluiTokenRepository();
-        Date data = new Date();
-        SimpleDateFormat dataAtual = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat horaAtual = new SimpleDateFormat("HH:mm:ss");
-
-        BlackListService service = new BlackListService(DAO, leia, historicoRepository, variaveisHistorico, data, token, dataAtual, horaAtual);
-        service.bloquearUsuario();
-//        service.removeDaListaNegra();
+        BlackListService service = new BlackListService();
+        System.out.println(   service.bloquearUsuario());
+////        service.removeDaListaNegra();
     }
 }

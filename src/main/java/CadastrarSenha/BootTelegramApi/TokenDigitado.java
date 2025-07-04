@@ -13,20 +13,19 @@ import java.util.Scanner;
 public class TokenDigitado {
     Connection conexao = CriarConexao.getConnetion();
     static String insereValor = "";
-    static String valorRetornadoComSucesso;
+    public static String valorRetornadoComSucesso;
 
     public String tokenDigitadoTelegram() throws SQLException {
         String tokenLista;
 
         String sql = "SELECT TOKEN, CHEFE_FAMILIA FROM MORADORES.TOKENS where MORADORES.TOKENS.CHEFE_FAMILIA = 'S'";
         PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-
         ResultSet rs = preparedStatement.executeQuery();
 
         List<String> listaRetorno = new ArrayList<>();
+
         while (rs.next()) {
             tokenLista = rs.getString("TOKEN");
-
             listaRetorno.add(tokenLista);
 
             for (String chefesDeFamilia : listaRetorno) {
@@ -42,7 +41,6 @@ public class TokenDigitado {
     }
 
 // CRIAR OUTRO METODO SOMENTE PRA O CELULAR
-
     public static void main(String[] args) throws SQLException {
         TokenDigitado ts = new TokenDigitado();
         System.out.println(ts.tokenDigitadoTelegram());

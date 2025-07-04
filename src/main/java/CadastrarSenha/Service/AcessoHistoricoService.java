@@ -44,7 +44,7 @@ public class AcessoHistoricoService {
     public Object historicoHojeCompleto() throws SQLException {
         String registro = "";
         Connection conexao = CriarConexao.getConnetion();
-        String sql = "SELECT  * FROM MORADORES.HISTORICO h WHERE h.`DATA` = curdate() ORDER BY hora asc;";
+        String sql = "SELECT * FROM MORADORES.HISTORICO h WHERE h.`DATA` = curdate() ORDER BY hora asc;";
         conexao.prepareStatement(sql);
 
         Statement statement = conexao.createStatement();

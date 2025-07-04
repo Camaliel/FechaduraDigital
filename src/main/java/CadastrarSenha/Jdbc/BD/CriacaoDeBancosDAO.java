@@ -174,9 +174,9 @@ public class CriacaoDeBancosDAO {
                     "NOME VARCHAR(50)," +
                     "SOBRENOME VARCHAR(50)," +
                     "ULTIMO_NOME VARCHAR(50)," +
-                    "BLOQUEADO_POR VARCHAR(3)," +
+                    "BLOQUEADO_POR VARCHAR(10)," +
                     "TOKEN VARCHAR(6)," +
-                    "DESBLOQEUADO_POR VARCHAR(6)," +
+                    "DESBLOQUEADO_POR VARCHAR(10)," +
                     "DATA VARCHAR(10)," +
                     "HORA VARCHAR(10)" +
                     ");";
