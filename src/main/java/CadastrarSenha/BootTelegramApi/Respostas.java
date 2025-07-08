@@ -6,6 +6,7 @@ import CadastrarSenha.Repository.HistoricoRepository;
 import CadastrarSenha.Repository.IncluiTokenRepository;
 import CadastrarSenha.Service.AcessoHistoricoService;
 import CadastrarSenha.Service.BlackListService;
+import CadastrarSenha.Service.VariaveisService.VariaveisBloqueioService;
 import CadastrarSenha.Util.Variaveis.VariaveisHistorico;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -26,6 +27,9 @@ public class Respostas {
     static boolean usuarioNoMenu = false;
     public static String mensagemDigitada = "000";
     boolean bloquear = false;
+    VariaveisBloqueioService bloqueioService = new VariaveisBloqueioService();
+    public static String tokenDigitadoPeloUsuario;
+
 
     public SendMessage enviaMensagem(Update update) throws SQLException, ClassNotFoundException {
         var textoMensagem = update.getMessage();
@@ -60,12 +64,13 @@ public class Respostas {
                 // Construção da interação do usuario com o programa pelo telegram
 
             } else if (escolhaMenuHistorico.equalsIgnoreCase("1.1")) {
-                resposta = "escolha um token:";
+                resposta = "Digite [LISTAR] para ver lista de usuarios para bloqueio:";
 //                bloquear = true;
-            }else if(textoMensagem.getText().startsWith("b")) {  // <- O problema esta aqui
-                    BlackListService service = new BlackListService();
-                    resposta = service.bloquearUsuario().toString();
-
+            } else if (textoMensagem.getText().startsWith("bloquear")) {  // <- O problema esta aqui
+                BlackListService service = new BlackListService();
+                String tokenDigitado = textoMensagem.getText().replaceFirst("bloquear", "").trim();
+                tokenDigitadoPeloUsuario = tokenDigitado;
+                resposta = service.bloquearUsuario().toString();
 
             } else if (escolhaMenuHistorico.equalsIgnoreCase("2")) {
                 resposta = String.valueOf(acessoHistoricoService.historicoMesAnterior()) + "\n" +
