@@ -21,13 +21,9 @@ import static CadastrarSenha.BootTelegramApi.TokenDigitado.insereValor;
 public class Respostas {
     IncluiTokenRepository incluiTokenRepository = new IncluiTokenRepository();
     AcessoHistoricoService acessoHistoricoService = new AcessoHistoricoService();
-    TokenDigitado tokenDigitado = new TokenDigitado();
-    String opcaoParaEntrarMenu = "";
 
+    public static boolean respostaTodos = false;
     static boolean usuarioNoMenu = false;
-    public static String mensagemDigitada = "000";
-    boolean bloquear = false;
-    VariaveisBloqueioService bloqueioService = new VariaveisBloqueioService();
     public static String tokenDigitadoPeloUsuario;
 
 
@@ -64,13 +60,27 @@ public class Respostas {
                 // Construção da interação do usuario com o programa pelo telegram
 
             } else if (escolhaMenuHistorico.equalsIgnoreCase("1.1")) {
-                resposta = "Digite [LISTAR] para ver lista de usuarios para bloqueio:";
+                resposta = "Digite [TODOS] para ver lista de usuarios para bloqueio:";
 //                bloquear = true;
-            } else if (textoMensagem.getText().startsWith("bloquear")) {  // <- O problema esta aqui
+
+//                todo Parei aqui
+//            }else if(){
+
+            } else if (textoMensagem.getText().startsWith("todos")) {  // <- O problema esta aqui
+                respostaTodos = true;
                 BlackListService service = new BlackListService();
-                String tokenDigitado = textoMensagem.getText().replaceFirst("bloquear", "").trim();
+                String tokenDigitado = textoMensagem.getText().replaceFirst("todos", "").trim();
                 tokenDigitadoPeloUsuario = tokenDigitado;
                 resposta = service.bloquearUsuario().toString();
+                respostaTodos = false;
+            }
+            if (textoMensagem.getText().startsWith("bloquear")) {  // <- O problema esta aqui
+                respostaTodos = true;
+                BlackListService service = new BlackListService();
+                String tokenDigitado1 = textoMensagem.getText().replaceFirst("bloquear", "").trim();
+                tokenDigitadoPeloUsuario = tokenDigitado1;
+                resposta = service.bloquearUsuario().toString();
+                respostaTodos = false;
 
             } else if (escolhaMenuHistorico.equalsIgnoreCase("2")) {
                 resposta = String.valueOf(acessoHistoricoService.historicoMesAnterior()) + "\n" +
